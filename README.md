@@ -1,6 +1,6 @@
 # Better Code, Better Science: Next Steps in R & Python Practices
 
-Author: Tuan Nguyen \n
+Author: Tuan Nguyen /n
 April 13 - 17, 2026
 
 ## Overview
