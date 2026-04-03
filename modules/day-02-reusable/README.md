@@ -1,17 +1,35 @@
 # Day 2: Reusable
 
-## Focus
+## Theme
 
-Don't repeat yourself: functions are your friend.
+Reduce repetition by turning repeated work into flexible, well-named functions.
 
-## Folder Layout
+## Learning Goals
 
-- `data/`: discussion prompts, slide outline, and activity notes
-- `r/`: R refactoring exercise and cleaned version
-- `python/`: Python refactoring exercise and cleaned version
+By the end of this module, participants should be able to:
 
-## Suggested Materials
+1. Spot repeated logic and common code smells.
+2. Break a task into smaller, reusable pieces.
+3. Refactor repeated code into functions with clear parameters.
+4. Decide when parameterization helps and when it adds unnecessary complexity.
 
-- a short outline on DRY and function design
-- one messy script with repeated logic
-- one cleaned reference solution in each language
+## Module Contents
+
+- `data/instructor-notes.md`: discussion points and facilitation guidance
+- `data/activity-guide.md`: activity flow for the day's hands-on work
+- `data/slide-outline.md`: compact slide plan for a short lesson
+- `r/starter.R`: repeated R workflow for learners to refactor
+- `r/solution.R`: one function-based R reference solution
+- `python/starter.py`: repeated Python workflow for learners to refactor
+- `python/solution.py`: one function-based Python reference solution
+
+## Suggested Flow
+
+1. Introduce DRY as a maintainability principle rather than a rigid rule.
+2. Ask learners to identify repetition before they start rewriting code.
+3. Refactor the starter files into functions with meaningful names and arguments.
+4. Close with a discussion about good defaults, parameter choice, and overengineering.
+
+## Teaching Notes
+
+Keep the focus on making future changes easier. If learners rush toward abstraction too early, redirect them toward simple, concrete functions with one job each.

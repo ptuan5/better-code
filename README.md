@@ -1,6 +1,6 @@
 # Better Code, Better Science
 
-This repository contains materials for the 5-day workshop *Better Code, Better Science: Next Steps in R & Python Practices*, taught by Tuan Nguyen on April 13-17, 2026.
+This repository contains materials for the 5-day workshop *Better Code, Better Science: Next Steps in R & Python Practices*, taught by **Tuan Nguyen** on April 13-17, 2026.
 
 ## Overview
 
