@@ -46,7 +46,7 @@ Each module includes:
 - a compact demo
 - one or two hands-on cleanup activities
 - group discussion and debrief
-- parallel R and Python starter files plus reference solutions
+- parallel R and Python starter files plus example solutions
 
 ## Daily Outline
 

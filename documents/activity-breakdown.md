@@ -59,6 +59,8 @@
 
 ## Day 5: Shareable
 
+| Time | Duration | Activity |
+| --- | --- | --- |
 | 13:00-13:15 | 15 min | Why shareable & what it entails |
 | 13:15-13:30 | 15 min | Concept & Demo: GitHub & basic repo structure |
 | 13:30-13:55 | 25 min | Activity 1: Fix this repo & publish to Github |
