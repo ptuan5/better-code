@@ -1,7 +1,5 @@
 # Syllabus
 
-Source: `Syllabus for the Reproducible Programming in R_Python course.docx`
-
 ## Course Title
 
 Better Code, Better Science: Next Steps in R & Python Practices
