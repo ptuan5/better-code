@@ -4,6 +4,13 @@
 
 Show how small, well-scoped functions make code easier to change, test, and explain.
 
+## Materials to Open
+
+- `data/activity-guide.md`
+- `data/activity.md`
+- `r/starter.R` or `python/starter.py`
+- `r/solution.R` or `python/solution.py`
+
 ## Key Talking Points
 
 - repetition increases maintenance cost and risk
@@ -21,6 +28,7 @@ Show how small, well-scoped functions make code easier to change, test, and expl
 
 - Have learners highlight repetition before they start coding.
 - Encourage them to write one useful function before several tiny ones.
+- Point them toward obvious changing values such as treatment name, metric column, label, and unit.
 - If a function is hard to name, the responsibility may still be unclear.
 
 ## Debrief Questions

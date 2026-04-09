@@ -17,6 +17,7 @@ By the end of this module, participants should be able to:
 
 - `data/instructor-notes.md`: discussion points and facilitation guidance
 - `data/activity-guide.md`: activity flow for the day's hands-on work
+- `data/activity.md`: learner prompt for the refactoring activities
 - `data/slide-outline.md`: compact slide plan for a short lesson
 - `r/starter.R`: repeated R workflow for learners to refactor
 - `r/solution.R`: one function-based R reference solution

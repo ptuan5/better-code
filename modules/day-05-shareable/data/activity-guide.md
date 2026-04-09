@@ -2,23 +2,21 @@
 
 Theme: Make your work usable by others.
 
-## First 75 Minutes
-
-### 1. Why Shareability Matters
+### 1. Why Shareable & What It Entails
 
 Time: 15 minutes
 
 - discuss what makes code approachable to a new user
 - connect sharing to the previous four course themes
 
-### 2. Concept and Demo: GitHub and Basic Repo Structure
+### 2. Demo: GitHub & Basic Repo Structure
 
 Time: 15 minutes
 
 - review the role of a README, clear structure, and visible run instructions
 - show a stronger and weaker example side by side
 
-### 3. Activity 1: Fix This Repo and Prepare It for GitHub
+### 3. Activity 1: Fix This Repo & Publish to GitHub
 
 Time: 25 minutes
 
@@ -38,9 +36,7 @@ Time: 20 minutes
 
 Time: 15 minutes
 
-## Final 60 Minutes
-
-### 5. Activity 2: Peer Review
+### 5. Activity 2: Code Peer Review
 
 Time: 20 minutes
 
@@ -48,14 +44,14 @@ Time: 20 minutes
 2. Leave clear, specific feedback.
 3. Focus on what would help a newcomer most.
 
-### 6. Showcase and Reflection
+### 6. Showcase + Reflection
 
 Time: 30 minutes
 
 - invite 2-3 volunteers to present one improvement
 - reflect on what changed most across the week
 
-### 7. Final Wrap-Up
+### 7. Workshop Wrap Up / Buffer Time
 
 Time: 10 minutes
 

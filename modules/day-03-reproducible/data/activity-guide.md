@@ -2,16 +2,14 @@
 
 Theme: Someone else, or future you, can rerun everything.
 
-## First 75 Minutes
-
-### 1. Why Reproducibility Matters
+### 1. Why Reproducible & What It Entails
 
 Time: 15 minutes
 
 - discuss why code breaks across machines and over time
 - surface examples of missing packages, hidden paths, and undocumented steps
 
-### 2. Concept and Demo: From Interactive Work to Scripts
+### 2. Demo: Turn Interactive Functions Into Scripts
 
 Time: 15 minutes
 
@@ -38,9 +36,7 @@ Time: 15 minutes
 
 Time: 15 minutes
 
-## Final 60 Minutes
-
-### 5. Concept and Demo: Environments
+### 5. Demo: Virtual Environments
 
 Time: 15 minutes
 
@@ -62,7 +58,7 @@ Time: 15 minutes
 - what would another researcher still need in order to rerun the work?
 - what belongs in the script versus in documentation?
 
-### 8. Wrap-Up
+### 8. Day Wrap Up / Buffer Time
 
 Time: 5 minutes
 

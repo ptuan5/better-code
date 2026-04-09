@@ -2,16 +2,14 @@
 
 Theme: Your code is wrong, so design for that.
 
-## First 75 Minutes
-
-### 1. Why Reliability Matters
+### 1. Why Reliable & What It Entails
 
 Time: 15 minutes
 
 - discuss the difference between code that runs once and code that can be trusted
 - introduce correctness, assumptions, and edge cases
 
-### 2. Concept and Demo: Think About Edge Cases
+### 2. Demo: Think of Edge Cases
 
 Time: 15 minutes
 
@@ -38,9 +36,7 @@ Time: 15 minutes
 
 Time: 15 minutes
 
-## Final 60 Minutes
-
-### 5. Concept and Demo: Unit Tests
+### 5. Demo: Unit Tests
 
 Time: 15 minutes
 
@@ -62,7 +58,7 @@ Time: 15 minutes
 - what was worth testing?
 - what felt unnecessary for this example?
 
-### 8. Wrap-Up
+### 8. Day Wrap Up / Buffer Time
 
 Time: 5 minutes
 
