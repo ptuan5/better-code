@@ -6,67 +6,74 @@ Theme: Write code you will understand six months later.
 
 Time: 20 minutes
 
-- Introduce the workshop goals 
-- Daily structure and reference materials
+- introduce the workshop goals
+- review the daily structure and reference materials
 
 ### 2. Why & What
 
 Time: 10 minutes
 
-- Discuss why is it important for code to be readable
-- What does readable entail:
-    - Organized
-    - Proper documentation
+- discuss why readable code matters
+- define what readability includes:
+  - organized projects and files
+  - clear names and documentation
 
 ### 3. Demo: Folder Structure
 
 Time: 10 minutes
 
-[Showing a directory and show 2 ways that I organize it]
+- Show one messy project tree from `data/folder-structure-demo.md`
+- Compare two valid ways to organize it:
+  - by artifact type such as `data/`, `scripts/`, `results/`, and `docs/`
+  - by workflow stage such as `01-collect/`, `02-clean/`, and `03-figures/`
+- Highlight what both versions make obvious to a newcomer
 
-### 4. Discussion
+### 4. Activity 1: Organize a Repo
+
+Time: 20 minutes
+
+1. Open `activity-1-messy-directory.md`.
+2. Group files into clearer folders and rename the most confusing files.
+3. Decide what should stay active, what should move to `archive/`, and what needs a short README note.
+4. Be ready to explain one tradeoff you made.
+
+### 5. Discussion
 
 Time: 15 minutes
 
-- what structure choices were easy?
-- what details were subjective?
-- what should always be obvious in a project folder?
-
-### 5. Transition
-
-Time: 10 minutes
-
-- move from folder-level readability to code-level readability
-- preview naming, comments, and code organization
+- what structure choices felt clearly better versus mostly stylistic?
+- what should always be obvious from the top level of a project?
+- when is it worth creating more folders, and when does that add clutter?
 
 ## Break
 
 Time: 15 minutes
 
-## Final 60 Minutes
-
-### 6. Concept and Demo: Readable Code
+### 6. Demo: Readable Code
 
 Time: 15 minutes
 
-- show unclear names, long blocks, and weak comments
-- model how small edits improve comprehension
+- Open `r/starter.R` or `python/starter.py`.
+- Mark vague names, repeated logic, long blocks, and unhelpful output labels.
+- Model a cleanup sequence: rename first, separate responsibilities second, then add a short script header.
 
 ### 7. Activity 2: Document and Rewrite a Code Chunk
 
 Time: 25 minutes
 
-1. Open `starter.R` or `starter.py`.
-2. Mark unclear names and confusing blocks.
+1. Open `data/activity-2-rewrite-code.md`.
+2. Work from `r/starter.R` or `python/starter.py`.
 3. Rewrite for clarity without changing behavior.
-4. Compare your changes to the reference solution.
+4. Add a short docstring or script header explaining the purpose of the file.
+5. Compare your version with the matching solution file if time allows.
 
 ### 8. Discussion
 
 Time: 15 minutes
 
-- which changes improved readability most?
-- where did people make different but valid choices?
+- which readability change gave the biggest payoff?
+- where did people make different but still reasonable choices?
+- what comments or docstrings were useful, and what would have been noise?
 
 ### 9. Wrap-Up
 

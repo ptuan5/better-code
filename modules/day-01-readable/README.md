@@ -17,11 +17,12 @@ By the end of this module, participants should be able to:
 
 - `data/instructor-notes.md`: discussion points and facilitation guidance
 - `data/activity-guide.md`: activity flow for the day's hands-on work
+- `data/folder-structure-demo.md`: demo prompt for comparing project layouts
+- `data/activity-1-messy-directory.md`: learner prompt for the directory cleanup activity
+- `data/activity-2-rewrite-code.md`: learner prompt for the code readability exercise
 - `data/slide-outline.md`: compact slide plan for a short lesson
-- `r/starter.R`: messy R example for learners to improve
-- `r/solution.R`: one cleaned-up R reference solution
-- `python/starter.py`: messy Python example for learners to improve
-- `python/solution.py`: one cleaned-up Python reference solution
+- `r/starter.R` and `python/starter.py`: messy examples for learners to improve
+- `r/solution.R` and `python/solution.py`: cleaned-up reference solutions
 
 ## Suggested Flow
 

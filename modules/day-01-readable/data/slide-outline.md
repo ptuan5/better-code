@@ -26,6 +26,7 @@
 
 ## Slide 5: Activity Setup
 
+- activity 1: reorganize a messy project so a newcomer can navigate it
 - inspect the starter script
 - improve clarity without changing behavior
 - be ready to explain your choices
