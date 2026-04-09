@@ -2,9 +2,11 @@
 
 ## Session Goal
 
-Help participants see readability as a scientific practice, not just a style preference.
+Help participants see readability as an important scientific practice, not just a style preference.
 
 ## Key Talking Points
+
+Why readable?
 
 - unreadable code slows down review, reuse, and debugging
 - good structure reduces cognitive load before anyone reads a single line

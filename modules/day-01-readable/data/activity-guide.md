@@ -2,31 +2,27 @@
 
 Theme: Write code you will understand six months later.
 
-## First 75 Minutes
-
-### 1. Intro and Framing
+### 1. Course Introduction & Structure
 
 Time: 20 minutes
 
-- introduce the workshop goals and daily structure
-- ask participants what usually makes code hard to revisit
-- connect readability to scientific collaboration and revision
+- Introduce the workshop goals 
+- Daily structure and reference materials
 
-### 2. Concept and Demo: Folder Structure
+### 2. Why & What
 
 Time: 10 minutes
 
-- show a cluttered project layout
-- discuss what information is hard to find
-- model a simpler structure for data, code, and outputs
+- Discuss why is it important for code to be readable
+- What does readable entail:
+    - Organized
+    - Proper documentation
 
-### 3. Activity 1: Organize a Directory
+### 3. Demo: Folder Structure
 
-Time: 20 minutes
+Time: 10 minutes
 
-1. Give participants a messy directory.
-2. Ask them to sketch or rename a cleaner structure.
-3. Have them explain how a new collaborator would navigate it.
+[Showing a directory and show 2 ways that I organize it]
 
 ### 4. Discussion
 
