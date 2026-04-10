@@ -6,11 +6,11 @@ Help participants package their work so another researcher can understand and re
 
 ## Materials to Open
 
-- `agenda.md`
-- `activities/activity-1/prompt.md`
-- `activities/activity-2/prompt.md`
-- `activities/activity-1/r/starter.R` or `activities/activity-1/python/starter.py`
-- `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py`
+- `modules/day-05-shareable/agenda.md`
+- `modules/day-05-shareable/activities/activity-1/prompt.md`
+- `modules/day-05-shareable/activities/activity-2/prompt.md`
+- `modules/day-05-shareable/activities/activity-1/r/starter.R` or `modules/day-05-shareable/activities/activity-1/python/starter.py`
+- `modules/day-05-shareable/activities/activity-1/r/example.R` or `modules/day-05-shareable/activities/activity-1/python/example.py`
 
 ## Key Talking Points
 

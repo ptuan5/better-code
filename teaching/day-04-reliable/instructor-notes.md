@@ -6,11 +6,11 @@ Help participants practice skepticism in a constructive way through review and t
 
 ## Materials to Open
 
-- `agenda.md`
-- `activities/activity-1/prompt.md`
-- `activities/activity-2/prompt.md`
-- `activities/activity-1/r/starter.R` or `activities/activity-1/python/starter.py`
-- `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py`
+- `modules/day-04-reliable/agenda.md`
+- `modules/day-04-reliable/activities/activity-1/prompt.md`
+- `modules/day-04-reliable/activities/activity-2/prompt.md`
+- `modules/day-04-reliable/activities/activity-1/r/starter.R` or `modules/day-04-reliable/activities/activity-1/python/starter.py`
+- `modules/day-04-reliable/activities/activity-1/r/example.R` or `modules/day-04-reliable/activities/activity-1/python/example.py`
 
 ## Key Talking Points
 

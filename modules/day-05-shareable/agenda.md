@@ -1,6 +1,24 @@
-# Agenda
+# Day 5: Shareable
 
 Theme: Make your work usable by others.
+
+## Learning Goals
+
+By the end of this module, participants should be able to:
+
+1. Identify the basic parts of a usable research repository.
+2. Improve README files for audience, clarity, and actionability.
+3. Explain a simple pull request workflow on GitHub.
+4. Polish an example project for handoff, reuse, or public sharing.
+
+## Materials
+
+- `activities/activity-1/prompt.md`
+- `activities/activity-1/r/starter.R` or `activities/activity-1/python/starter.py`
+- `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py`
+- `activities/activity-2/prompt.md`
+
+## Agenda
 
 ### 1. Why Shareable & What It Entails
 
@@ -59,3 +77,7 @@ Time: 10 minutes
 
 - summarize the link between readable, reusable, reproducible, reliable, and shareable code
 - identify one practice participants will use next week
+
+## Notes
+
+This module works well as a synthesis day. Invite participants to explain how readability, reusability, reproducibility, and reliability all support code sharing.

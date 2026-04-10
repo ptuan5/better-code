@@ -6,12 +6,12 @@ Help participants see readability as an important scientific practice, not just 
 
 ## Materials to Open
 
-- `slide-outline.md`
-- `demos/folder-structure.md`
-- `activities/activity-1/prompt.md`
-- `activities/activity-2/prompt.md`
-- `activities/activity-2/r/starter.R` or `activities/activity-2/python/starter.py`
-- `activities/activity-2/r/example.R` or `activities/activity-2/python/example.py`
+- `modules/day-01-readable/agenda.md`
+- `modules/day-01-readable/demos/folder-structure.md`
+- `modules/day-01-readable/activities/activity-1/prompt.md`
+- `modules/day-01-readable/activities/activity-2/prompt.md`
+- `modules/day-01-readable/activities/activity-2/r/starter.R` or `modules/day-01-readable/activities/activity-2/python/starter.py`
+- `modules/day-01-readable/activities/activity-2/r/example.R` or `modules/day-01-readable/activities/activity-2/python/example.py`
 
 ## Key Talking Points
 
@@ -32,13 +32,13 @@ Readable projects usually make three things easy to locate:
 
 ### Folder Structure Demo
 
-- Start with the messy tree in `demos/folder-structure.md`.
+- Start with the messy tree in `modules/day-01-readable/demos/folder-structure.md`.
 - Ask learners what feels risky or hard to navigate before proposing changes.
 - Show two valid structures so the lesson stays focused on clarity, not one "correct" layout.
 
 ### Readable Code Demo
 
-- Open `activities/activity-2/r/starter.R` or `activities/activity-2/python/starter.py` and read it once without editing.
+- Open `modules/day-01-readable/activities/activity-2/r/starter.R` or `modules/day-01-readable/activities/activity-2/python/starter.py` and read it once without editing.
 - Ask learners to identify vague names, mixed responsibilities, and comments that are still missing.
 - Model small changes first: better names, clearer output labels, and separating logic from printing.
 - Leave some cleanup work undone so learners still have decisions to make during Activity 2.

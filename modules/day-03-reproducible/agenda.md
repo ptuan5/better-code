@@ -1,6 +1,24 @@
-# Agenda
+# Day 3: Reproducible
 
 Theme: Someone else, or future you, can rerun everything.
+
+## Learning Goals
+
+By the end of this module, participants should be able to:
+
+1. Explain why workflows fail across machines and over time.
+2. Record dependencies and execution steps clearly.
+3. Turn ad hoc scripts into more deliberate, repeatable workflows.
+4. Describe inputs, outputs, and run order for a small analysis task.
+
+## Materials
+
+- `activities/activity-1/prompt.md`
+- `activities/activity-1/r/starter.R` or `activities/activity-1/python/starter.py`
+- `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py`
+- `activities/activity-2/prompt.md`
+
+## Agenda
 
 ### 1. Why Reproducible & What It Entails
 
@@ -66,3 +84,7 @@ Time: 5 minutes
 
 - summarize the minimum information needed for reproducibility
 - preview tomorrow's focus on reliability and tests
+
+## Notes
+
+Participants often think reproducibility only means package management. Use this module to broaden that definition to include paths, inputs, outputs, execution order, and documentation.

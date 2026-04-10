@@ -1,6 +1,25 @@
-# Agenda
+# Day 1: Readable
 
 Theme: Write code you will understand six months later.
+
+## Learning Goals
+
+By the end of this module, participants should be able to:
+
+1. Recognize common readability problems in scientific code.
+2. Organize files so data, scripts, and outputs are easier to navigate.
+3. Improve naming, comments, and structure without changing behavior.
+4. Explain why readability matters for collaboration and maintenance.
+
+## Materials
+
+- `demos/folder-structure.md`
+- `activities/activity-1/prompt.md`
+- `activities/activity-2/prompt.md`
+- `activities/activity-2/r/starter.R` or `activities/activity-2/python/starter.py`
+- `activities/activity-2/r/example.R` or `activities/activity-2/python/example.py`
+
+## Agenda
 
 ### 1. Course Introduction & Structure
 
@@ -81,3 +100,7 @@ Time: 5 minutes
 
 - collect one readability habit each person wants to keep using
 - connect today's work to tomorrow's focus on reusable functions
+
+## Notes
+
+This is a good day to normalize that "better" code is not the same thing as "perfect" code. Encourage participants to make incremental changes and explain why each change improves understanding.

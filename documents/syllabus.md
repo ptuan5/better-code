@@ -133,14 +133,13 @@ Practice:
 The workshop repository is organized by day under `modules/`. Each module contains:
 
 - `agenda.md`: the day schedule and activity flow
-- `slide-outline.md`: a compact teaching outline
-- `instructor-notes.md`: facilitation notes and discussion prompts
 - `activities/`: learner prompts plus activity-specific R and Python materials
+
+Instructor-facing notes live under `teaching/`, organized by day.
 
 Course-wide planning documents live under `documents/`.
 
 ## Suggested References
 
 - `https://github.com/TheJacksonLaboratory/bestpractices_workshop`
-- `https://adv-r.hadley.nz/`
 - reproducible research resources for R, Python, and scientific workflows

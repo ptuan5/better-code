@@ -1,6 +1,24 @@
-# Agenda
+# Day 4: Reliable
 
 Theme: Your code is wrong, so design for that.
+
+## Learning Goals
+
+By the end of this module, participants should be able to:
+
+1. Review code for correctness, clarity, and hidden risk.
+2. Distinguish between brittle code and trustworthy code.
+3. Write a few focused tests for important logic.
+4. Use peer review as a way to improve code quality and team learning.
+
+## Materials
+
+- `activities/activity-1/prompt.md`
+- `activities/activity-1/r/starter.R` or `activities/activity-1/python/starter.py`
+- `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py`
+- `activities/activity-2/prompt.md`
+
+## Agenda
 
 ### 1. Why Reliable & What It Entails
 
@@ -66,3 +84,7 @@ Time: 5 minutes
 
 - connect testing to review and future changes
 - preview the final day on sharing and collaboration
+
+## Notes
+
+Participants do not need a full testing framework lecture here. A small number of meaningful tests is enough to show how reliability improves when assumptions become explicit.

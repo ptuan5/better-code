@@ -1,6 +1,24 @@
-# Agenda
+# Day 2: Reusable
 
 Theme: Don't repeat yourself: functions are your friend.
+
+## Learning Goals
+
+By the end of this module, participants should be able to:
+
+1. Spot repeated logic and common code smells.
+2. Break a task into smaller, reusable pieces.
+3. Refactor repeated code into functions with clear parameters.
+4. Decide when parameterization helps and when it adds unnecessary complexity.
+
+## Materials
+
+- `activities/activity-1/prompt.md`
+- `activities/activity-1/r/starter.R` or `activities/activity-1/python/starter.py`
+- `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py`
+- `activities/activity-2/prompt.md`
+
+## Agenda
 
 ### 1. Why Reusable & What It Entails
 
@@ -66,3 +84,7 @@ Time: 5 minutes
 
 - summarize one refactoring principle to carry forward
 - preview tomorrow's focus on reproducible execution
+
+## Notes
+
+Keep the focus on making future changes easier. If learners rush toward abstraction too early, redirect them toward simple, concrete functions with one job each.

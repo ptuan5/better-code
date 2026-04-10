@@ -6,11 +6,11 @@ Move learners from ad hoc execution toward explicit, documented workflows.
 
 ## Materials to Open
 
-- `agenda.md`
-- `activities/activity-1/prompt.md`
-- `activities/activity-2/prompt.md`
-- `activities/activity-1/r/starter.R` or `activities/activity-1/python/starter.py`
-- `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py`
+- `modules/day-03-reproducible/agenda.md`
+- `modules/day-03-reproducible/activities/activity-1/prompt.md`
+- `modules/day-03-reproducible/activities/activity-2/prompt.md`
+- `modules/day-03-reproducible/activities/activity-1/r/starter.R` or `modules/day-03-reproducible/activities/activity-1/python/starter.py`
+- `modules/day-03-reproducible/activities/activity-1/r/example.R` or `modules/day-03-reproducible/activities/activity-1/python/example.py`
 
 ## Key Talking Points
 
