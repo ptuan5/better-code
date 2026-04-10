@@ -15,13 +15,13 @@ By the end of this module, participants should be able to:
 
 ## Module Contents
 
-- `data/instructor-notes.md`: discussion points and facilitation guidance
-- `data/activity-guide.md`: activity flow for the day's hands-on work
-- `data/slide-outline.md`: compact slide plan for a short lesson
-- `r/starter.R`: fragile R workflow with hidden assumptions
-- `r/solution.R`: one reproducible R reference solution
-- `python/starter.py`: fragile Python workflow with hidden assumptions
-- `python/solution.py`: one reproducible Python reference solution
+- `agenda.md`: activity flow for the day's hands-on work
+- `slide-outline.md`: compact slide plan for a short lesson
+- `instructor-notes.md`: discussion points and facilitation guidance
+- `activities/activity-1/prompt.md`: learner prompt for making a script executable
+- `activities/activity-1/r/starter.R` and `activities/activity-1/python/starter.py`: fragile workflows with hidden assumptions
+- `activities/activity-1/r/example.R` and `activities/activity-1/python/example.py`: one example approach for a reproducible rewrite
+- `activities/activity-2/prompt.md`: learner prompt for reconstructing the environment
 
 ## Suggested Flow
 

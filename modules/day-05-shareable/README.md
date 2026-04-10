@@ -15,13 +15,13 @@ By the end of this module, participants should be able to:
 
 ## Module Contents
 
-- `data/instructor-notes.md`: discussion points and facilitation guidance
-- `data/activity-guide.md`: activity flow for the day's hands-on work
-- `data/slide-outline.md`: compact slide plan for a short lesson
-- `r/starter.R`: script with weak communication and sharing practices
-- `r/solution.R`: polished R reference solution
-- `python/starter.py`: script with weak communication and sharing practices
-- `python/solution.py`: polished Python reference solution
+- `agenda.md`: activity flow for the day's hands-on work
+- `slide-outline.md`: compact slide plan for a short lesson
+- `instructor-notes.md`: discussion points and facilitation guidance
+- `activities/activity-1/prompt.md`: learner prompt for polishing a tiny project for sharing
+- `activities/activity-1/r/starter.R` and `activities/activity-1/python/starter.py`: scripts with weak communication and sharing practices
+- `activities/activity-1/r/example.R` and `activities/activity-1/python/example.py`: one polished example approach
+- `activities/activity-2/prompt.md`: learner prompt for peer review
 
 ## Suggested Flow
 

@@ -132,9 +132,10 @@ Practice:
 
 The workshop repository is organized by day under `modules/`. Each module contains:
 
-- `data/`: slide outlines, activity guides, and instructor notes
-- `r/`: R starter materials and a cleaned reference solution
-- `python/`: Python starter materials and a cleaned reference solution
+- `agenda.md`: the day schedule and activity flow
+- `slide-outline.md`: a compact teaching outline
+- `instructor-notes.md`: facilitation notes and discussion prompts
+- `activities/`: learner prompts plus activity-specific R and Python materials
 
 Course-wide planning documents live under `documents/`.
 

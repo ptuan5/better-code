@@ -15,14 +15,13 @@ By the end of this module, participants should be able to:
 
 ## Module Contents
 
-- `data/instructor-notes.md`: discussion points and facilitation guidance
-- `data/activity-guide.md`: activity flow for the day's hands-on work
-- `data/activity.md`: learner prompt for the refactoring activities
-- `data/slide-outline.md`: compact slide plan for a short lesson
-- `r/starter.R`: repeated R workflow for learners to refactor
-- `r/solution.R`: one function-based R reference solution
-- `python/starter.py`: repeated Python workflow for learners to refactor
-- `python/solution.py`: one function-based Python reference solution
+- `agenda.md`: activity flow for the day's hands-on work
+- `slide-outline.md`: compact slide plan for a short lesson
+- `instructor-notes.md`: discussion points and facilitation guidance
+- `activities/activity-1/prompt.md`: learner prompt for refactoring repeated code
+- `activities/activity-1/r/starter.R` and `activities/activity-1/python/starter.py`: repeated workflows for learners to refactor
+- `activities/activity-1/r/example.R` and `activities/activity-1/python/example.py`: one example approach for the refactor
+- `activities/activity-2/prompt.md`: learner prompt for parameterizing the refactor
 
 ## Suggested Flow
 

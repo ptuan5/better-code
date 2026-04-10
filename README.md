@@ -36,9 +36,13 @@ Within each day:
 
 ```text
 day-0x-...
-|-- data/
-|-- r/
-`-- python/
+|-- agenda.md
+|-- instructor-notes.md
+|-- slide-outline.md
+|-- activities/
+|   |-- activity-1/
+|   `-- activity-2/
+`-- demos/  # optional
 ```
 
 ## Where to Find Things
@@ -48,10 +52,12 @@ day-0x-...
 
 Within each day:
 
-- `data/`: prompts, activity instructions, slide outlines, and notes
-- `r/`: R examples and cleaned-up reference solutions
-- `python/`: Python examples and cleaned-up reference solutions
+- `agenda.md`: the day schedule and flow
+- `instructor-notes.md`: facilitation guidance and discussion prompts
+- `slide-outline.md`: a compact teaching outline for slides
+- `activities/`: learner prompts and activity-specific materials
+- `demos/`: optional demo-specific materials for that day
 
 ## How to Use This Repository
 
-Start with the materials in `documents/` for the overall course structure. Then use the relevant folder in `modules/` for each day's activities and examples. Within each day, the `r/` and `python/` folders provide language-specific materials, and `data/` contains supporting instructions and notes.
+Start with the materials in `documents/` for the overall course structure. Then use the relevant folder in `modules/` for each day's agenda, teaching notes, and activities. Each activity folder contains the learner prompt and any R or Python starter/example files used in that exercise.
