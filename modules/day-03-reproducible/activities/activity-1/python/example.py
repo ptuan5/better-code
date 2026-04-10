@@ -2,19 +2,36 @@ from pathlib import Path
 
 import pandas as pd
 
-measurements = pd.DataFrame(
+gene_set_uploads = pd.DataFrame(
     {
-        "sample_id": ["S1", "S2", "S3", "S4"],
-        "condition": ["control", "control", "treated", "treated"],
-        "signal": [5.2, 5.5, 6.8, 7.1],
+        "created": [
+            "01/10/2021",
+            "03/15/2021",
+            "07/02/2022",
+            "04/21/2022",
+            "08/08/2023",
+            "09/14/2023",
+        ],
+        "model": ["mouse", "cell line", "mouse", "human", "human", "mouse"],
+        "search_text": ["opioid", "opioid", "opioid", "opioid", "opioid", "opioid"],
     }
 )
 
 
-def calculate_mean_difference(data):
-    treated = data[data["condition"] == "treated"]
-    control = data[data["condition"] == "control"]
-    return treated["signal"].mean() - control["signal"].mean()
+def summarize_model_counts(data, start_year="2021", end_year="2023"):
+    prepared = data.copy()
+    prepared["created"] = pd.to_datetime(prepared["created"], format="%m/%d/%Y")
+    prepared["year"] = prepared["created"].dt.strftime("%Y")
+    filtered = prepared[
+        (prepared["year"] >= start_year) & (prepared["year"] <= end_year)
+    ]
+    return (
+        filtered.groupby(["year", "model"])
+        .size()
+        .reset_index(name="n")
+        .sort_values(["year", "model"])
+        .reset_index(drop=True)
+    )
 
 
 def write_results(result_table, output_file):
@@ -23,18 +40,17 @@ def write_results(result_table, output_file):
     result_table.to_csv(output_path, index=False)
 
 
-def run_analysis(data, output_file="results/signal_difference.csv"):
-    mean_difference = calculate_mean_difference(data)
-    result_table = pd.DataFrame(
-        {"metric": ["treated_minus_control"], "value": [mean_difference]}
-    )
+def run_analysis(
+    data, start_year="2021", end_year="2023", output_file="results/model_counts.csv"
+):
+    result_table = summarize_model_counts(data, start_year, end_year)
     write_results(result_table, output_file)
     return {"output_file": output_file, "result_table": result_table}
 
 
 if __name__ == "__main__":
-    result = run_analysis(measurements)
+    result = run_analysis(gene_set_uploads)
     print("Required packages: pandas")
-    print("Inputs: a table with sample_id, condition, and signal columns")
+    print("Inputs: a table with created date, model, and search_text columns")
     print("Output file:", result["output_file"])
-    print("Mean difference:", result["result_table"]["value"].iloc[0])
+    print(result["result_table"])

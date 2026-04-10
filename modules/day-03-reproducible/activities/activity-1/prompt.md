@@ -4,6 +4,10 @@
 
 Make a small analysis runnable by someone else without hidden setup steps.
 
+This activity is inspired by `example_code/GSbyModel_012126 - Tessa.R`, which includes a working-directory change, machine-specific paths, and a script that runs itself at the bottom. The teaching starter is smaller, but your job is the same: remove guesswork.
+
+This activity builds on Day 2. Reusable pieces are easier to turn into a repeatable workflow because the script can make inputs, outputs, and run order explicit.
+
 ## Files
 
 - starter code: `r/starter.R` or `python/starter.py`
@@ -17,6 +21,7 @@ Inspect the starter script and make the workflow steps explicit.
 2. List the hidden assumptions about packages, paths, inputs, and outputs.
 3. Rewrite the script so the analysis steps are easy to follow.
 4. Make it clear what file gets written and where it goes.
+5. Add one short note showing how a collaborator should run it.
 
 ### What to Look For
 
@@ -24,9 +29,11 @@ Inspect the starter script and make the workflow steps explicit.
 - hard-coded output locations
 - missing explanation of inputs and outputs
 - no obvious run order or entry point
+- anything that would make sense only if the original author were standing beside you
 
 ### What to Preserve
 
-- the same mean difference calculation
+- the same yearly model counts
+- the same filtered year range
 - the same output table values
 - one output file that records the result

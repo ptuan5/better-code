@@ -1,38 +1,40 @@
-def pass_rate(scores, passing_score=60):
-    if not scores:
-        raise ValueError("scores must contain at least one value")
+def overlap_score(start_a, end_a, start_b, end_b):
+    if end_a < start_a or end_b < start_b:
+        raise ValueError("end frame must be greater than or equal to start frame")
 
-    passed = [score >= passing_score for score in scores]
-    return sum(passed) / len(scores) * 100
-
-
-def course_label(rate):
-    if rate >= 90:
-        return "excellent"
-    if rate >= 70:
-        return "on track"
-    return "needs support"
+    overlap = max(0, min(end_a, end_b) - max(start_a, start_b) + 1)
+    union = max(end_a, end_b) - min(start_a, start_b) + 1
+    return overlap / union
 
 
-def course_summary(scores, passing_score=60):
-    rate = pass_rate(scores, passing_score)
-    return f"Pass rate = {rate:.1f} - {course_label(rate)}"
+def agreement_label(score):
+    if score >= 0.75:
+        return "strong"
+    if score >= 0.4:
+        return "mixed"
+    return "weak"
+
+
+def agreement_summary(start_a, end_a, start_b, end_b):
+    score = overlap_score(start_a, end_a, start_b, end_b)
+    return f"Agreement = {score:.3f} - {agreement_label(score)}"
 
 
 def run_checks():
-    assert pass_rate([55, 60, 62, 90]) == 75
-    assert pass_rate([60, 60, 60]) == 100
-    assert course_label(90) == "excellent"
-    assert course_label(70) == "on track"
+    assert round(overlap_score(10, 20, 15, 25), 3) == 0.375
+    assert round(overlap_score(5, 8, 8, 10), 3) == 0.167
+    assert overlap_score(30, 40, 50, 55) == 0
+    assert agreement_label(0.75) == "strong"
+    assert agreement_label(0.4) == "mixed"
 
     try:
-        pass_rate([])
+        overlap_score(12, 10, 15, 20)
     except ValueError:
         pass
     else:
-        raise AssertionError("Empty input should raise ValueError")
+        raise AssertionError("Invalid interval should raise ValueError")
 
-    print(course_summary([55, 60, 62, 90]))
+    print(agreement_summary(10, 20, 15, 25))
     print("All checks passed")
 
 

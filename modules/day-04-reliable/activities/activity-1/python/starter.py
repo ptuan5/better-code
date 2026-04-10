@@ -1,25 +1,22 @@
-def pass_rate(scores, passing_score=60):
-    passed = [score > passing_score for score in scores]
-    return sum(passed) / len(scores) * 100
+def overlap_score(start_a, end_a, start_b, end_b):
+    overlap = min(end_a, end_b) - max(start_a, start_b)
+    union = max(end_a, end_b) - min(start_a, start_b)
+    return overlap / union
 
 
-def course_label(rate):
-    if rate > 90:
-        return "excellent"
-    if rate > 70:
-        return "on track"
-    return "needs support"
+def agreement_label(score):
+    if score > 0.75:
+        return "strong"
+    if score > 0.4:
+        return "mixed"
+    return "weak"
 
 
-def course_summary(scores, passing_score=60):
-    rate = pass_rate(scores, passing_score)
-    return f"Pass rate = {rate:.1f} - {course_label(rate)}"
+def agreement_summary(start_a, end_a, start_b, end_b):
+    score = overlap_score(start_a, end_a, start_b, end_b)
+    return f"Agreement = {score:.3f} - {agreement_label(score)}"
 
 
-scores_a = [55, 60, 62, 90]
-scores_b = [60, 60, 60]
-scores_c = [45, 72, 82]
-
-print(course_summary(scores_a))
-print(course_summary(scores_b))
-print(course_summary(scores_c))
+print(agreement_summary(10, 20, 15, 25))
+print(agreement_summary(5, 8, 8, 10))
+print(agreement_summary(30, 40, 50, 55))

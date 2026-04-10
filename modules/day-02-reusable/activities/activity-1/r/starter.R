@@ -1,60 +1,69 @@
-plants <- data.frame(
-  treatment = c("control", "control", "fertilizer", "fertilizer", "shade", "shade"),
-  height_cm = c(12.1, 11.8, 15.2, 14.9, 10.5, 10.8),
-  leaf_count = c(8, 9, 14, 13, 6, 7)
+lif_correlations <- data.frame(
+  tissue = c(
+    "Adipose Subcutaneous", "Adipose Subcutaneous", "Adipose Subcutaneous", "Adipose Subcutaneous",
+    "Liver", "Liver", "Liver", "Liver",
+    "Muscle Skeletal", "Muscle Skeletal", "Muscle Skeletal", "Muscle Skeletal"
+  ),
+  gene = c(
+    "LIF", "IL6", "SOCS3", "CPT1A",
+    "LIF", "FGF21", "PCK1", "CEBPA",
+    "LIF", "STAT3", "TRIM63", "MYH7"
+  ),
+  correlation = c(
+    1.00, 0.62, 0.52, -0.14,
+    1.00, 0.58, 0.44, -0.20,
+    1.00, 0.71, 0.53, -0.33
+  ),
+  mean_tpm = c(
+    12.4, 8.1, 7.8, 20.2,
+    14.1, 10.9, 16.5, 18.0,
+    5.4, 6.9, 4.8, 22.4
+  )
 )
 
-control_height_values <- plants$height_cm[plants$treatment == "control"]
-control_height_mean <- mean(control_height_values)
-control_height_summary <- paste(
-  "control average height =",
-  round(control_height_mean, 1),
-  "cm"
+adipose_rows <- lif_correlations[lif_correlations$tissue == "Adipose Subcutaneous", ]
+adipose_hits <- adipose_rows[adipose_rows$gene != "LIF" & adipose_rows$correlation >= 0.4, ]
+adipose_top_gene <- adipose_hits$gene[which.max(adipose_hits$correlation)]
+adipose_summary <- paste(
+  "Adipose Subcutaneous strong genes =",
+  nrow(adipose_hits),
+  "| top partner =",
+  adipose_top_gene,
+  "| average correlation =",
+  round(mean(adipose_hits$correlation), 2),
+  "| average expression =",
+  round(mean(adipose_hits$mean_tpm), 1)
 )
 
-fertilizer_height_values <- plants$height_cm[plants$treatment == "fertilizer"]
-fertilizer_height_mean <- mean(fertilizer_height_values)
-fertilizer_height_summary <- paste(
-  "fertilizer average height =",
-  round(fertilizer_height_mean, 1),
-  "cm"
+liver_rows <- lif_correlations[lif_correlations$tissue == "Liver", ]
+liver_hits <- liver_rows[liver_rows$gene != "LIF" & liver_rows$correlation >= 0.4, ]
+liver_top_gene <- liver_hits$gene[which.max(liver_hits$correlation)]
+liver_summary <- paste(
+  "Liver strong genes =",
+  nrow(liver_hits),
+  "| top partner =",
+  liver_top_gene,
+  "| average correlation =",
+  round(mean(liver_hits$correlation), 2),
+  "| average expression =",
+  round(mean(liver_hits$mean_tpm), 1)
 )
 
-shade_height_values <- plants$height_cm[plants$treatment == "shade"]
-shade_height_mean <- mean(shade_height_values)
-shade_height_summary <- paste(
-  "shade average height =",
-  round(shade_height_mean, 1),
-  "cm"
+muscle_rows <- lif_correlations[lif_correlations$tissue == "Muscle Skeletal", ]
+muscle_hits <- muscle_rows[muscle_rows$gene != "LIF" & muscle_rows$correlation >= 0.4, ]
+muscle_top_gene <- muscle_hits$gene[which.max(muscle_hits$correlation)]
+muscle_summary <- paste(
+  "Muscle Skeletal strong genes =",
+  nrow(muscle_hits),
+  "| top partner =",
+  muscle_top_gene,
+  "| average correlation =",
+  round(mean(muscle_hits$correlation), 2),
+  "| average expression =",
+  round(mean(muscle_hits$mean_tpm), 1)
 )
 
-control_leaf_values <- plants$leaf_count[plants$treatment == "control"]
-control_leaf_mean <- mean(control_leaf_values)
-control_leaf_summary <- paste(
-  "control average leaves =",
-  round(control_leaf_mean, 1)
-)
-
-fertilizer_leaf_values <- plants$leaf_count[plants$treatment == "fertilizer"]
-fertilizer_leaf_mean <- mean(fertilizer_leaf_values)
-fertilizer_leaf_summary <- paste(
-  "fertilizer average leaves =",
-  round(fertilizer_leaf_mean, 1)
-)
-
-shade_leaf_values <- plants$leaf_count[plants$treatment == "shade"]
-shade_leaf_mean <- mean(shade_leaf_values)
-shade_leaf_summary <- paste(
-  "shade average leaves =",
-  round(shade_leaf_mean, 1)
-)
-
-print("Height summaries")
-print(control_height_summary)
-print(fertilizer_height_summary)
-print(shade_height_summary)
-
-print("Leaf summaries")
-print(control_leaf_summary)
-print(fertilizer_leaf_summary)
-print(shade_leaf_summary)
+print("Tissue summaries")
+print(adipose_summary)
+print(liver_summary)
+print(muscle_summary)

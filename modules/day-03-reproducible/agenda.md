@@ -18,6 +18,12 @@ By the end of this module, participants should be able to:
 - `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py`
 - `activities/activity-2/prompt.md`
 
+This day is inspired by `example_code/GSbyModel_012126 - Tessa.R`, especially its use of `setwd()`, a user-specific path, and automatic execution at the bottom of the script.
+
+## Course Connection
+
+This day builds on Day 2. Reusable code is easier to rerun because responsibilities and inputs are already clearer, and that makes it possible to document execution steps well enough for someone else to reproduce the work.
+
 ## Agenda
 
 ### 1. Why Reproducible & What It Entails
@@ -26,13 +32,15 @@ Time: 15 minutes
 
 - discuss why code breaks across machines and over time
 - surface examples of missing packages, hidden paths, and undocumented steps
+- connect these risks to the original plotting script that only works on one person's machine without cleanup
 
 ### 2. Demo: Turn Interactive Functions Into Scripts
 
 Time: 15 minutes
 
 - show the difference between ad hoc execution and a clear entry point
-- highlight hidden assumptions in a small example
+- highlight hidden assumptions such as `setwd()`, automatic execution, and unexplained outputs
+- connect those assumptions to the smaller starter learners will edit
 
 ### 3. Activity 1: Write an Executable Script
 
@@ -50,6 +58,7 @@ Time: 15 minutes
 
 - what assumptions were hardest to notice at first?
 - what change made the script easiest to rerun?
+- what would still block someone trying to run this from a clean folder?
 
 ## Break
 
@@ -60,7 +69,8 @@ Time: 15 minutes
 Time: 15 minutes
 
 - explain why dependency tracking matters
-- show what an environment file or dependency note should communicate
+- show what a dependency note should communicate even in a small one-file script
+- clarify the difference between packages, input files, working directory, and output location
 
 ### 6. Activity 2: Reconstruct the Environment
 
@@ -69,7 +79,8 @@ Time: 25 minutes
 1. Open `activities/activity-2/prompt.md`.
 2. Identify the packages your script depends on.
 3. Write a minimal environment note or dependency list.
-4. Compare your version with `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py` if time allows.
+4. Add the shortest run instruction that would let a new collaborator reproduce the output.
+5. Compare your version with `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py` if time allows.
 
 ### 7. Discussion
 
@@ -77,6 +88,7 @@ Time: 15 minutes
 
 - what would another researcher still need in order to rerun the work?
 - what belongs in the script versus in documentation?
+- what information is easy to remember today but easy to forget next month?
 
 ### 8. Day Wrap Up / Buffer Time
 
@@ -87,4 +99,4 @@ Time: 5 minutes
 
 ## Notes
 
-Participants often think reproducibility only means package management. Use this module to broaden that definition to include paths, inputs, outputs, execution order, and documentation.
+Participants often think reproducibility only means package management. Use this module to broaden that definition to include paths, inputs, outputs, execution order, and documentation. Keep referring back to the original Tessa script as a realistic "works on my machine" example.

@@ -18,6 +18,12 @@ By the end of this module, participants should be able to:
 - `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py`
 - `activities/activity-2/prompt.md`
 
+This day is inspired by `example_code/iou_calculation.py`, where two versions of the same idea behave differently and the "correct" version still hides bugs and missing imports.
+
+## Course Connection
+
+This day builds on Day 3. Reproducible code can be rerun, but that still does not guarantee it is correct, so today shifts from rerunability to trustworthiness through review, edge cases, and tests.
+
 ## Agenda
 
 ### 1. Why Reliable & What It Entails
@@ -26,12 +32,14 @@ Time: 15 minutes
 
 - discuss the difference between code that runs once and code that can be trusted
 - introduce correctness, assumptions, and edge cases
+- emphasize that review starts by questioning behavior, not admiring that the script runs
 
 ### 2. Demo: Think of Edge Cases
 
 Time: 15 minutes
 
 - show a small example with subtle bugs
+- connect the demo to the IoU source file, where a plausible implementation still gives the wrong guarantee
 - model how to inspect inputs and expected behavior before editing
 
 ### 3. Activity 1: What Is Wrong With This Code?
@@ -50,6 +58,7 @@ Time: 15 minutes
 
 - which bugs were easiest to miss?
 - what assumptions should reviewers question first?
+- which behavior was ambiguous until you named an expected result?
 
 ## Break
 
@@ -61,6 +70,7 @@ Time: 15 minutes
 
 - explain the role of small, focused tests
 - show normal, edge, and failure cases
+- connect tests back to the kinds of hidden logic errors in the IoU example
 
 ### 6. Activity 2: Build Unit Tests With `pytest` or `testthat`
 
@@ -77,6 +87,7 @@ Time: 15 minutes
 
 - what was worth testing?
 - what felt unnecessary for this example?
+- which test would you keep even if you had time to write only one?
 
 ### 8. Day Wrap Up / Buffer Time
 
@@ -87,4 +98,4 @@ Time: 5 minutes
 
 ## Notes
 
-Participants do not need a full testing framework lecture here. A small number of meaningful tests is enough to show how reliability improves when assumptions become explicit.
+Participants do not need a full testing framework lecture here. A small number of meaningful tests is enough to show how reliability improves when assumptions become explicit. The big lesson from the IoU example is that "I wrote a more general version" is not the same thing as "I wrote a trustworthy version."

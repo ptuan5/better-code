@@ -1,19 +1,22 @@
 library(dplyr)
 
-measurements <- data.frame(
-  sample_id = c("S1", "S2", "S3", "S4"),
-  condition = c("control", "control", "treated", "treated"),
-  signal = c(5.2, 5.5, 6.8, 7.1)
+gene_set_uploads <- data.frame(
+  created = c("01/10/2021", "03/15/2021", "07/02/2022", "04/21/2022", "08/08/2023", "09/14/2023"),
+  model = c("mouse", "cell line", "mouse", "human", "human", "mouse"),
+  search_text = c("opioid", "opioid", "opioid", "opioid", "opioid", "opioid")
 )
 
-treated <- measurements %>% filter(condition == "treated")
-control <- measurements %>% filter(condition == "control")
+build_model_counts <- function(path = ".", start_year = 2021, end_year = 2023) {
+  setwd(path)
 
-mean_difference <- mean(treated$signal) - mean(control$signal)
-summary_table <- data.frame(
-  metric = "treated_minus_control",
-  value = mean_difference
-)
+  x <- gene_set_uploads
+  x$created <- as.Date(x$created, format = "%m/%d/%Y")
+  x <- x %>% mutate(created = format(created, "%Y"))
+  y <- x[x$created >= start_year & x$created <= end_year, ]
+  z <- y %>% count(created, model)
 
-write.csv(summary_table, "signal_difference.csv", row.names = FALSE)
-print(mean_difference)
+  write.csv(z, "model_counts.csv", row.names = FALSE)
+  print(z)
+}
+
+build_model_counts(".")

@@ -1,29 +1,26 @@
-pass_rate <- function(scores, passing_score = 60) {
-  passed <- scores > passing_score
-  sum(passed) / length(scores) * 100
+overlap_score <- function(start_a, end_a, start_b, end_b) {
+  overlap <- min(end_a, end_b) - max(start_a, start_b)
+  union <- max(end_a, end_b) - min(start_a, start_b)
+  overlap / union
 }
 
-course_label <- function(rate) {
-  if (rate > 90) {
-    return("excellent")
+agreement_label <- function(score) {
+  if (score > 0.75) {
+    return("strong")
   }
 
-  if (rate > 70) {
-    return("on track")
+  if (score > 0.4) {
+    return("mixed")
   }
 
-  "needs support"
+  "weak"
 }
 
-course_summary <- function(scores, passing_score = 60) {
-  rate <- pass_rate(scores, passing_score)
-  paste("Pass rate =", round(rate, 1), "-", course_label(rate))
+agreement_summary <- function(start_a, end_a, start_b, end_b) {
+  score <- overlap_score(start_a, end_a, start_b, end_b)
+  paste("Agreement =", round(score, 3), "-", agreement_label(score))
 }
 
-scores_a <- c(55, 60, 62, 90)
-scores_b <- c(60, 60, 60)
-scores_c <- c(45, 72, 82)
-
-print(course_summary(scores_a))
-print(course_summary(scores_b))
-print(course_summary(scores_c))
+print(agreement_summary(10, 20, 15, 25))
+print(agreement_summary(5, 8, 8, 10))
+print(agreement_summary(30, 40, 50, 55))

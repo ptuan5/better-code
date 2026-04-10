@@ -4,6 +4,10 @@
 
 Document what another person would need in order to rerun the script from Activity 1.
 
+Think of this as the smallest useful version of the information missing from the original `GSbyModel_012126 - Tessa.R` script.
+
+This is also the handoff to Day 4: once another person can rerun the work, the next question becomes whether they should trust the results.
+
 ## Files
 
 - your cleaned version from `../activity-1/`
@@ -26,3 +30,4 @@ By the end, another learner should be able to answer these questions quickly:
 - what data goes into the script?
 - what file comes out of the script?
 - how would you run it from a clean folder?
+- what assumption from the original author have you now made explicit?

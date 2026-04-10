@@ -4,6 +4,10 @@
 
 Make a short analysis script easier to understand without changing what it does.
 
+This starter is much smaller than `example_code/lincRNA_2.R`, but it keeps the same readability problems on purpose: vague object names, mixed responsibilities, and output that makes the reader work too hard.
+
+This is the baseline skill for the rest of the workshop. If learners can explain what a script is doing today, they will be in a much better position to refactor, rerun, test, and share code on the next four days.
+
 ## Files
 
 - starter code: `r/starter.R` or `python/starter.py`
@@ -25,11 +29,12 @@ Focus on readability, not new features.
 - make printed output easier to understand
 - break up dense code so each section has a clearer purpose
 - add a short header comment that explains what the script produces
+- make it obvious where the priority score calculation happens and where the labels are assigned
 
 ## What to Preserve
 
-- the same final scores
-- the same performance labels
+- the same final priority scores
+- the same priority labels
 - the same average score
 
 You may change formatting, naming, and structure, but not the underlying behavior.
@@ -46,8 +51,8 @@ You may change formatting, naming, and structure, but not the underlying behavio
 By the end, another learner should be able to answer these questions quickly:
 
 - what data is stored in each object?
-- how is the final score calculated?
-- where are the labels such as "ready", "close", and "review" decided?
+- how is the priority score calculated?
+- where are the labels such as `"plot"`, `"check"`, and `"ignore"` decided?
 - what is printed at the end?
 
 ## Optional Extension
@@ -57,3 +62,4 @@ If your group finishes early, discuss:
 - which changes were clearly better?
 - which changes were mostly stylistic?
 - what comment was worth adding, and what comment would have been unnecessary?
+- what would need to change next if this script grew into a longer analysis file like the original `lincRNA_2.R`?

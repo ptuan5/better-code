@@ -4,6 +4,10 @@
 
 Practice inspecting code for bugs, edge cases, and hidden assumptions before trusting the output.
 
+This activity is inspired by `example_code/iou_calculation.py`. The teaching starter is smaller than the IoU code, but it keeps the same core lesson: a function can look reasonable and still be wrong at the boundaries.
+
+This activity builds on Day 3. A script that runs consistently is helpful, but reliability asks a harder question: does it produce the right result under normal and edge cases?
+
 ## Files
 
 - starter code: `r/starter.R` or `python/starter.py`
@@ -20,7 +24,9 @@ Review the starter script like a skeptical collaborator.
 
 ### Places to Inspect
 
-- how the passing threshold is handled
-- what happens with empty input
+- whether exact boundary overlap is counted correctly
+- what happens when intervals do not overlap at all
+- what happens when an interval is invalid
 - whether labels match the numeric result
 - whether the function behavior is obvious from the name
+- whether the examples at the bottom are enough to make you trust the function

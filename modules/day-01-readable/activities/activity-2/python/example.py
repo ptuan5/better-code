@@ -1,60 +1,64 @@
-"""Summarize workshop readiness scores for a small group of students."""
+"""Prioritize a small set of genes for follow-up plots."""
 
-student_names = ["Ana", "Ben", "Cam", "Dev", "Eli", "Fay"]
-exam_scores = [88, 91, 76, 95, 84, 79]
-attendance_flags = [1, 1, 0, 1, 1, 0]
-bonus_points = [2, 2, 0, 3, 1, 2]
-late_days = [0, 1, 0, 0, 2, 1]
-
-
-def final_score(score, attended_review, bonus, late_days):
-    adjusted_score = (score * 0.85) + (attended_review * 10) + bonus - (late_days * 1.5)
-    return min(adjusted_score, 100)
+gene_names = ["LIF", "SOCS3", "STAT3", "MALAT1", "IL6", "NEAT1"]
+mean_signal = [10.4, 9.7, 8.9, 7.5, 6.8, 8.1]
+signal_spread = [2.1, 1.8, 1.6, 0.7, 2.4, 1.1]
+zero_sample_count = [0, 0, 1, 2, 3, 1]
+followup_bonus = [2, 2, 1, 0, 3, 1]
 
 
-def performance_label(score):
-    if score >= 90:
-        return "ready"
-    if score >= 80:
-        return "close"
-    return "review"
+def calculate_priority_score(mean_signal_value, signal_spread_value, zero_samples, bonus):
+    raw_score = (mean_signal_value * 1.2) + (signal_spread_value * 3) + bonus - (
+        zero_samples * 1.5
+    )
+    return min(raw_score, 20)
 
 
-student_results = []
+def priority_label(priority_score):
+    if priority_score >= 15:
+        return "plot"
+    if priority_score >= 11:
+        return "check"
+    return "ignore"
 
-for name, score, attended_review, bonus, days_late in zip(
-    student_names,
-    exam_scores,
-    attendance_flags,
-    bonus_points,
-    late_days,
+
+gene_results = []
+
+for gene_name, signal_value, spread_value, zero_samples, bonus in zip(
+    gene_names,
+    mean_signal,
+    signal_spread,
+    zero_sample_count,
+    followup_bonus,
 ):
-    total_score = final_score(score, attended_review, bonus, days_late)
-    student_results.append({"name": name, "final_score": total_score})
+    priority_score = calculate_priority_score(
+        signal_value, spread_value, zero_samples, bonus
+    )
+    gene_results.append({"gene_name": gene_name, "priority_score": priority_score})
 
-print("Workshop readiness results")
-for result in student_results:
-    print(result["name"], performance_label(result["final_score"]))
+print("Gene follow-up priorities")
+for result in gene_results:
+    print(result["gene_name"], priority_label(result["priority_score"]))
 
-average_final_score = sum(result["final_score"] for result in student_results) / len(
-    student_results
-)
-print("Average final score:", average_final_score)
+average_priority_score = sum(
+    result["priority_score"] for result in gene_results
+) / len(gene_results)
+print("Average priority score:", average_priority_score)
 
-ready_count = 0
-close_count = 0
-review_count = 0
+plot_count = 0
+check_count = 0
+ignore_count = 0
 
-for result in student_results:
-    label = performance_label(result["final_score"])
-    if label == "ready":
-        ready_count += 1
-    elif label == "close":
-        close_count += 1
+for result in gene_results:
+    label = priority_label(result["priority_score"])
+    if label == "plot":
+        plot_count += 1
+    elif label == "check":
+        check_count += 1
     else:
-        review_count += 1
+        ignore_count += 1
 
 print(
     "Counts by label:",
-    {"ready": ready_count, "close": close_count, "review": review_count},
+    {"plot": plot_count, "check": check_count, "ignore": ignore_count},
 )

@@ -4,6 +4,10 @@
 
 Make your refactor easier to reuse when the metric or label changes.
 
+In the original LIF notebook, the repeated workflow changes by tissue and by the object being summarized. In this teaching version, your job is to decide which values should be flexible and which ones should stay fixed.
+
+This is also the bridge into Day 3: code with clearer parameters is usually much easier to rerun, document, and adapt across machines or projects.
+
 ## Files
 
 - your cleaned version from `../activity-1/`
@@ -20,10 +24,11 @@ Take your refactor from Activity 1 and decide what should become a parameter.
 
 ## Good Candidates for Parameters
 
-- `treatment_name`
-- `value_column`
-- printed label such as `"average height"` or `"average leaves"`
-- optional unit such as `"cm"`
+- `tissue_name`
+- `min_correlation`
+- column names such as `correlation` or `mean_tpm`
+- printed text such as `"top partner"` or `"average correlation"`
+- the order in which summaries are displayed, if that matters to your design
 
 ## Success Check
 
@@ -31,5 +36,6 @@ By the end, another learner should be able to answer these questions quickly:
 
 - where does the repeated logic live?
 - what inputs does each function need?
-- what changes if you summarize a different column?
+- what changes if you summarize a different tissue or threshold?
 - what stays fixed across the whole analysis?
+- which parameter choices support real reuse rather than hypothetical future complexity?

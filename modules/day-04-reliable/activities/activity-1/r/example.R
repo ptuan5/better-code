@@ -1,48 +1,50 @@
-pass_rate <- function(scores, passing_score = 60) {
-  if (length(scores) == 0) {
-    stop("scores must contain at least one value")
+overlap_score <- function(start_a, end_a, start_b, end_b) {
+  if (end_a < start_a || end_b < start_b) {
+    stop("end frame must be greater than or equal to start frame")
   }
 
-  passed <- scores >= passing_score
-  sum(passed) / length(scores) * 100
+  overlap <- max(0, min(end_a, end_b) - max(start_a, start_b) + 1)
+  union <- max(end_a, end_b) - min(start_a, start_b) + 1
+  overlap / union
 }
 
-course_label <- function(rate) {
-  if (rate >= 90) {
-    return("excellent")
+agreement_label <- function(score) {
+  if (score >= 0.75) {
+    return("strong")
   }
 
-  if (rate >= 70) {
-    return("on track")
+  if (score >= 0.4) {
+    return("mixed")
   }
 
-  "needs support"
+  "weak"
 }
 
-course_summary <- function(scores, passing_score = 60) {
-  rate <- pass_rate(scores, passing_score)
-  paste("Pass rate =", round(rate, 1), "-", course_label(rate))
+agreement_summary <- function(start_a, end_a, start_b, end_b) {
+  score <- overlap_score(start_a, end_a, start_b, end_b)
+  paste("Agreement =", round(score, 3), "-", agreement_label(score))
 }
 
 run_checks <- function() {
-  stopifnot(pass_rate(c(55, 60, 62, 90)) == 75)
-  stopifnot(pass_rate(c(60, 60, 60)) == 100)
-  stopifnot(course_label(90) == "excellent")
-  stopifnot(course_label(70) == "on track")
+  stopifnot(round(overlap_score(10, 20, 15, 25), 3) == 0.375)
+  stopifnot(round(overlap_score(5, 8, 8, 10), 3) == 0.167)
+  stopifnot(overlap_score(30, 40, 50, 55) == 0)
+  stopifnot(agreement_label(0.75) == "strong")
+  stopifnot(agreement_label(0.4) == "mixed")
 
-  empty_input_failed <- FALSE
+  invalid_interval_failed <- FALSE
 
   tryCatch(
     {
-      pass_rate(c())
+      overlap_score(12, 10, 15, 20)
     },
     error = function(e) {
-      empty_input_failed <<- TRUE
+      invalid_interval_failed <<- TRUE
     }
   )
 
-  stopifnot(empty_input_failed)
-  cat(course_summary(c(55, 60, 62, 90)), "\n")
+  stopifnot(invalid_interval_failed)
+  cat(agreement_summary(10, 20, 15, 25), "\n")
   cat("All checks passed\n")
 }
 

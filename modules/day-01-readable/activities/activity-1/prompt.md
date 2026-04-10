@@ -2,24 +2,30 @@
 
 ## Scenario
 
-A collaborator hands you this project folder and says, "Everything should be here."
+A collaborator hands you this transcriptomics project folder and says, "Everything should be here."
 
 ```text
-lake-survey/
-├── 2023final.csv
-├── a.py
-├── comments.txt
-├── fig_final2.png
-├── fig_final_REALLY.png
-├── helpers.R
-├── june_raw.csv
-├── may_raw.csv
-├── notes_old.txt
-├── run_me.py
-├── temp.csv
+lincRNA-project/
+├── all_counts_FINAL.csv
+├── brain_area_colors.csv
+├── description_new.csv
+├── figure2_final.png
+├── figure2_final_v3.png
+├── linc2.RData
+├── pca_try.R
+├── pca_try_old.R
+├── readme_notes.txt
+├── rlog_transformed.rds
+├── sample_table.csv
+├── temp_plot.pdf
 └── old/
-    └── plot_test.py
+    ├── run_before_meeting.R
+    └── weird_copy_of_counts.csv
 ```
+
+This scenario is inspired by the kinds of files mixed together in `example_code/lincRNA_2.R`.
+
+This activity starts the week by making project structure legible. The clearer this project becomes today, the easier it is to talk about reuse, reproducibility, reliability, and sharing later.
 
 ## Your Task
 
@@ -32,9 +38,10 @@ Reorganize the directory on paper or in discussion. You do not need to agree on 
 
 ## Constraints
 
-- Keep all raw data files.
+- Keep all raw and transformed data files.
 - Do not change the scientific content.
 - Aim for a structure a labmate could understand in under a minute.
+- Assume a new person will need to tell raw inputs, metadata, scripts, and results apart quickly.
 
 ## Debrief Prompt
 
@@ -43,14 +50,15 @@ Be ready to explain:
 - one naming change that improved clarity
 - one file you would archive and why
 - one thing that still feels subjective
+- one file that should probably not live at the project top level
 
 ## Facilitator Reference
 
 One reasonable answer could include:
 
-- `data/raw/` for `may_raw.csv` and `june_raw.csv`
-- `data/processed/` for `2023final.csv`
-- `scripts/` for `a.py`, `run_me.py`, and `helpers.R` after renaming them
-- `results/figures/` for the figure files
+- `data/raw/` for count tables and sample sheets
+- `data/processed/` for `rlog_transformed.rds` and other intermediate objects
+- `scripts/` for active analysis scripts after renaming them
+- `results/figures/` for PNG and PDF outputs
 - `docs/` for project notes
-- `archive/` for `old/plot_test.py`, `notes_old.txt`, or other superseded files
+- `archive/` for superseded scripts, duplicate files, or old exploratory outputs

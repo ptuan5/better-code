@@ -1,38 +1,38 @@
-s <- c(88, 91, 76, 95, 84, 79)
-a <- c(1, 1, 0, 1, 1, 0)
-b <- c(2, 2, 0, 3, 1, 2)
-l <- c(0, 1, 0, 0, 2, 1)
-nm <- c("ana", "ben", "cam", "dev", "eli", "fay")
+g <- c("LIF", "SOCS3", "STAT3", "MALAT1", "IL6", "NEAT1")
+m <- c(10.4, 9.7, 8.9, 7.5, 6.8, 8.1)
+v <- c(2.1, 1.8, 1.6, 0.7, 2.4, 1.1)
+z <- c(0, 0, 1, 2, 3, 1)
+b <- c(2, 2, 1, 0, 3, 1)
 
-d <- data.frame(nm, s, a, b, l)
-d$k <- (d$s * 0.85) + (d$a * 10) + d$b - (d$l * 1.5)
-d$k[d$k > 100] <- 100
+x <- data.frame(g, m, v, z, b)
+x$p <- (x$m * 1.2) + (x$v * 3) + x$b - (x$z * 1.5)
+x$p[x$p > 20] <- 20
 
-print("stuff")
-for (i in 1:nrow(d)) {
-  if (d$k[i] >= 90) {
-    print(paste(d$nm[i], "ready"))
-  } else if (d$k[i] >= 80) {
-    print(paste(d$nm[i], "close"))
+print("things")
+for (i in 1:nrow(x)) {
+  if (x$p[i] >= 15) {
+    print(paste(x$g[i], "plot"))
+  } else if (x$p[i] >= 11) {
+    print(paste(x$g[i], "check"))
   } else {
-    print(paste(d$nm[i], "review"))
+    print(paste(x$g[i], "ignore"))
   }
 }
 
-print(mean(d$k))
+print(mean(x$p))
 
 h <- 0
-m <- 0
+m2 <- 0
 lo <- 0
 
-for (i in 1:nrow(d)) {
-  if (d$k[i] >= 90) {
+for (i in 1:nrow(x)) {
+  if (x$p[i] >= 15) {
     h <- h + 1
-  } else if (d$k[i] >= 80) {
-    m <- m + 1
+  } else if (x$p[i] >= 11) {
+    m2 <- m2 + 1
   } else {
     lo <- lo + 1
   }
 }
 
-print(c(h, m, lo))
+print(c(h, m2, lo))

@@ -18,6 +18,12 @@ By the end of this module, participants should be able to:
 - `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py`
 - `activities/activity-2/prompt.md`
 
+This day uses teaching-sized starter files inspired by the repeated tissue-level workflow in `example_code/02-lif-correlation-analysis-live-student.qmd`.
+
+## Course Connection
+
+This day builds directly on Day 1. Once code is readable enough to scan, learners can start seeing repeated patterns clearly and turn them into reusable pieces that prepare them for reproducible workflows tomorrow.
+
 ## Agenda
 
 ### 1. Why Reusable & What It Entails
@@ -26,12 +32,14 @@ Time: 15 minutes
 
 - discuss repetition as a maintenance problem
 - introduce common code smells such as copy-paste logic and long scripts
+- connect those smells to the repeated correlation, ranking, and enrichment steps in the original notebook
 
 ### 2. Demo: Functions
 
 Time: 15 minutes
 
-- walk through a repeated workflow
+- walk through a repeated workflow from the starter file
+- explain that the original source notebook repeats a similar pattern across tissues, and today we are practicing that same skill on a smaller data summary
 - show how to extract a small function with clear inputs and outputs
 
 ### 3. Activity 1: Break This Code Into Smaller Functions
@@ -50,6 +58,7 @@ Time: 15 minutes
 
 - what did you choose to turn into a function?
 - what repetition did you leave alone, and why?
+- which function name made the workflow easiest to read?
 
 ## Break
 
@@ -59,7 +68,8 @@ Time: 15 minutes
 
 Time: 15 minutes
 
-- explain why hard-coded paths and values reduce reuse
+- explain why hard-coded values reduce reuse
+- connect this to the original notebook, where tissue name, target gene, and output labels are the pieces that vary
 - show how parameterization can keep code flexible without overcomplicating it
 
 ### 6. Activity 2: Reusable Analysis Notebook Template
@@ -69,7 +79,8 @@ Time: 25 minutes
 1. Open `activities/activity-2/prompt.md`.
 2. Revisit your refactor and identify the values that vary.
 3. Turn those values into arguments or top-level parameters.
-4. Compare your version with `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py` if time allows.
+4. Keep the abstraction simple enough that another learner could still follow it quickly.
+5. Compare your version with `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py` if time allows.
 
 ### 7. Discussion
 
@@ -77,6 +88,7 @@ Time: 15 minutes
 
 - which parameters improved reuse?
 - which ones made the code harder to understand?
+- where did you stop abstracting on purpose?
 
 ### 8. Day Wrap Up / Buffer Time
 
@@ -87,4 +99,4 @@ Time: 5 minutes
 
 ## Notes
 
-Keep the focus on making future changes easier. If learners rush toward abstraction too early, redirect them toward simple, concrete functions with one job each.
+Keep the focus on making future changes easier. If learners rush toward abstraction too early, redirect them toward simple, concrete functions with one job each. The goal is not to rebuild the full LIF notebook, but to practice the habit of spotting and isolating repeatable work.
