@@ -23,7 +23,7 @@ lincRNA-project/
     └── weird_copy_of_counts.csv
 ```
 
-This scenario is inspired by the kinds of files mixed together in `example_code/lincRNA_2.R`.
+This scenario is inspired by the kind of clutter that builds up in a real analysis folder over time.
 
 This activity starts the week by making project structure legible. The clearer this project becomes today, the easier it is to talk about reuse, reproducibility, reliability, and sharing later.
 
@@ -32,7 +32,7 @@ This activity starts the week by making project structure legible. The clearer t
 Reorganize the directory on paper or in discussion. You do not need to agree on one perfect answer.
 
 1. Create a clearer folder structure.
-2. Rename the most confusing files.
+2. Rename the most confusing files with names that reveal purpose, not status.
 3. Decide what belongs in active work versus `archive/`.
 4. Draft a 2-3 sentence `README.md` note explaining where someone should start.
 
@@ -42,6 +42,7 @@ Reorganize the directory on paper or in discussion. You do not need to agree on 
 - Do not change the scientific content.
 - Aim for a structure a labmate could understand in under a minute.
 - Assume a new person will need to tell raw inputs, metadata, scripts, and results apart quickly.
+- Avoid status-only names such as `new`, `final`, `try`, or `v3` unless the name also explains the file's role.
 
 ## Debrief Prompt
 
@@ -58,7 +59,7 @@ One reasonable answer could include:
 
 - `data/raw/` for count tables and sample sheets
 - `data/processed/` for `rlog_transformed.rds` and other intermediate objects
-- `scripts/` for active analysis scripts after renaming them
+- `scripts/` for active analysis scripts after renaming them with clearer, intention-revealing names
 - `results/figures/` for PNG and PDF outputs
 - `docs/` for project notes
 - `archive/` for superseded scripts, duplicate files, or old exploratory outputs

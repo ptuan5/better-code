@@ -4,6 +4,12 @@
 
 Make a tiny analysis project understandable and reusable for a new collaborator.
 
+## Scenario
+
+Imagine you found this repo through a GitHub link from another researcher. The project is small and probably useful, but the README is weak, the output naming is unclear, and you are not sure what command to run first.
+
+Your job is to make the project usable enough that a newcomer could open it, understand its purpose, and rerun it without needing a guided tour from the original author.
+
 Today uses a deliberately small teaching repo. Treat the `r/` or `python/` folder as something you found on GitHub: it almost works, but a newcomer would still have too many questions.
 
 This activity is the synthesis day for the workshop. Strong sharing depends on everything from earlier in the week: readable structure, reusable pieces, reproducible instructions, and reliable behavior.

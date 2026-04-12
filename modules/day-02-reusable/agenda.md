@@ -13,16 +13,14 @@ By the end of this module, participants should be able to:
 
 ## Materials
 
+- `demos/extract-functions.md`
+- `demos/parameterize-workflow.md`
 - `activities/activity-1/prompt.md`
 - `activities/activity-1/r/starter.R` or `activities/activity-1/python/starter.py`
 - `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py`
 - `activities/activity-2/prompt.md`
 
-This day uses teaching-sized starter files inspired by the repeated tissue-level workflow in `example_code/02-lif-correlation-analysis-live-student.qmd`.
-
-## Course Connection
-
-This day builds directly on Day 1. Once code is readable enough to scan, learners can start seeing repeated patterns clearly and turn them into reusable pieces that prepare them for reproducible workflows tomorrow.
+This day uses teaching-sized starter files built around repeated workflow patterns.
 
 ## Agenda
 
@@ -32,14 +30,15 @@ Time: 15 minutes
 
 - discuss repetition as a maintenance problem
 - introduce common code smells such as copy-paste logic and long scripts
-- connect those smells to the repeated correlation, ranking, and enrichment steps in the original notebook
+- connect those smells to repeated analysis, ranking, and formatting steps that often grow across a script
 
 ### 2. Demo: Functions
 
 Time: 15 minutes
 
 - walk through a repeated workflow from the starter file
-- explain that the original source notebook repeats a similar pattern across tissues, and today we are practicing that same skill on a smaller data summary
+- use `demos/extract-functions.md` to model how one repeated pattern turns into one small function
+- explain that the starter repeats a similar pattern in a smaller data summary so the refactoring move is easier to see
 - show how to extract a small function with clear inputs and outputs
 
 ### 3. Activity 1: Break This Code Into Smaller Functions
@@ -69,6 +68,7 @@ Time: 15 minutes
 Time: 15 minutes
 
 - explain why hard-coded values reduce reuse
+- use `demos/parameterize-workflow.md` to show when a hard-coded value should become a parameter
 - connect this to the original notebook, where tissue name, target gene, and output labels are the pieces that vary
 - show how parameterization can keep code flexible without overcomplicating it
 

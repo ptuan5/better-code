@@ -4,6 +4,12 @@
 
 Write a few small tests around the most important behavior in your cleaned function.
 
+## Scenario
+
+Suppose you fixed the function, but now another person in the lab wants to reuse it in a larger analysis. If the expected behavior still lives only in your head, the same mistakes may come back later.
+
+This activity turns the most important assumptions into tests so future readers can see what behavior the function is supposed to guarantee.
+
 Treat this as the testing step that the original IoU example needed in order to reveal its hidden assumptions sooner.
 
 This is also the setup for Day 5: code becomes much easier to share when its expected behavior is clear enough for another person to review and trust.

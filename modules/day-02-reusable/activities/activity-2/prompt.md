@@ -4,6 +4,12 @@
 
 Make your refactor easier to reuse when the metric or label changes.
 
+## Scenario
+
+After your first cleanup, a teammate asks, "Could we use this same summary for a different tissue and maybe a different threshold too?" Your code is already less repetitive, but some values are still hard-coded in places that will make the next change awkward.
+
+This activity asks you to decide what should become flexible now and what should stay fixed so the script is reusable without becoming overengineered.
+
 In the original LIF notebook, the repeated workflow changes by tissue and by the object being summarized. In this teaching version, your job is to decide which values should be flexible and which ones should stay fixed.
 
 This is also the bridge into Day 3: code with clearer parameters is usually much easier to rerun, document, and adapt across machines or projects.

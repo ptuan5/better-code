@@ -4,6 +4,12 @@
 
 Review a partner's improved materials and focus on whether a newcomer could actually use them.
 
+## Scenario
+
+Your partner has cleaned up their starter repo, and now you are acting as the first real outside user. You are not reviewing style for style's sake. You are checking whether a newcomer could figure out the purpose, find the run steps, and trust the handoff.
+
+Good review here means noticing both what already works and what would still block a real user.
+
 This review is the final newcomer test for the week: can someone understand it, reuse it, rerun it, and trust it well enough that sharing actually works?
 
 ## Files

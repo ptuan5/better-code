@@ -4,6 +4,12 @@
 
 Make a small analysis runnable by someone else without hidden setup steps.
 
+## Scenario
+
+Picture receiving a script from a collaborator who says, "It worked on my laptop yesterday." When you open the file, you notice hidden assumptions about file paths, packages, and what should run first.
+
+Your task is to turn that personal script into something a teammate could run from a clean folder without needing the original author beside them.
+
 This activity is inspired by `example_code/GSbyModel_012126 - Tessa.R`, which includes a working-directory change, machine-specific paths, and a script that runs itself at the bottom. The teaching starter is smaller, but your job is the same: remove guesswork.
 
 This activity builds on Day 2. Reusable pieces are easier to turn into a repeatable workflow because the script can make inputs, outputs, and run order explicit.

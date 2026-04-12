@@ -8,22 +8,19 @@ By the end of this module, participants should be able to:
 
 1. Recognize common readability problems in scientific code.
 2. Organize files so data, scripts, and outputs are easier to navigate.
-3. Improve naming, comments, and structure without changing behavior.
-4. Explain why readability matters for collaboration and maintenance.
+3. Improve names, comments, and formatting without changing behavior.
+4. Explain why readable code matters for collaboration, maintenance, and speed.
 
 ## Materials
 
 - `demos/folder-structure.md`
+- `demos/readable-code.md`
 - `activities/activity-1/prompt.md`
 - `activities/activity-2/prompt.md`
 - `activities/activity-2/r/starter.R` or `activities/activity-2/python/starter.py`
 - `activities/activity-2/r/example.R` or `activities/activity-2/python/example.py`
 
-This day uses teaching-sized materials inspired by `example_code/lincRNA_2.R`, especially its long setup, crowded imports, hard-coded paths, and mixed analysis and plotting flow.
-
-## Course Connection
-
-This is the foundation day for the whole workshop. If learners cannot quickly understand what a script or project is doing, it is much harder to make that work reusable, reproducible, reliable, or shareable later in the week.
+This day uses teaching-sized materials that highlight long setup blocks, crowded imports, hard-coded paths, and mixed analysis and plotting flow.
 
 ## Agenda
 
@@ -39,14 +36,15 @@ Time: 20 minutes
 Time: 10 minutes
 
 - discuss why readable code matters
-- define what readability includes: clear project structure, clear names, useful sectioning, and comments that explain intent
+- explain that readable code is a communication tool, not just a style preference
+- define what readability includes: clear project structure, intention-revealing names, useful sectioning, and comments that explain intent rather than restating syntax
 
 ### 3. Demo: Folder Structure
 
 Time: 10 minutes
 
 - Show one messy transcriptomics-style project tree from `demos/folder-structure.md`.
-- Point out the kinds of clutter that appear in `example_code/lincRNA_2.R`: raw inputs, transformed objects, plotting code, and notes all mixed together.
+- Point out the kinds of clutter that make a project hard to scan: raw inputs, transformed objects, plotting code, notes, and vague file names all mixed together.
 - Compare two valid organization strategies: `data/`, `scripts/`, `results/`, and `docs/`; or a workflow layout such as `01-load/`, `02-normalize/`, `03-pca/`, and `04-figures/`.
 - Highlight what both versions make obvious to a newcomer in under a minute.
 
@@ -77,9 +75,10 @@ Time: 15 minutes
 Time: 15 minutes
 
 - Open `activities/activity-2/r/starter.R` or `activities/activity-2/python/starter.py`.
-- Explain that the starter is smaller than `example_code/lincRNA_2.R`, but it preserves the same teaching problems: unclear object names, mixed responsibilities, and little guidance for a reader.
-- Mark vague names, repeated logic, long blocks, and unhelpful output labels.
-- Model a cleanup sequence: rename first, separate responsibilities second, then add a short script header.
+- Use `demos/readable-code.md` to model one small cleanup from vague script to readable script.
+- Explain that the starter is intentionally small, but it still preserves the same teaching problems: unclear names, noisy comments, mixed responsibilities, and hard-to-scan formatting.
+- Mark vague names, repeated logic, long blocks, weak output labels, and comments that could be replaced by clearer code.
+- Model a cleanup sequence: rename first, separate responsibilities second, improve spacing and grouping, then add a short script header or one useful intent comment.
 
 ### 7. Activity 2: Document and Rewrite a Code Chunk
 
@@ -98,6 +97,7 @@ Time: 15 minutes
 - which readability change gave the biggest payoff?
 - where did people make different but still reasonable choices?
 - what comments or docstrings were useful, and what would have been noise?
+- what formatting or spacing change made the script easier to scan top to bottom?
 - what would still feel hard to scan if this script grew from 30 lines to 300?
 
 ### 9. Wrap-Up
@@ -109,4 +109,4 @@ Time: 5 minutes
 
 ## Notes
 
-This is a good day to normalize that "better" code is not the same thing as "perfect" code. Encourage participants to make incremental changes and explain why each change improves understanding. Keep tying the lesson back to the larger, messier reality of `example_code/lincRNA_2.R`.
+This is a good day to normalize that "better" code is not the same thing as "perfect" code. Encourage participants to make incremental changes and explain why each change improves understanding. Keep tying readability back to communication: names should reveal intent, comments should earn their place, and formatting should help a reader follow the story of the code.

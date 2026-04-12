@@ -4,6 +4,12 @@
 
 Reduce repetition by turning repeated analysis steps into small, reusable functions.
 
+## Scenario
+
+Imagine you inherit a short analysis script that summarizes results for three tissues: liver, heart, and brain. The script gives the right answers, but the same filtering, counting, and printing pattern appears over and over with only small changes.
+
+Your collaborator now wants to add more tissues next week. Before that happens, you want to pull the repeated work into one place so future edits do not require the same bug-prone change in multiple blocks.
+
 This exercise is inspired by `example_code/02-lif-correlation-analysis-live-student.qmd`, where similar analysis steps happen across multiple tissues. The teaching starter is much smaller so you can focus on the reuse decision itself.
 
 This activity depends on the readability habits from Day 1. Once the workflow is understandable, the repeated pieces become easier to see and refactor.

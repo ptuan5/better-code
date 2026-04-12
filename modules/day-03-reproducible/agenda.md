@@ -13,16 +13,14 @@ By the end of this module, participants should be able to:
 
 ## Materials
 
+- `demos/script-entrypoint.md`
+- `demos/environment-notes.md`
 - `activities/activity-1/prompt.md`
 - `activities/activity-1/r/starter.R` or `activities/activity-1/python/starter.py`
 - `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py`
 - `activities/activity-2/prompt.md`
 
-This day is inspired by `example_code/GSbyModel_012126 - Tessa.R`, especially its use of `setwd()`, a user-specific path, and automatic execution at the bottom of the script.
-
-## Course Connection
-
-This day builds on Day 2. Reusable code is easier to rerun because responsibilities and inputs are already clearer, and that makes it possible to document execution steps well enough for someone else to reproduce the work.
+This day focuses on common reproducibility problems such as `setwd()`, user-specific paths, and automatic execution at the bottom of a script.
 
 ## Agenda
 
@@ -32,13 +30,14 @@ Time: 15 minutes
 
 - discuss why code breaks across machines and over time
 - surface examples of missing packages, hidden paths, and undocumented steps
-- connect these risks to the original plotting script that only works on one person's machine without cleanup
+- connect these risks to the kind of script that only works on one person's machine without cleanup
 
 ### 2. Demo: Turn Interactive Functions Into Scripts
 
 Time: 15 minutes
 
 - show the difference between ad hoc execution and a clear entry point
+- use `demos/script-entrypoint.md` to model the shift from hidden setup to a clear runnable script
 - highlight hidden assumptions such as `setwd()`, automatic execution, and unexplained outputs
 - connect those assumptions to the smaller starter learners will edit
 
@@ -69,6 +68,7 @@ Time: 15 minutes
 Time: 15 minutes
 
 - explain why dependency tracking matters
+- use `demos/environment-notes.md` to model the smallest useful rerun note for a collaborator
 - show what a dependency note should communicate even in a small one-file script
 - clarify the difference between packages, input files, working directory, and output location
 
@@ -99,4 +99,4 @@ Time: 5 minutes
 
 ## Notes
 
-Participants often think reproducibility only means package management. Use this module to broaden that definition to include paths, inputs, outputs, execution order, and documentation. Keep referring back to the original Tessa script as a realistic "works on my machine" example.
+Participants often think reproducibility only means package management. Use this module to broaden that definition to include paths, inputs, outputs, execution order, and documentation.

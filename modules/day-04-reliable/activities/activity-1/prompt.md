@@ -4,6 +4,12 @@
 
 Practice inspecting code for bugs, edge cases, and hidden assumptions before trusting the output.
 
+## Scenario
+
+Imagine a collaborator sends you a helper function and says, "I think this overlap calculation is right now." The examples at the bottom look plausible, but you are not fully convinced because edge cases are exactly where this kind of code tends to fail.
+
+Your job is to review the function like a careful scientific collaborator, not like someone trying to be impressed that it runs at all.
+
 This activity is inspired by `example_code/iou_calculation.py`. The teaching starter is smaller than the IoU code, but it keeps the same core lesson: a function can look reasonable and still be wrong at the boundaries.
 
 This activity builds on Day 3. A script that runs consistently is helpful, but reliability asks a harder question: does it produce the right result under normal and edge cases?

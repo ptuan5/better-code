@@ -13,16 +13,14 @@ By the end of this module, participants should be able to:
 
 ## Materials
 
+- `demos/edge-cases.md`
+- `demos/test-cases.md`
 - `activities/activity-1/prompt.md`
 - `activities/activity-1/r/starter.R` or `activities/activity-1/python/starter.py`
 - `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py`
 - `activities/activity-2/prompt.md`
 
-This day is inspired by `example_code/iou_calculation.py`, where two versions of the same idea behave differently and the "correct" version still hides bugs and missing imports.
-
-## Course Connection
-
-This day builds on Day 3. Reproducible code can be rerun, but that still does not guarantee it is correct, so today shifts from rerunability to trustworthiness through review, edge cases, and tests.
+This day centers on cases where two versions of the same idea behave differently and a plausible "correct" version can still hide bugs and missing imports.
 
 ## Agenda
 
@@ -39,7 +37,8 @@ Time: 15 minutes
 Time: 15 minutes
 
 - show a small example with subtle bugs
-- connect the demo to the IoU source file, where a plausible implementation still gives the wrong guarantee
+- use `demos/edge-cases.md` to walk through normal, boundary, and invalid cases before editing code
+- connect the demo to the broader idea that a plausible implementation can still give the wrong guarantee
 - model how to inspect inputs and expected behavior before editing
 
 ### 3. Activity 1: What Is Wrong With This Code?
@@ -69,6 +68,7 @@ Time: 15 minutes
 Time: 15 minutes
 
 - explain the role of small, focused tests
+- use `demos/test-cases.md` to turn one reliability question into a normal case, edge case, and failure case
 - show normal, edge, and failure cases
 - connect tests back to the kinds of hidden logic errors in the IoU example
 
@@ -98,4 +98,4 @@ Time: 5 minutes
 
 ## Notes
 
-Participants do not need a full testing framework lecture here. A small number of meaningful tests is enough to show how reliability improves when assumptions become explicit. The big lesson from the IoU example is that "I wrote a more general version" is not the same thing as "I wrote a trustworthy version."
+Participants do not need a full testing framework lecture here. A small number of meaningful tests is enough to show how reliability improves when assumptions become explicit. The big lesson is that "I wrote a more general version" is not the same thing as "I wrote a trustworthy version."

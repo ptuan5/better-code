@@ -13,15 +13,13 @@ By the end of this module, participants should be able to:
 
 ## Materials
 
+- `demos/repo-handoff.md`
+- `demos/newcomer-review.md`
 - `activities/activity-1/prompt.md`
 - `activities/activity-1/r/` or `activities/activity-1/python/`
 - `activities/activity-2/prompt.md`
 
 This day uses a deliberately tiny teaching project rather than a direct real-world source file. It is meant to feel like the main script from a small analysis repo that still needs README help and a smoother handoff.
-
-## Course Connection
-
-This final day brings the previous four themes together. Work is easier to share when a newcomer can understand it, reuse it, rerun it, and trust it without needing the original author beside them.
 
 ## Agenda
 
@@ -38,6 +36,7 @@ Time: 15 minutes
 Time: 15 minutes
 
 - review the role of a README, clear structure, and visible run instructions
+- use `demos/repo-handoff.md` to model how a newcomer scans a small repo for purpose, run steps, and outputs
 - show how a tiny script becomes much easier to hand off once purpose, inputs, outputs, and run order are written down
 
 ### 3. Activity 1: Fix This Repo & Publish to GitHub
@@ -63,7 +62,16 @@ Time: 20 minutes
 
 Time: 15 minutes
 
-### 5. Activity 2: Code Peer Review
+### 5. Demo: Review a Repo as a Newcomer
+
+Time: 10 minutes
+
+- model how to open a small repo and find the first file a newcomer should read
+- use `demos/newcomer-review.md` to model one helpful strength comment and one concrete blocker comment
+- show how to compare the script, README, notes, and outputs against the checklist
+- demonstrate one helpful comment that names something already clear and one that points to a real blocker
+
+### 6. Activity 2: Code Peer Review
 
 Time: 20 minutes
 
@@ -72,15 +80,15 @@ Time: 20 minutes
 3. Leave clear, specific feedback.
 4. Focus on what would help a newcomer most.
 
-### 6. Showcase + Reflection
+### 7. Showcase + Reflection
 
-Time: 30 minutes
+Time: 20 minutes
 
 - invite 2-3 volunteers to present one improvement
 - reflect on what changed most across the week
 - connect the best shareability improvements back to readability, reuse, reproducibility, and reliability
 
-### 7. Workshop Wrap Up / Buffer Time
+### 8. Workshop Wrap Up / Buffer Time
 
 Time: 10 minutes
 

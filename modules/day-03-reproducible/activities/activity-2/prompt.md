@@ -4,6 +4,12 @@
 
 Document what another person would need in order to rerun the script from Activity 1.
 
+## Scenario
+
+Assume you cleaned the script itself, but now you need to hand it to a new lab member next month. They will not know which packages to install, what command to run, or what output file they should expect unless you write that down.
+
+This activity focuses on the smallest useful note that would let someone else rerun the work without guesswork.
+
 Think of this as the smallest useful version of the information missing from the original `GSbyModel_012126 - Tessa.R` script.
 
 This is also the handoff to Day 4: once another person can rerun the work, the next question becomes whether they should trust the results.
