@@ -43,9 +43,9 @@ Time: 10 minutes
 
 Time: 10 minutes
 
-- Show one messy transcriptomics-style project tree from `demos/folder-structure.md`.
-- Point out the kinds of clutter that make a project hard to scan: raw inputs, transformed objects, plotting code, notes, and vague file names all mixed together.
-- Compare two valid organization strategies: `data/`, `scripts/`, `results/`, and `docs/`; or a workflow layout such as `01-load/`, `02-normalize/`, `03-pca/`, and `04-figures/`.
+- Show the smaller messy project tree from `demos/folder-structure.md`.
+- Point out how even a short file list becomes hard to scan when inputs, scripts, and outputs all sit together.
+- Compare two valid organization strategies: grouping by artifact type or by workflow stage.
 - Highlight what both versions make obvious to a newcomer in under a minute.
 
 ### 4. Activity 1: Organize a Repo
@@ -53,9 +53,10 @@ Time: 10 minutes
 Time: 20 minutes
 
 1. Open `activities/activity-1/prompt.md`.
-2. Group the messy transcriptomics files into clearer folders and rename the most confusing files.
-3. Decide what should stay active, what should move to `archive/`, and what needs a short README note.
-4. Be ready to explain one tradeoff you made.
+2. Read the fuller CUS transcriptomics folder as if you are new to the project.
+3. Group the files into clearer folders and decide what the parent folder names should communicate.
+4. Keep the same files, but reorganize them so the project is easier to scan.
+5. Be ready to explain one tradeoff you made.
 
 ### 5. Discussion
 

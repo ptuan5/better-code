@@ -1,65 +1,65 @@
 # Activity 1: Organize a Repo
 
+## Goal
+
+Reorganize a messy project folder so a newcomer can tell where the inputs, active scripts, and outputs belong.
+
 ## Scenario
 
-A collaborator hands you this transcriptomics project folder and says, "Everything should be here."
+You received a project folder from a mouse glial transcriptomics study, which contains processing code and some results. 
+
+**Study Outline**: Male C57BL6/J mice were subjected to 14 days of chronic unpredictable stress (CUS) or were left unstressed. Following this, the brains (frontal cortex) were rapidly extracted. Two glial cell types were isolated from these samples, astrocytes and microglia, using fluorescence activated cell sorting (FACS). RNA was extracted from these samples and sequenced.
+
+**Processes Done**: 
+- Inspect sequencing quality control
+- Mapping to Reference Genome
+- Quantify Gene Expression & Differential Expression Analysis 
+- Quantify Splicing Events & Differential Splicing Analysis
+
+Here is the project you receive
 
 ```text
-lincRNA-project/
-├── all_counts_FINAL.csv
-├── brain_area_colors.csv
-├── description_new.csv
-├── figure2_final.png
-├── figure2_final_v3.png
-├── linc2.RData
-├── pca_try.R
-├── pca_try_old.R
-├── readme_notes.txt
-├── rlog_transformed.rds
-├── sample_table.csv
-├── temp_plot.pdf
-└── old/
-    ├── run_before_meeting.R
-    └── weird_copy_of_counts.csv
+CUS-glial-transcriptomics/
+|-- alignment_rate.png       : a plot summarizing the mapping process 
+|-- Ast_PSI_all.txt          : output of differential splicing analysis for astrocytes
+|-- AstroGenes.csv           : output of gene quantification, input of differential expression analysis for astrocytes
+|-- CUS_DEG_Mice.R           : code for differential gene analysis
+|-- DEG_Astro.csv            : output of differential expression analysis for astrocytes
+|-- DEG_Micro.csv            : output of differential expression analysis for microglia
+|-- Pipeline.Rmd             : code for preprocessing (quality control, mapping, quantification)
+|-- metadata.csv             : table matching sample ID to its description
+|-- Mic_PSI_all.txt          : output of differential splicing analysis for microglia
+|-- MicroGenes.csv           : output of gene quantification, input of differential expresison analysis for microglia
+|-- multiqc_report.html      : plots summarizing the sequencing quality control
+|-- Rplot01.png              : a plot summarizing the differential expresison analysis (volcano)
+|-- Rplot02.png              : a plot showing example of an alternate splicing event (sashimi plot)
+`-- Visualize_rMATS_PSI.R    : code for differential splicing analysis visualization
 ```
 
-This scenario is inspired by the kind of clutter that builds up in a real analysis folder over time.
-
-This activity starts the week by making project structure legible. The clearer this project becomes today, the easier it is to talk about reuse, reproducibility, reliability, and sharing later.
-
-## Your Task
+## Prompt
 
 Reorganize the directory on paper or in discussion. You do not need to agree on one perfect answer.
 
 1. Create a clearer folder structure.
-2. Rename the most confusing files with names that reveal purpose, not status.
-3. Decide what belongs in active work versus `archive/`.
-4. Draft a 2-3 sentence `README.md` note explaining where someone should start.
+2. Decide which files belong together and what the parent folders should communicate.
+3. Reorganize the files so the structure is easier to scan, rename them if necessary.
+4. Be ready to explain one tradeoff you made.
 
 ## Constraints
 
-- Keep all raw and transformed data files.
-- Do not change the scientific content.
+- Keep all files from the starting example. 
+- Do not invent new analysis outputs or delete anything.
 - Aim for a structure a labmate could understand in under a minute.
-- Assume a new person will need to tell raw inputs, metadata, scripts, and results apart quickly.
-- Avoid status-only names such as `new`, `final`, `try`, or `v3` unless the name also explains the file's role.
+- Use parent folder names to add information when that helps.
 
 ## Debrief Prompt
 
 Be ready to explain:
 
-- one naming change that improved clarity
-- one file you would archive and why
-- one thing that still feels subjective
-- one file that should probably not live at the project top level
+- one grouping choice that made the project easier to scan
+- one parent folder name that added useful information
+- one place where another team might still make a different but reasonable choice
 
-## Facilitator Reference
+## After You Try It
 
-One reasonable answer could include:
-
-- `data/raw/` for count tables and sample sheets
-- `data/processed/` for `rlog_transformed.rds` and other intermediate objects
-- `scripts/` for active analysis scripts after renaming them with clearer, intention-revealing names
-- `results/figures/` for PNG and PDF outputs
-- `docs/` for project notes
-- `archive/` for superseded scripts, duplicate files, or old exploratory outputs
+If you want a worked example after the discussion, open [example-organization.md](/Users/nguyetu/Documents/Trainee/DS Fellow/BetterCode/modules/day-01-readable/activities/activity-1/example-organization.md).

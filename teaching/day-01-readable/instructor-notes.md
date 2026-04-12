@@ -50,7 +50,7 @@ Readable projects usually make three things easy to locate:
 - Start with the messy tree in `modules/day-01-readable/demos/folder-structure.md`.
 - Ask learners what feels risky or hard to navigate before proposing changes.
 - Show two valid structures so the lesson stays focused on clarity, not one "correct" layout.
-- Point out that names like `analysis_new.py` or `figure2_final_v3.png` communicate status anxiety, not purpose.
+- Point out that even a short file list becomes harder to scan when inputs, scripts, and outputs all sit together.
 
 ### Readable Code Demo
 
