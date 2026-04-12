@@ -38,9 +38,10 @@ Within each day:
 ```text
 day-0x-...
 |-- agenda.md
-`-- activities/
-    |-- activity-1/
-    `-- activity-2/
+|-- activities/
+|   |-- activity-1/
+|   `-- activity-2/
+`-- demos/
 
 ```
 
@@ -54,6 +55,7 @@ Within each day:
 
 - `agenda.md`: the day schedule and flow
 - `activities/`: learner prompts and activity-specific materials
+- `demos/`: short demo materials and worked examples used during teaching
 
 ## How to Use This Repository
 
