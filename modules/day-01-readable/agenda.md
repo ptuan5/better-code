@@ -16,6 +16,7 @@ By the end of this module, participants should be able to:
 - `demos/folder-structure.md`
 - `demos/readable-code.md`
 - `activities/activity-1/prompt.md`
+- `activities/activity-1/example-organization.md`
 - `activities/activity-2/prompt.md`
 - `activities/activity-2/r/starter.R` or `activities/activity-2/python/starter.py`
 - `activities/activity-2/r/example.R` or `activities/activity-2/python/example.py`
