@@ -2,7 +2,8 @@
 
 Look at this only after learners have proposed their own structure.
 
-The prompt allows renaming if that helps clarity. The examples below keep the same files, but in Option B a few script and figure names are made more descriptive.
+The prompt allows renaming if that helps clarity. The examples below keep the
+same files, and a few entries in each option show clearer rename suggestions.
 
 ## Option A: Organize by Artifact Type
 
@@ -12,7 +13,7 @@ CUS-glial-transcriptomics/
 │   |-- AstroGenes.csv
 │   |-- MicroGenes.csv
 │   `-- metadata.csv
-|-- results
+|-- results/
 │   |-- Ast_PSI_all.txt    
 │   |-- Mic_PSI_all.txt
 │   |-- DEG_Astro.csv
@@ -36,7 +37,7 @@ Why this works:
 
 ## Option B: Organize by Workflow Stage
 
-This version uses a few clearer names for the code and figure files.
+This version uses a few clearer names for the code, report, and figure files.
 
 ```text
 CUS-glial-transcriptomics/
@@ -44,10 +45,10 @@ CUS-glial-transcriptomics/
 │   `-- metadata.csv
 |-- 02-preprocessing-pipeline/
 │   |-- alignment_rate.png
-│   |-- multiqc-report.html
+│   |-- multiqc_report.html
 │   |-- AstroGenes.csv
 │   |-- MicroGenes.csv
-│   `-- Pipeline --> preprocessing-pipeline.Rmd
+│   `-- Pipeline.Rmd --> preprocessing-pipeline.Rmd
 |-- 03-differential-expression/
 |   |-- CUS_DEG_Mice.R
 |   |-- Rplot01.png --> volcano-plot.png

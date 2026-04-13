@@ -18,8 +18,8 @@ By the end of this module, participants should be able to:
 - `activities/activity-1/prompt.md`
 - `activities/activity-1/example-organization.md`
 - `activities/activity-2/prompt.md`
-- `activities/activity-2/r/starter.R` or `activities/activity-2/python/starter.py`
-- `activities/activity-2/r/example.R` or `activities/activity-2/python/example.py`
+- `activities/activity-2/starter.R` or `activities/activity-2/starter.py`
+- `activities/activity-2/example_solution.R` or `activities/activity-2/example_solution.py`
 
 This day uses teaching-sized materials that highlight long setup blocks, crowded imports, hard-coded paths, and mixed analysis and plotting flow.
 
@@ -76,7 +76,7 @@ Time: 15 minutes
 
 Time: 15 minutes
 
-- Open `activities/activity-2/r/starter.R` or `activities/activity-2/python/starter.py`.
+- Open `activities/activity-2/starter.R` or `activities/activity-2/starter.py`.
 - Use `demos/readable-code.md` to model one small cleanup from vague script to readable script.
 - Explain that the starter is intentionally small, but it still preserves the same teaching problems: unclear names, noisy comments, mixed responsibilities, and hard-to-scan formatting.
 - Mark vague names, repeated logic, long blocks, weak output labels, and comments that could be replaced by clearer code.
@@ -87,10 +87,10 @@ Time: 15 minutes
 Time: 25 minutes
 
 1. Open `activities/activity-2/prompt.md`.
-2. Work from `activities/activity-2/r/starter.R` or `activities/activity-2/python/starter.py`.
+2. Work from `activities/activity-2/starter.R` or `activities/activity-2/starter.py`.
 3. Rewrite for clarity without changing behavior.
 4. Add a short docstring or script header explaining the purpose of the file and the main output.
-5. Compare your version with `activities/activity-2/r/example.R` or `activities/activity-2/python/example.py` if time allows.
+5. Compare your version with `activities/activity-2/example_solution.R` or `activities/activity-2/example_solution.py` if time allows.
 
 ### 8. Discussion
 

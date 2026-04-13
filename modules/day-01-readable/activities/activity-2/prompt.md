@@ -1,75 +1,54 @@
-# Activity 2: Document and Rewrite a Code Chunk
+# Activity 2: Rewrite a Small Analysis Script for Readability
 
 ## Goal
 
-Make a short analysis script easier to understand without changing what it does.
+Make a function easier to follow without changing what it calculates.
 
 ## Scenario
 
-Imagine a labmate sends you this script after a meeting and says, "This is the one I used to decide which samples to plot next." The script runs, but you are not sure what the objects mean, where the key decision happens, or whether the comments are helping.
+6 months ago, you wrote a function that compare transcriptomes between a control and a treatment group to identify significantly differentially expressed genes. 
 
-Your job is not to redesign the analysis. Your job is to make the script readable enough that another person could open it tomorrow and understand the main story without asking the original author for a tour.
-
-This starter is intentionally small, but it still includes the same kinds of readability problems that show up in real scripts: vague names, mixed responsibilities, noisy comments, and formatting that hides the flow.
-
-This is the baseline skill for the rest of the workshop. If learners can explain what a script is doing today, they will be in a much better position to refactor, rerun, test, and share code on the next four days.
+Now, you want to do a similar analysis for a different project, but you have to make some changes to the code. You spent an afternoon tracing the code logic, and to save your future-self, you decide to rewrite the code with the same input, output, but make it readable.
 
 ## Files
 
-- starter code: `r/starter.R` or `python/starter.py`
-- example approach: `r/example.R` or `python/example.py`
+- "your" current code: `starter.R` or `starter.py`
+- input data: `simulated_expression_matrix.csv`
+- example solution: `example_solution.R` or `example_solution.py`
 
-## Instructions
+## What the Script Does
 
-1. Read `r/starter.R` or `python/starter.py` once without editing.
-2. Mark anything that slows down understanding.
-3. Rewrite the script for readability.
-4. Add a short script header describing the purpose of the file.
-5. If you finish early, compare your version with the matching example file.
+The core of the starter script is the function `find_de_genes`, which does the following:
 
-## What to Improve
+1. Take in a gene x sample expression matrix and an alpha threshold
+2. Normalize the expression matrix by applying a `log2(x + 1)` transform
+3. Loop through each gene, perform an independent t-test between Control and Treatment group
+4. Adjust p-values for multiple hypothesis testing
+5. Calculates group means and fold-change between the groups for each gene
+7. Keep only significant genes (adjusted p-value < alpha), return p-value, fold-change and means of Control and Treatment group.
 
-Focus on readability, not new features.
+## Suggested Instructions
 
-- replace vague variables such as `d`, `k`, `x`, `y`, and `r` with descriptive names
-- choose names that are easy to say, search for, and understand without extra comments
-- make printed output easier to understand
-- break up dense code so each section has a clearer purpose
-- use blank lines and section order to help a reader follow the script from top to bottom
-- add a short header comment that explains what the script produces
-- remove or rewrite comments that only repeat what the code already says
-- make it obvious where the priority score calculation happens and where the labels are assigned
+1. Read `starter.R` or `starter.py` once without editing.
+2. Mark the places where you have to stop and figure out what an object means.
+3. Rename the variables and/or add in-line comments 
+4. Add a short script header that explains the purpose of the file and what it prints.
+5. (optional) Improve the function logic to decrease redundancy, increase generalizability
 
-## What to Preserve
-
-- the same final priority scores
-- the same priority labels
-- the same average score
-
-You may change formatting, naming, and structure, but not the underlying behavior.
-
-## Suggested Pace
-
-- `3 minutes`: read the script and annotate confusing parts
-- `12 minutes`: rewrite names and structure
-- `5 minutes`: add a script header and clean up output text
-- `5 minutes`: compare with a partner or with the matching example file
+Focus on readability and proper comments. The current function has lots of flaws, and readable code will help reveal these flaws.  
 
 ## Success Check
 
 By the end, another learner should be able to answer these questions quickly:
 
-- what data is stored in each object?
-- how is the priority score calculated?
-- where are the labels such as `"plot"`, `"check"`, and `"ignore"` decided?
-- what is printed at the end?
-- can you scan the file from top to bottom and understand the main story without stopping at every line?
+- what does the function do?
+- what is the input data, and what do the rows and columns represent?
+- where is the per-gene statistical test run?
+- where are the p-values adjusted?
+- where are the fold-change calculated?
 
-## Optional Extension
-
-If your group finishes early, discuss:
+## Debrief Prompt
 
 - which changes were clearly better?
-- which changes were mostly stylistic?
 - what comment was worth adding, and what comment would have been unnecessary?
 - what would need to change next if this script grew into a longer analysis file?
