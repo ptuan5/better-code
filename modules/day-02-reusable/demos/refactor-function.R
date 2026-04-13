@@ -4,10 +4,10 @@ library(dplyr)
 library(reshape2)
 
 
-df <- read.csv("modules/day-01-readable/activities/activity-2/simulated_expression_matrix.csv", row.names = 1)
+df <- read.csv("simulated_expression_matrix.csv", row.names = 1)
 
 prepare_expression_data <- function(expression_matrix) {
-  # Helper: prepare the expression matrix for per-gene testing by log-transforming the 
+  # Prepare the expression matrix for per-gene testing by log-transforming the 
   # values, reshaping to long format, and pulling the group label from the sample name.
   
   log_expression_matrix <- log2(expression_matrix + 1)

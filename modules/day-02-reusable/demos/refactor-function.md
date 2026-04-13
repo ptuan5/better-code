@@ -29,8 +29,8 @@ name the main stages:
 find_de_genes(expression_matrix, alpha)
 1. prepare the expression data
 2. run one t-test per gene
-3. keep the per-gene summary values
-4. adjust p-values
+3. adjust p-values
+4. compute the group means and fold-change
 5. assemble and filter the final results
 ```
 
@@ -51,26 +51,21 @@ Ask:
 ## Example Refactor Shape
 
 ```text
-prepare_expression_data(expression_matrix)
-compute_single_gene_stats(gene_data)
-compute_gene_summaries(expression_long)
-add_adjusted_pvalues(gene_summary)
-find_de_genes(expression_matrix, alpha)
+- preprocess_data
+    - log transformation
+    - infer sample info from name
+- compute statistics summary
+    - perform t-test per gene
+    - keep pvalues and group means
+    - calculate fold-change
+- adjust p-values
+- filter the final results
 ```
-
-What each helper is doing:
-
-- `prepare_expression_data()`: log transform, reshape, and infer group labels
-- `compute_single_gene_stats()`: run one t-test and keep `pval`, group means, and fold change for one gene
-- `compute_gene_summaries()`: repeat that helper across all genes and combine the results
-- `add_adjusted_pvalues()`: apply BH correction after all per-gene tests are complete
 
 Check `refactor-function.R` or `refactor-function.py` for the detailed implementation.
 
 ## Suggested Talking Points
 
-- A useful function boundary often matches one stage of the workflow.
 - The main function should read like a short analysis outline.
 - One helper can return several related values when they come from the same step.
-- Breaking code into chunks helps before parameterization even starts.
 - Not every block needs its own function; stop when readability improves.
