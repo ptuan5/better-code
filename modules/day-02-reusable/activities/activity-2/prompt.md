@@ -45,3 +45,11 @@ By the end, another learner should be able to answer these questions quickly:
 - what changes if you summarize a different tissue or threshold?
 - what stays fixed across the whole analysis?
 - which parameter choices support real reuse rather than hypothetical future complexity?
+
+## Discussion Prompt
+
+- which parameter improved reuse the most?
+- which value did you decide to keep fixed, and why?
+- what was harder: deciding what to parameterize or what not to parameterize?
+- did any parameter make the code more flexible but less readable?
+- where did you stop abstracting on purpose?

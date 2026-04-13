@@ -35,3 +35,13 @@ Review a partner's improved version and focus on whether a newcomer could use it
 - Would you know where results are written?
 - Could you rerun it without asking the author a question first?
 - Does the documentation match the actual script behavior?
+
+## Discussion Prompt
+
+If you finish early, discuss:
+
+- what feedback was most useful for the author to hear?
+- what strength comment would help the author know what to keep?
+- what blocker mattered most from a newcomer's point of view?
+- where did the documentation and the actual script behavior match well?
+- what is one review habit from today that would improve future code handoffs?

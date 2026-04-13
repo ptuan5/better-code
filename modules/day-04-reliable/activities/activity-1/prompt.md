@@ -36,3 +36,13 @@ Review the starter script like a skeptical collaborator.
 - whether labels match the numeric result
 - whether the function behavior is obvious from the name
 - whether the examples at the bottom are enough to make you trust the function
+
+## Discussion Prompt
+
+If you finish early, discuss:
+
+- which bug or fragile behavior felt most important to fix first?
+- which example made you trust the function less, and why?
+- what edge case was easiest to miss at first glance?
+- did the function name help or mislead you about the behavior?
+- what review habit from this activity would you want to keep using?

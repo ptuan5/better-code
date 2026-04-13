@@ -37,3 +37,11 @@ By the end, another learner should be able to answer these questions quickly:
 - what file comes out of the script?
 - how would you run it from a clean folder?
 - what assumption from the original author have you now made explicit?
+
+## Discussion Prompt
+
+- what was the minimum note that still felt sufficient for rerunning the script?
+- which environment detail was most important to document?
+- what did you choose not to document yet, and why?
+- what would still confuse a new lab member trying to rerun the work?
+- how did writing these notes change how you think about the script itself?

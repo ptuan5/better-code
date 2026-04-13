@@ -43,3 +43,13 @@ Treat the starter project like something you are about to hand off to another re
 - what command or step should a new user run first?
 - what would still be unclear if this lived on GitHub with no author nearby?
 - which file should a newcomer open first?
+
+## Discussion Prompt
+
+If you finish early, discuss:
+
+- what change made the repo easiest for a newcomer to understand?
+- which file should a new user open first, and why?
+- what information absolutely needed to be in the README?
+- what naming change most improved the handoff?
+- what would still make you hesitate before sharing this on GitHub?

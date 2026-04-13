@@ -47,9 +47,7 @@ Read the starter script and look for repeated work that should happen in one pla
 - `15 minutes`: extract one useful function
 - `10 minutes`: clean up names and replace repeated blocks
 
-## Optional Discussion Prompt
-
-If you finish early, discuss:
+## Discussion Prompt
 
 - which function gave you the biggest reduction in repetition?
 - what repetition did you decide not to abstract yet?

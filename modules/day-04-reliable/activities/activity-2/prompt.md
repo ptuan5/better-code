@@ -35,3 +35,13 @@ Choose the most important behavior in the cleaned function and write small tests
 - two intervals with no overlap
 - an invalid interval where the end comes before the start
 - a case where the function name suggests one behavior but the code implements another
+
+## Discussion Prompt
+
+If you finish early, discuss:
+
+- which test gave you the most confidence in the function?
+- which behavior was important enough to test even in this small example?
+- what edge case was hardest to turn into a clear test?
+- what assumptions are now visible in the tests that were hidden before?
+- what important behavior still is not covered by your tests?
