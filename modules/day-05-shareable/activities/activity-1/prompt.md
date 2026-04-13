@@ -46,8 +46,6 @@ Treat the starter project like something you are about to hand off to another re
 
 ## Discussion Prompt
 
-If you finish early, discuss:
-
 - what change made the repo easiest for a newcomer to understand?
 - which file should a new user open first, and why?
 - what information absolutely needed to be in the README?

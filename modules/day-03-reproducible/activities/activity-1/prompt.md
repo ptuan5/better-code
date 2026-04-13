@@ -46,8 +46,6 @@ Inspect the starter script and make the workflow steps explicit.
 
 ## Discussion Prompt
 
-If you finish early, discuss:
-
 - which hidden assumption would have blocked a collaborator first?
 - what change made the script feel most runnable from a clean folder?
 - what run instruction was worth making explicit?

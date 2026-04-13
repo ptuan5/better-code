@@ -38,8 +38,6 @@ Choose the most important behavior in the cleaned function and write small tests
 
 ## Discussion Prompt
 
-If you finish early, discuss:
-
 - which test gave you the most confidence in the function?
 - which behavior was important enough to test even in this small example?
 - what edge case was hardest to turn into a clear test?

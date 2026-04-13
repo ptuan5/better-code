@@ -39,8 +39,6 @@ Review the starter script like a skeptical collaborator.
 
 ## Discussion Prompt
 
-If you finish early, discuss:
-
 - which bug or fragile behavior felt most important to fix first?
 - which example made you trust the function less, and why?
 - what edge case was easiest to miss at first glance?

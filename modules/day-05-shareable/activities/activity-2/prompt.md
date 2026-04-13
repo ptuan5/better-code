@@ -38,8 +38,6 @@ Review a partner's improved version and focus on whether a newcomer could use it
 
 ## Discussion Prompt
 
-If you finish early, discuss:
-
 - what feedback was most useful for the author to hear?
 - what strength comment would help the author know what to keep?
 - what blocker mattered most from a newcomer's point of view?
