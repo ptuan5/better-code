@@ -1,5 +1,7 @@
 # Activity Breakdown
 
+**NOTE**: This is a rough estimate, the actual duration for each section can be flexible.
+
 ## Day 1: Readable
 
 | Time | Duration | Activity |
