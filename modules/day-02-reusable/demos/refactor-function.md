@@ -1,4 +1,4 @@
-# Extract Functions Demo
+# Refactor Function Demo
 
 ## Demo Goal
 

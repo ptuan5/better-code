@@ -34,13 +34,13 @@ Time: 15 minutes
 - introduce common code smells such as copy-paste logic and long scripts
 - connect those smells to repeated analysis, ranking, and formatting steps that often grow across a script
 
-### 2. Demo: Functions
+### 2. Demo: Refactor Functions
 
 Time: 15 minutes
 
 - walk through a repeated workflow from the starter file
-- open `demos/extract-functions.R` or `demos/extract-functions.py`
 - use `demos/extract-functions.md` to model how one repeated pattern turns into one small function
+- open `demos/refactor-function.R` or `demos/refactor-function.py`
 - explain that the starter repeats a similar pattern in a smaller data summary so the refactoring move is easier to see
 - show how to extract a small function with clear inputs and outputs
 
