@@ -40,31 +40,31 @@ lif_corr$Muscle <- data.frame(
   Muscle = cor_gene
 )
 
-# Merge them into one data frame
-merged_df <- merge(lif_corr$Adipose, lif_corr$Liver, by = "Gene") %>%
+# Merge the per-tissue correlation summaries into one table
+combined_correlations <- merge(lif_corr$Adipose, lif_corr$Liver, by = "Gene") %>%
   merge(lif_corr$Muscle, by = "Gene") %>%
   filter(Gene != "LIF")
 
 # Find genes that are highly correlated with LIF in all 3 tissues
-highly_correlated_genes <- merged_df %>%
+shared_highly_correlated_genes <- merged_df %>%
   filter(Adipose > 0.5 & Liver > 0.5 & Muscle > 0.5)
-print(highly_correlated_genes)
+print(shared_highly_correlated_genes)
 
-# Plot the expression of these genes
-all_expression_data = list(
+# Plot the expression of the target genes and the correlated genes for each tissue
+expression_by_tissue = list(
   Adipose = adipose_expression,
   Liver = liver_expression,
   Muscle = muscle_expression
 )
-plots <- list()
+per_tissue_plots <- list()
 
 for (tissue in c("Adipose", "Liver", "Muscle")) {
-  expression_data <- all_expression_data[[tissue]]
-  expression_data_long <- expression_data %>%
+  tissue_expression <- expression_by_tissue[[tissue]]
+  tissue_expression_long <- tissue_expression %>%
     filter(Gene %in% c(highly_correlated_genes$Gene, "LIF")) %>%
     pivot_longer(cols = -Gene, names_to = "Sample", values_to = "Expression")
   
-  plots[[tissue]] <- ggplot(expression_data_long, aes(x = Sample, y = Expression, col = Gene, group = Gene)) +
+  per_tissue_plots[[tissue]] <- ggplot(tissue_expression_long, aes(x = Sample, y = Expression, col = Gene, group = Gene)) +
     geom_point() + 
     geom_line() +
     theme_bw() + 

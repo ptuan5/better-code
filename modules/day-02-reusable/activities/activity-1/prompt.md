@@ -6,20 +6,17 @@ Reduce repetition by turning repeated analysis steps into small, reusable functi
 
 ## Scenario
 
-Imagine you inherit a short analysis script built from mock gene expression data.
-The dataset includes 3 tissues, 100 genes, and 10 samples per tissue.
+You want to investigate cachexia (wasting syndrome). You know that a gene named LIF (Leukemia Inhibitory Factor) encodesa cytokine implicated in this condition. Rather than looking at LIF expression in isolation, you want to know: **which genes move together with LIF across patients in multiple tissues?**
 
-The script focuses on one target gene and repeats the same workflow for each
-tissue:
+You inherit a short analysis script that works with gene expression data from 3 tissues: adipose, liver, and muscle (shared donors). 
 
-1. pull the expression values for one tissue
-2. calculate the correlation between the target gene and every other gene
-3. keep the genes that pass a significance threshold
-4. compare the tissue-level results to find genes that pass in all 3 tissues
+Each tissue is stored in its own CSV file. The script repeats the same workflow for each tissue:
 
-The code works, but the same correlation, filtering, and comparison logic
-appears over and over. Your job is to break that repeated workflow into smaller
-functions before the script grows any further.
+1. in each tissue, calculate the pairwise correlation between `LIF` and other genes
+2. keep genes with correlation greater than `0.5` in all 3 tissues
+3. plot the expression of `LIF` and the kept genes for each tissue
+
+Each code chunk seems readable, but there are many repetitive patterns. Your job is to refactor that repeated work into smaller functions. 
 
 This activity depends on the readability habits from Day 1. Once the workflow
 is understandable, the repeated pieces become easier to see and refactor.
@@ -28,40 +25,14 @@ is understandable, the repeated pieces become easier to see and refactor.
 
 - starter code: `starter.R` or `starter.py`
 - example approach: `example.R` or `example.py`
+- input data: `mock_data_3_tissues/Adipose.csv`, `mock_data_3_tissues/Liver.csv`, `mock_data_3_tissues/Muscle.csv`
 
-## Task
+## Suggested Instructions
 
-Read the starter script and look for repeated work that should happen in one
-place instead of many places.
-
-1. Read the script once without editing.
-2. Highlight repeated correlation, filtering, and comparison steps.
-3. Extract one or two small functions.
-4. Replace the repeated blocks with function calls.
-
-For a 30-minute activity, extracting one solid function is enough. A second
-function is optional if you still have time.
-
-## Hints
-
-- A good first function usually does one repeated calculation.
-- A second function can help combine or summarize tissue-level results.
-- Keep the first version simple. You do not need to build a perfect abstraction.
-- If you are unsure where to start, look for code that only changes by tissue name.
-- Because the dataset is mock data, focus on the refactor itself rather than data cleaning.
-
-## What To Preserve
-
-- the same target gene
-- the same significance threshold
-- the same set of significant genes found within each tissue
-- the same final group of genes that pass the threshold in all 3 tissues
-
-## Suggested Pace
-
-- `5 minutes`: read and mark repeated patterns
-- `15 minutes`: extract one useful function
-- `10 minutes`: clean up names and replace repeated blocks
+1. Read the script and summarize the overall workflow (make it readable).
+2. Highlight repeated code chunks and turn them into functions.
+3. Replace repeated codes with the function and confirm the output does not change
+4. Think what should not be hard-coded.
 
 ## Discussion Prompt
 
