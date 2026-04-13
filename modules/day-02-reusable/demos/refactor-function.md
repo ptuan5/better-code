@@ -7,8 +7,8 @@ logic flow is clear.
 
 ## Files
 
-- `extract-functions.R`
-- `extract-functions.py`
+- `refactor-function.R`
+- `refactor-function.py`
 
 ## Scenario
 
@@ -29,8 +29,9 @@ name the main stages:
 find_de_genes(expression_matrix, alpha)
 1. prepare the expression data
 2. run one t-test per gene
-3. calculate group means and fold change
-4. assemble and filter the final results
+3. keep the per-gene summary values
+4. adjust p-values
+5. assemble and filter the final results
 ```
 
 Ask:
@@ -51,22 +52,25 @@ Ask:
 
 ```text
 prepare_expression_data(expression_matrix)
-compute_gene_pvalues(expression_long)
-summarize_group_means(expression_long)
-build_gene_results(pvalue_summary, mean_summary)
+compute_single_gene_stats(gene_data)
+compute_gene_summaries(expression_long)
+add_adjusted_pvalues(gene_summary)
 find_de_genes(expression_matrix, alpha)
 ```
 
-Possible responsibilities:
+What each helper is doing:
 
 - `prepare_expression_data()`: log transform, reshape, and infer group labels
-- `compute_gene_pvalues()`: run the per-gene statistical test and adjust p-values
-- `summarize_group_means()`: calculate group means and fold change
-- `build_gene_results()`: merge the pieces and sort the output
+- `compute_single_gene_stats()`: run one t-test and keep `pval`, group means, and fold change for one gene
+- `compute_gene_summaries()`: repeat that helper across all genes and combine the results
+- `add_adjusted_pvalues()`: apply BH correction after all per-gene tests are complete
+
+Check `refactor-function.R` or `refactor-function.py` for the detailed implementation.
 
 ## Suggested Talking Points
 
 - A useful function boundary often matches one stage of the workflow.
 - The main function should read like a short analysis outline.
+- One helper can return several related values when they come from the same step.
 - Breaking code into chunks helps before parameterization even starts.
 - Not every block needs its own function; stop when readability improves.

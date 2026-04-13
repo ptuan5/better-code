@@ -13,8 +13,8 @@ By the end of this module, participants should be able to:
 
 ## Materials
 
-- `demos/extract-functions.md`
-- `demos/extract-functions.R` or `demos/extract-functions.py`
+- `demos/refactor-function.md`
+- `demos/refactor-function.R` or `demos/refactor-function.py`
 - `demos/parameterize-workflow.md`
 - `demos/parameterize-workflow.R` or `demos/parameterize-workflow.py`
 - `activities/activity-1/prompt.md`
@@ -38,11 +38,11 @@ Time: 15 minutes
 
 Time: 15 minutes
 
-- walk through a repeated workflow from the starter file
-- use `demos/extract-functions.md` to model how one repeated pattern turns into one small function
+- walk through the readable differential-expression workflow from Day 1
+- use `demos/refactor-function.md` to model how one long function can be split into manageable chunks
 - open `demos/refactor-function.R` or `demos/refactor-function.py`
-- explain that the starter repeats a similar pattern in a smaller data summary so the refactoring move is easier to see
-- show how to extract a small function with clear inputs and outputs
+- identify the main analysis stages inside `find_de_genes()`
+- show how to extract small helper functions with clear inputs and outputs
 
 ### 3. Activity 1: Break This Code Into Smaller Functions
 
