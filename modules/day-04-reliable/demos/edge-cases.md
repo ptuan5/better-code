@@ -4,6 +4,11 @@
 
 Show how to question a plausible function by checking normal, boundary, and invalid cases.
 
+## Files
+
+- `edge-cases.R`
+- `edge-cases.py`
+
 ## Scenario
 
 Use this framing:
@@ -14,7 +19,7 @@ The demo models the habit of asking what the function should do before deciding 
 
 ## Example Cases
 
-Use interval overlap as the live example:
+Use the matching R or Python demo file with interval overlap as the live example:
 
 | Case | Interval A | Interval B | What to ask |
 |---|---|---|---|

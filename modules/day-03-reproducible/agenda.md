@@ -14,7 +14,9 @@ By the end of this module, participants should be able to:
 ## Materials
 
 - `demos/script-entrypoint.md`
+- `demos/script-entrypoint.R` or `demos/script-entrypoint.py`
 - `demos/environment-notes.md`
+- `demos/environment-note-R.md` or `demos/environment-note-python.md`
 - `activities/activity-1/prompt.md`
 - `activities/activity-1/starter.R` or `activities/activity-1/starter.py`
 - `activities/activity-1/example.R` or `activities/activity-1/example.py`
@@ -37,6 +39,7 @@ Time: 15 minutes
 Time: 15 minutes
 
 - show the difference between ad hoc execution and a clear entry point
+- open `demos/script-entrypoint.R` or `demos/script-entrypoint.py`
 - use `demos/script-entrypoint.md` to model the shift from hidden setup to a clear runnable script
 - highlight hidden assumptions such as `setwd()`, automatic execution, and unexplained outputs
 - connect those assumptions to the smaller starter learners will edit
@@ -68,6 +71,7 @@ Time: 15 minutes
 Time: 15 minutes
 
 - explain why dependency tracking matters
+- open `demos/environment-note-R.md` or `demos/environment-note-python.md`
 - use `demos/environment-notes.md` to model the smallest useful rerun note for a collaborator
 - show what a dependency note should communicate even in a small one-file script
 - clarify the difference between packages, input files, working directory, and output location

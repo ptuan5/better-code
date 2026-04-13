@@ -4,6 +4,14 @@
 
 Model the kind of peer review feedback that helps a partner make a repo more usable.
 
+## Files
+
+Use the revised materials from `../activities/activity-1/`, such as:
+
+- `README-example-R.md` or `README-example-python.md`
+- `example.R` or `example.py`
+- the matching output file in `results/`
+
 ## Scenario
 
 Use this framing:

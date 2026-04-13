@@ -4,6 +4,11 @@
 
 Show the difference between a script that only works for the author and a script another person can run on purpose.
 
+## Files
+
+- `script-entrypoint.R`
+- `script-entrypoint.py`
+
 ## Scenario
 
 Frame the demo like this:
@@ -14,7 +19,7 @@ The demo asks learners to look at that script from the outside and identify what
 
 ## Before
 
-Use a starter pattern like this:
+Use the matching R or Python demo file, which starts from a script like this:
 
 ```r
 setwd("/Users/name/Desktop/project")
@@ -46,6 +51,10 @@ The improved version should make these items easy to identify:
 - year range
 - output file path
 - command to run
+
+You can then point learners to `activities/activity-1/example.R` or
+`activities/activity-1/example.py` to show one reasonable endpoint after the
+live cleanup.
 
 ## Suggested Talking Points
 

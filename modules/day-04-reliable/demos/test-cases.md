@@ -4,6 +4,11 @@
 
 Show how to turn reliability questions into a few small, focused tests.
 
+## Files
+
+- `test-cases.R`
+- `test-cases.py`
+
 ## Scenario
 
 Frame the demo like this:
@@ -14,7 +19,7 @@ This demo shows how a few small tests can act as a shared memory for what the fu
 
 ## Test Matrix
 
-Pick one function and draft three checks:
+Use the matching R or Python demo file and draft three checks around one function:
 
 | Test Type | Example | Why it matters |
 |---|---|---|

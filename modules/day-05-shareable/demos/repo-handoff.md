@@ -4,6 +4,13 @@
 
 Show how a small project becomes easier to hand off when purpose, run steps, and outputs are easy to spot.
 
+## Files
+
+Use the matching materials from `../activities/activity-1/`:
+
+- weak version: `README-R.md` or `README-python.md`, plus `starter.R` or `starter.py`
+- stronger version: `README-example-R.md` or `README-example-python.md`, plus `example.R` or `example.py`
+
 ## Scenario
 
 Frame the demo like this:

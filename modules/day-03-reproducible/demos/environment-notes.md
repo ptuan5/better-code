@@ -4,6 +4,11 @@
 
 Show the minimum documentation another person needs to rerun a small script from a clean folder.
 
+## Files
+
+- `environment-note-R.md`
+- `environment-note-python.md`
+
 ## Scenario
 
 Use this framing:
@@ -14,18 +19,8 @@ The demo shows how little documentation can still be genuinely useful when it an
 
 ## Minimal Example
 
-```md
-# Model Count Summary
-
-## Requirements
-- R with `dplyr`
-
-## Run
-Run `Rscript starter.R` from this folder.
-
-## Output
-The script writes `results/model_counts.csv`.
-```
+Open the matching language note file and ask whether it answers the biggest
+rerun questions quickly.
 
 ## What This Note Makes Explicit
 

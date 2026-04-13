@@ -14,7 +14,9 @@ By the end of this module, participants should be able to:
 ## Materials
 
 - `demos/edge-cases.md`
+- `demos/edge-cases.R` or `demos/edge-cases.py`
 - `demos/test-cases.md`
+- `demos/test-cases.R` or `demos/test-cases.py`
 - `activities/activity-1/prompt.md`
 - `activities/activity-1/starter.R` or `activities/activity-1/starter.py`
 - `activities/activity-1/example.R` or `activities/activity-1/example.py`
@@ -37,6 +39,7 @@ Time: 15 minutes
 Time: 15 minutes
 
 - show a small example with subtle bugs
+- open `demos/edge-cases.R` or `demos/edge-cases.py`
 - use `demos/edge-cases.md` to walk through normal, boundary, and invalid cases before editing code
 - connect the demo to the broader idea that a plausible implementation can still give the wrong guarantee
 - model how to inspect inputs and expected behavior before editing
@@ -68,6 +71,7 @@ Time: 15 minutes
 Time: 15 minutes
 
 - explain the role of small, focused tests
+- open `demos/test-cases.R` or `demos/test-cases.py`
 - use `demos/test-cases.md` to turn one reliability question into a normal case, edge case, and failure case
 - show normal, edge, and failure cases
 - connect tests back to the kinds of hidden logic errors in the IoU example

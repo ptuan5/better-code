@@ -36,7 +36,9 @@ Time: 15 minutes
 Time: 15 minutes
 
 - review the role of a README, clear structure, and visible run instructions
+- open the weak starter materials in `activities/activity-1/`, such as `README-R.md` or `README-python.md`
 - use `demos/repo-handoff.md` to model how a newcomer scans a small repo for purpose, run steps, and outputs
+- compare them with `README-example-R.md` or `README-example-python.md`
 - show how a tiny script becomes much easier to hand off once purpose, inputs, outputs, and run order are written down
 
 ### 3. Activity 1: Fix This Repo & Publish to GitHub
@@ -67,6 +69,7 @@ Time: 15 minutes
 Time: 10 minutes
 
 - model how to open a small repo and find the first file a newcomer should read
+- use the revised files in `activities/activity-1/` as the thing being reviewed
 - use `demos/newcomer-review.md` to model one helpful strength comment and one concrete blocker comment
 - show how to compare the script, README, notes, and outputs against the checklist
 - demonstrate one helpful comment that names something already clear and one that points to a real blocker
