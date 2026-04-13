@@ -141,5 +141,6 @@ Course-wide planning documents live under `documents/`.
 
 ## Suggested References
 
+- `https://github.com/jnguyen095/clean-code/blob/master/Clean.Code.A.Handbook.of.Agile.Software.Craftsmanship.pdf`
 - `https://github.com/TheJacksonLaboratory/bestpractices_workshop`
 - reproducible research resources for R, Python, and scientific workflows
