@@ -16,8 +16,8 @@ This activity builds on Day 2. Reusable pieces are easier to turn into a repeata
 
 ## Files
 
-- starter code: `r/starter.R` or `python/starter.py`
-- example approach: `r/example.R` or `python/example.py`
+- starter code: `starter.R` or `starter.py`
+- example approach: `example.R` or `example.py`
 
 ### Task
 

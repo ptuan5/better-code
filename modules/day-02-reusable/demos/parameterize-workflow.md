@@ -4,9 +4,14 @@
 
 Show how a useful function becomes more reusable when the right values become parameters.
 
+## Files
+
+- `parameterize-workflow.R`
+- `parameterize-workflow.py`
+
 ## Scenario
 
-Frame the demo like this:
+Frame the demo like this while opening the matching R or Python demo file:
 
 Yesterday's refactor worked for one tissue, but now the team wants to run the same summary for other tissues and thresholds. The current function is cleaner than before, yet it still assumes one specific use case because important values are buried inside it.
 
@@ -14,12 +19,13 @@ The lesson here is not "parameterize everything." The lesson is to expose the va
 
 ## Before
 
-Start from a function that still has hard-coded values inside it:
+The demo file starts from a function that is cleaner than repeated copy-paste,
+but still has hard-coded values inside it:
 
 ```text
 summarize_liver(data)
 - uses tissue = "liver"
-- uses threshold = 0.70
+- uses threshold = 0.40
 - prints "top partner"
 ```
 
@@ -37,7 +43,7 @@ Ask:
 ## After
 
 ```text
-summarize_tissue(data, tissue_name, min_correlation=0.70)
+summarize_tissue(data, tissue_name, min_correlation=0.40)
 ```
 
 Possible good parameters:
@@ -50,6 +56,10 @@ Possible overreach:
 
 - parameterizing every column name before anyone needs that flexibility
 - turning one simple summary into a generic function nobody can read quickly
+
+After the live edit, you can compare the result with
+`activities/activity-1/example.R` or `activities/activity-1/example.py`
+and discuss whether the parameter list still feels concrete and readable.
 
 ## Suggested Talking Points
 

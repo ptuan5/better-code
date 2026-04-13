@@ -17,7 +17,7 @@ This is also the setup for Day 5: code becomes much easier to share when its exp
 ## Files
 
 - your cleaned version from `../activity-1/`
-- example approach: `../activity-1/r/example.R` or `../activity-1/python/example.py`
+- example approach: `../activity-1/example.R` or `../activity-1/example.py`
 
 ## Task
 

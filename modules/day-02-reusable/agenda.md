@@ -14,10 +14,12 @@ By the end of this module, participants should be able to:
 ## Materials
 
 - `demos/extract-functions.md`
+- `demos/extract-functions.R` or `demos/extract-functions.py`
 - `demos/parameterize-workflow.md`
+- `demos/parameterize-workflow.R` or `demos/parameterize-workflow.py`
 - `activities/activity-1/prompt.md`
-- `activities/activity-1/r/starter.R` or `activities/activity-1/python/starter.py`
-- `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py`
+- `activities/activity-1/starter.R` or `activities/activity-1/starter.py`
+- `activities/activity-1/example.R` or `activities/activity-1/example.py`
 - `activities/activity-2/prompt.md`
 
 This day uses teaching-sized starter files built around repeated workflow patterns.
@@ -37,6 +39,7 @@ Time: 15 minutes
 Time: 15 minutes
 
 - walk through a repeated workflow from the starter file
+- open `demos/extract-functions.R` or `demos/extract-functions.py`
 - use `demos/extract-functions.md` to model how one repeated pattern turns into one small function
 - explain that the starter repeats a similar pattern in a smaller data summary so the refactoring move is easier to see
 - show how to extract a small function with clear inputs and outputs
@@ -46,7 +49,7 @@ Time: 15 minutes
 Time: 30 minutes
 
 1. Open `activities/activity-1/prompt.md`.
-2. Work from `activities/activity-1/r/starter.R` or `activities/activity-1/python/starter.py`.
+2. Work from `activities/activity-1/starter.R` or `activities/activity-1/starter.py`.
 3. Mark repeated calculations and formatting steps.
 4. Extract one or two small functions.
 5. Replace repeated blocks with function calls.
@@ -68,6 +71,7 @@ Time: 15 minutes
 Time: 15 minutes
 
 - explain why hard-coded values reduce reuse
+- open `demos/parameterize-workflow.R` or `demos/parameterize-workflow.py`
 - use `demos/parameterize-workflow.md` to show when a hard-coded value should become a parameter
 - connect this to the original notebook, where tissue name, target gene, and output labels are the pieces that vary
 - show how parameterization can keep code flexible without overcomplicating it
@@ -80,7 +84,7 @@ Time: 25 minutes
 2. Revisit your refactor and identify the values that vary.
 3. Turn those values into arguments or top-level parameters.
 4. Keep the abstraction simple enough that another learner could still follow it quickly.
-5. Compare your version with `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py` if time allows.
+5. Compare your version with `activities/activity-1/example.R` or `activities/activity-1/example.py` if time allows.
 
 ### 7. Discussion
 

@@ -16,8 +16,8 @@ By the end of this module, participants should be able to:
 - `demos/edge-cases.md`
 - `demos/test-cases.md`
 - `activities/activity-1/prompt.md`
-- `activities/activity-1/r/starter.R` or `activities/activity-1/python/starter.py`
-- `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py`
+- `activities/activity-1/starter.R` or `activities/activity-1/starter.py`
+- `activities/activity-1/example.R` or `activities/activity-1/example.py`
 - `activities/activity-2/prompt.md`
 
 This day centers on cases where two versions of the same idea behave differently and a plausible "correct" version can still hide bugs and missing imports.
@@ -46,7 +46,7 @@ Time: 15 minutes
 Time: 30 minutes
 
 1. Open `activities/activity-1/prompt.md`.
-2. Read `activities/activity-1/r/starter.R` or `activities/activity-1/python/starter.py` silently.
+2. Read `activities/activity-1/starter.R` or `activities/activity-1/starter.py` silently.
 3. Mark possible bugs, hidden assumptions, and edge cases.
 4. Fix the most important logic problems.
 5. Do a few manual checks before comparing with the example approach.
@@ -79,7 +79,7 @@ Time: 25 minutes
 1. Open `activities/activity-2/prompt.md`.
 2. Choose a normal case, an edge case, and a failure case.
 3. Write two or three small tests.
-4. Compare your checks with `activities/activity-1/r/example.R` or `activities/activity-1/python/example.py` if time allows.
+4. Compare your checks with `activities/activity-1/example.R` or `activities/activity-1/example.py` if time allows.
 
 ### 7. Discussion
 

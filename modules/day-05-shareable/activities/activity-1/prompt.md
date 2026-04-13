@@ -10,21 +10,27 @@ Imagine you found this repo through a GitHub link from another researcher. The p
 
 Your job is to make the project usable enough that a newcomer could open it, understand its purpose, and rerun it without needing a guided tour from the original author.
 
-Today uses a deliberately small teaching repo. Treat the `r/` or `python/` folder as something you found on GitHub: it almost works, but a newcomer would still have too many questions.
+Today uses a deliberately small teaching repo. Treat the matching language files in this activity folder as something you found on GitHub: it almost works, but a newcomer would still have too many questions.
 
 This activity is the synthesis day for the workshop. Strong sharing depends on everything from earlier in the week: readable structure, reusable pieces, reproducible instructions, and reliable behavior.
 
 ## Files
 
-- starter project: `r/` or `python/`
-- example approach: `r/example.R` plus `r/README-example.md`, or `python/example.py` plus `python/README-example.md`
+- starter project:
+  `starter.R`, `README-R.md`, `notes-R.txt`, and `out-R.csv`
+  or
+  `starter.py`, `README-python.md`, `notes-python.txt`, and `out-python.csv`
+- example approach:
+  `example.R` plus `README-example-R.md`
+  or
+  `example.py` plus `README-example-python.md`
 
 ### Task
 
 Treat the starter project like something you are about to hand off to another researcher.
 
-1. Read the starter folder as if you have never seen it before.
-2. Inspect the script, the weak `README.md`, and any notes file before changing anything.
+1. Read the matching language files as if you have never seen them before.
+2. Inspect the script, the weak language-matched README file, and any notes file before changing anything.
 3. Improve names, script headers, and output descriptions.
 4. Rewrite the README so the purpose, entry point, and output file are obvious.
 5. If you want, also suggest one folder or filename change that would make the project easier to navigate.

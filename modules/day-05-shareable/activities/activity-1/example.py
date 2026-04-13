@@ -28,7 +28,7 @@ def write_summary_rows(summary_rows, output_file):
         writer.writerows(summary_rows)
 
 
-def run_analysis(output_file="results/measurement_summary.csv"):
+def run_analysis(output_file="results/measurement_summary-python.csv"):
     measurements = [4.2, 4.8, 5.1, 5.0]
     mean_measurement = calculate_mean_measurement(measurements)
     summary_rows = build_summary_rows(measurements)

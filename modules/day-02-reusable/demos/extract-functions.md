@@ -4,9 +4,14 @@
 
 Show how to spot repeated work and pull one clear function out of it.
 
+## Files
+
+- `extract-functions.R`
+- `extract-functions.py`
+
 ## Scenario
 
-Use this framing:
+Use this framing while opening the matching R or Python demo file:
 
 A researcher duplicated the same summary pattern for three tissues because it was faster in the moment. Now the script is getting longer, and every small update means editing the same logic in several places.
 
@@ -14,20 +19,21 @@ The demo shows how to pause before the script grows further and extract one usef
 
 ## Starter Pattern
 
-Use a short repeated workflow such as:
+The demo file uses the same mini LIF correlation table as Activity 1 and starts
+with three repeated tissue summaries:
 
 ```text
-for liver:
+for Adipose Subcutaneous:
 - filter rows
 - count strong genes
 - print top partner
 
-for heart:
+for Liver:
 - filter rows
 - count strong genes
 - print top partner
 
-for brain:
+for Muscle Skeletal:
 - filter rows
 - count strong genes
 - print top partner
@@ -58,6 +64,10 @@ Possible responsibilities:
 - count strong genes
 - identify the top partner
 - return the summary values
+
+You can then point learners to `activities/activity-1/example.R` or
+`activities/activity-1/example.py` to show one reasonable endpoint after
+the live refactor.
 
 ## Suggested Talking Points
 

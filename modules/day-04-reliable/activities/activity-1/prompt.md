@@ -16,8 +16,8 @@ This activity builds on Day 3. A script that runs consistently is helpful, but r
 
 ## Files
 
-- starter code: `r/starter.R` or `python/starter.py`
-- example approach: `r/example.R` or `python/example.py`
+- starter code: `starter.R` or `starter.py`
+- example approach: `example.R` or `example.py`
 
 ### Task
 

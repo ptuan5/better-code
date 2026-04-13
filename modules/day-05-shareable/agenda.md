@@ -16,7 +16,7 @@ By the end of this module, participants should be able to:
 - `demos/repo-handoff.md`
 - `demos/newcomer-review.md`
 - `activities/activity-1/prompt.md`
-- `activities/activity-1/r/` or `activities/activity-1/python/`
+- `activities/activity-1/`
 - `activities/activity-2/prompt.md`
 
 This day uses a deliberately tiny teaching project rather than a direct real-world source file. It is meant to feel like the main script from a small analysis repo that still needs README help and a smoother handoff.
@@ -44,7 +44,7 @@ Time: 15 minutes
 Time: 25 minutes
 
 1. Open `activities/activity-1/prompt.md`.
-2. Inspect the tiny starter project in `activities/activity-1/r/` or `activities/activity-1/python/`.
+2. Inspect the tiny starter materials in `activities/activity-1/`.
 3. Identify the most confusing parts across the script, README, notes, and output naming.
 4. Rewrite headers, file names, or README-style guidance.
 5. Make the project easier for another researcher to run or adapt.

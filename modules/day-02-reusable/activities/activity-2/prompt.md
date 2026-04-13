@@ -17,7 +17,7 @@ This is also the bridge into Day 3: code with clearer parameters is usually much
 ## Files
 
 - your cleaned version from `../activity-1/`
-- example approach: `../activity-1/r/example.R` or `../activity-1/python/example.py`
+- example approach: `../activity-1/example.R` or `../activity-1/example.py`
 
 ## Task
 

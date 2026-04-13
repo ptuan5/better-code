@@ -20,11 +20,11 @@
 | Time | Duration | Activity |
 | --- | --- | --- |
 | 13:00-13:15 | 15 min | Why reusable & what it entails |
-| 13:15-13:30 | 15 min | Demo: Functions |
+| 13:15-13:30 | 15 min | Demo: Extract functions |
 | 13:30-14:00 | 30 min | Activity 1: Break this code into smaller functions |
 | 14:00-14:15 | 15 min | Discussion |
 | 14:15-14:30 | 15 min | Break |
-| 14:30-14:45 | 15 min | Demo: Reuse functions |
+| 14:30-14:45 | 15 min | Demo: Parameterize notebooks |
 | 14:45-15:10 | 25 min | Activity 2: Reusable analysis notebook template  |
 | 15:10-15:25 | 15 min | Discussion |
 | 15:25-15:30 | 5 min | Day wrap up / Buffer time |
