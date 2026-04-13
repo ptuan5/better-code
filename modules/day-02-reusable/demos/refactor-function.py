@@ -1,6 +1,6 @@
 # Demo script for Day 2: extracting helper functions from a readable
 # differential-expression workflow.
-# %%
+
 import numpy as np
 import pandas as pd
 from scipy import stats
@@ -89,5 +89,3 @@ res = find_de_genes(df, alpha=0.05)
 print(f"Number of significant genes: {len(res)}")
 print("First few significant genes:")
 print(res.head())
-
-# %%

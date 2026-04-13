@@ -1,69 +1,72 @@
-lif_correlations <- data.frame(
-  tissue = c(
-    "Adipose Subcutaneous", "Adipose Subcutaneous", "Adipose Subcutaneous", "Adipose Subcutaneous",
-    "Liver", "Liver", "Liver", "Liver",
-    "Muscle Skeletal", "Muscle Skeletal", "Muscle Skeletal", "Muscle Skeletal"
-  ),
-  gene = c(
-    "LIF", "IL6", "SOCS3", "CPT1A",
-    "LIF", "FGF21", "PCK1", "CEBPA",
-    "LIF", "STAT3", "TRIM63", "MYH7"
-  ),
-  correlation = c(
-    1.00, 0.62, 0.52, -0.14,
-    1.00, 0.58, 0.44, -0.20,
-    1.00, 0.71, 0.53, -0.33
-  ),
-  mean_tpm = c(
-    12.4, 8.1, 7.8, 20.2,
-    14.1, 10.9, 16.5, 18.0,
-    5.4, 6.9, 4.8, 22.4
-  )
+library(tidyr)
+library(ggplot2)
+
+adipose_expression <- read.csv("mock_data_3_tissues/Adipose.csv")
+liver_expression <- read.csv("mock_data_3_tissues/Liver.csv")
+muscle_expression <- read.csv("mock_data_3_tissues/Muscle.csv")
+
+lif_corr <- list()
+
+# Find genes correlated with gene of interest in adipose
+rownames(adipose_expression) <- adipose_expression$Gene
+cor_matrix <- cor(t(adipose_expression[,2:10])) %>%
+  as.data.frame()
+cor_gene <- cor_matrix$LIF
+
+lif_corr$Adipose <- data.frame(
+  Gene = rownames(cor_matrix),
+  Adipose = cor_gene
 )
 
-adipose_rows <- lif_correlations[lif_correlations$tissue == "Adipose Subcutaneous", ]
-adipose_hits <- adipose_rows[adipose_rows$gene != "LIF" & adipose_rows$correlation >= 0.4, ]
-adipose_top_gene <- adipose_hits$gene[which.max(adipose_hits$correlation)]
-adipose_summary <- paste(
-  "Adipose Subcutaneous strong genes =",
-  nrow(adipose_hits),
-  "| top partner =",
-  adipose_top_gene,
-  "| average correlation =",
-  round(mean(adipose_hits$correlation), 2),
-  "| average expression =",
-  round(mean(adipose_hits$mean_tpm), 1)
+# Find genes correlated with gene of interest in liver
+rownames(liver_expression) <- liver_expression$Gene
+cor_matrix <- cor(t(liver_expression[,2:10])) %>%
+  as.data.frame()
+cor_gene <- cor_matrix$LIF
+
+lif_corr$Liver <- data.frame(
+  Gene = rownames(cor_matrix),
+  Liver = cor_gene
 )
 
-liver_rows <- lif_correlations[lif_correlations$tissue == "Liver", ]
-liver_hits <- liver_rows[liver_rows$gene != "LIF" & liver_rows$correlation >= 0.4, ]
-liver_top_gene <- liver_hits$gene[which.max(liver_hits$correlation)]
-liver_summary <- paste(
-  "Liver strong genes =",
-  nrow(liver_hits),
-  "| top partner =",
-  liver_top_gene,
-  "| average correlation =",
-  round(mean(liver_hits$correlation), 2),
-  "| average expression =",
-  round(mean(liver_hits$mean_tpm), 1)
+# Find genes correlated with gene of interest in muscle
+rownames(muscle_expression) <- muscle_expression$Gene
+cor_matrix <- cor(t(muscle_expression[,2:10])) %>%
+  as.data.frame()
+cor_gene <- cor_matrix$LIF
+
+lif_corr$Muscle <- data.frame(
+  Gene = rownames(cor_matrix),
+  Muscle = cor_gene
 )
 
-muscle_rows <- lif_correlations[lif_correlations$tissue == "Muscle Skeletal", ]
-muscle_hits <- muscle_rows[muscle_rows$gene != "LIF" & muscle_rows$correlation >= 0.4, ]
-muscle_top_gene <- muscle_hits$gene[which.max(muscle_hits$correlation)]
-muscle_summary <- paste(
-  "Muscle Skeletal strong genes =",
-  nrow(muscle_hits),
-  "| top partner =",
-  muscle_top_gene,
-  "| average correlation =",
-  round(mean(muscle_hits$correlation), 2),
-  "| average expression =",
-  round(mean(muscle_hits$mean_tpm), 1)
-)
+# Merge them into one data frame
+merged_df <- merge(lif_corr$Adipose, lif_corr$Liver, by = "Gene") %>%
+  merge(lif_corr$Muscle, by = "Gene") %>%
+  filter(Gene != "LIF")
 
-print("Tissue summaries")
-print(adipose_summary)
-print(liver_summary)
-print(muscle_summary)
+# Find genes that are highly correlated with LIF in all 3 tissues
+highly_correlated_genes <- merged_df %>%
+  filter(Adipose > 0.5 & Liver > 0.5 & Muscle > 0.5)
+print(highly_correlated_genes)
+
+# Plot the expression of these genes
+all_expression_data = list(
+  Adipose = adipose_expression,
+  Liver = liver_expression,
+  Muscle = muscle_expression
+)
+plots <- list()
+
+for (tissue in c("Adipose", "Liver", "Muscle")) {
+  expression_data <- all_expression_data[[tissue]]
+  expression_data_long <- expression_data %>%
+    filter(Gene %in% c(highly_correlated_genes$Gene, "LIF")) %>%
+    pivot_longer(cols = -Gene, names_to = "Sample", values_to = "Expression")
+  
+  plots[[tissue]] <- ggplot(expression_data_long, aes(x = Sample, y = Expression, col = Gene, group = Gene)) +
+    geom_point() + 
+    geom_line() +
+    theme_bw() + 
+    labs(title = paste("Expression of Highly Correlated Genes in", tissue, "Tissue"))
+}
