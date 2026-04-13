@@ -1,60 +1,107 @@
-lif_correlations = [
-    {"tissue": "Adipose Subcutaneous", "gene": "LIF", "correlation": 1.00, "mean_tpm": 12.4},
-    {"tissue": "Adipose Subcutaneous", "gene": "IL6", "correlation": 0.62, "mean_tpm": 8.1},
-    {"tissue": "Adipose Subcutaneous", "gene": "SOCS3", "correlation": 0.52, "mean_tpm": 7.8},
-    {"tissue": "Adipose Subcutaneous", "gene": "CPT1A", "correlation": -0.14, "mean_tpm": 20.2},
-    {"tissue": "Liver", "gene": "LIF", "correlation": 1.00, "mean_tpm": 14.1},
-    {"tissue": "Liver", "gene": "FGF21", "correlation": 0.58, "mean_tpm": 10.9},
-    {"tissue": "Liver", "gene": "PCK1", "correlation": 0.44, "mean_tpm": 16.5},
-    {"tissue": "Liver", "gene": "CEBPA", "correlation": -0.20, "mean_tpm": 18.0},
-    {"tissue": "Muscle Skeletal", "gene": "LIF", "correlation": 1.00, "mean_tpm": 5.4},
-    {"tissue": "Muscle Skeletal", "gene": "STAT3", "correlation": 0.71, "mean_tpm": 6.9},
-    {"tissue": "Muscle Skeletal", "gene": "TRIM63", "correlation": 0.53, "mean_tpm": 4.8},
-    {"tissue": "Muscle Skeletal", "gene": "MYH7", "correlation": -0.33, "mean_tpm": 22.4},
-]
+from functools import reduce
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+import pandas as pd
 
 
-def filter_strong_hits(rows, tissue_name, min_correlation=0.4):
-    return [
-        row
-        for row in rows
-        if row["tissue"] == tissue_name
-        and row["gene"] != "LIF"
-        and row["correlation"] >= min_correlation
-    ]
+# Refactored example for the repeated per-tissue correlation workflow.
+# This version keeps the same analysis but makes the target gene and
+# correlation threshold easy to change at the top of the script.
+data_dir = Path("modules/day-02-reusable/activities/activity-1/mock_data_3_tissues")
+tissue_files = {
+    "Adipose": "Adipose.csv",
+    "Liver": "Liver.csv",
+    "Muscle": "Muscle.csv",
+}
+
+target_gene = "LIF"
+correlation_threshold = 0.5
 
 
-def summarize_tissue(rows, tissue_name, min_correlation=0.4):
-    strong_hits = filter_strong_hits(rows, tissue_name, min_correlation)
-    top_partner = max(strong_hits, key=lambda row: row["correlation"])["gene"]
+def load_expression_data(data_dir, tissue_files):
+    """Load each tissue-specific expression table into a named dictionary."""
     return {
-        "tissue": tissue_name,
-        "strong_gene_count": len(strong_hits),
-        "top_partner": top_partner,
-        "average_correlation": sum(row["correlation"] for row in strong_hits)
-        / len(strong_hits),
-        "average_expression": sum(row["mean_tpm"] for row in strong_hits)
-        / len(strong_hits),
+        tissue_name: pd.read_csv(data_dir / file_name)
+        for tissue_name, file_name in tissue_files.items()
     }
 
 
-def format_summary(summary_result):
-    return (
-        f'{summary_result["tissue"]} strong genes = '
-        f'{summary_result["strong_gene_count"]} | '
-        f'top partner = {summary_result["top_partner"]} | '
-        f'average correlation = {summary_result["average_correlation"]:.2f} | '
-        f'average expression = {summary_result["average_expression"]:.1f}'
+def extract_target_correlations(expression_data, tissue_name, target_gene):
+    """Extract one tissue's correlations with the selected target gene."""
+    expression_data = expression_data.set_index("Gene")
+    sample_columns = [column for column in expression_data.columns if column != "Gene"]
+    correlation_matrix = expression_data[sample_columns].T.corr()
+
+    return pd.DataFrame(
+        {
+            "Gene": correlation_matrix.index,
+            tissue_name: correlation_matrix[target_gene].values,
+        }
     )
 
 
-tissues_to_summarize = [
-    "Adipose Subcutaneous",
-    "Liver",
-    "Muscle Skeletal",
+def find_shared_high_correlation_genes(correlation_tables, target_gene, correlation_threshold):
+    """Keep only the genes that stay above the correlation threshold in all tissues."""
+    combined_correlations = reduce(
+        lambda left_table, right_table: left_table.merge(right_table, on="Gene"),
+        correlation_tables,
+    )
+    combined_correlations = combined_correlations[
+        combined_correlations["Gene"] != target_gene
+    ]
+
+    tissue_columns = [column for column in combined_correlations.columns if column != "Gene"]
+    return combined_correlations[
+        (combined_correlations[tissue_columns] > correlation_threshold).all(axis=1)
+    ]
+
+
+def plot_shared_gene_expression(expression_by_tissue, shared_gene_table, target_gene):
+    """Build one plot per tissue for the target gene and shared high-correlation genes."""
+    genes_to_plot = list(shared_gene_table["Gene"]) + [target_gene]
+    per_tissue_plots = {}
+
+    for tissue_name, tissue_expression in expression_by_tissue.items():
+        tissue_expression_long = tissue_expression[
+            tissue_expression["Gene"].isin(genes_to_plot)
+        ].melt(id_vars="Gene", var_name="Sample", value_name="Expression")
+
+        fig, ax = plt.subplots()
+        for gene_name, gene_expression in tissue_expression_long.groupby("Gene"):
+            ax.plot(
+                gene_expression["Sample"],
+                gene_expression["Expression"],
+                marker="o",
+                label=gene_name,
+            )
+
+        ax.set_title(f"Expression of Highly Correlated Genes in {tissue_name} Tissue")
+        ax.set_xlabel("Sample")
+        ax.set_ylabel("Expression")
+        ax.legend()
+        per_tissue_plots[tissue_name] = fig
+
+    return per_tissue_plots
+
+
+# Run the reusable workflow.
+expression_by_tissue = load_expression_data(data_dir, tissue_files)
+
+target_gene_correlations = [
+    extract_target_correlations(expression_by_tissue[tissue_name], tissue_name, target_gene)
+    for tissue_name in expression_by_tissue
 ]
 
-print("Tissue summaries")
-for tissue_name in tissues_to_summarize:
-    summary = summarize_tissue(lif_correlations, tissue_name)
-    print(format_summary(summary))
+shared_highly_correlated_genes = find_shared_high_correlation_genes(
+    target_gene_correlations,
+    target_gene,
+    correlation_threshold,
+)
+print(shared_highly_correlated_genes)
+
+per_tissue_plots = plot_shared_gene_expression(
+    expression_by_tissue,
+    shared_highly_correlated_genes,
+    target_gene,
+)
