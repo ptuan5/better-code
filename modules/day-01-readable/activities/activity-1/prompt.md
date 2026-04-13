@@ -60,6 +60,3 @@ Be ready to explain:
 - one parent folder name that added useful information
 - one place where another team might still make a different but reasonable choice
 
-## After You Try It
-
-If you want a worked example after the discussion, open [example-organization.md](/Users/nguyetu/Documents/Trainee/DS Fellow/BetterCode/modules/day-01-readable/activities/activity-1/example-organization.md).
