@@ -2,7 +2,8 @@
 
 ## Demo Goal
 
-Show how to spot repeated work and pull one clear function out of it.
+Show how a function can be broken into smaller pieces once the
+logic flow is clear.
 
 ## Files
 
@@ -11,66 +12,61 @@ Show how to spot repeated work and pull one clear function out of it.
 
 ## Scenario
 
-Use this framing while opening the matching R or Python demo file:
+Yesterday we rewrote `find_de_genes()` so another person could follow it.
+Today we use that readable version to spot the next refactoring move.
 
-A researcher duplicated the same summary pattern for three tissues because it was faster in the moment. Now the script is getting longer, and every small update means editing the same logic in several places.
+The function is no longer mysterious, but it still does several different jobs
+in one place. Before we make it more reusable, we can break the workflow into
+manageable chunks.
 
-The demo shows how to pause before the script grows further and extract one useful function that captures the repeated job.
+## Logic Flow To Notice
 
-## Starter Pattern
-
-The demo file uses the same mini LIF correlation table as Activity 1 and starts
-with three repeated tissue summaries:
+The demo file uses the same differential-expression workflow from
+`modules/day-01-readable/activities/activity-2/example_solution.R`, but now we
+name the main stages:
 
 ```text
-for Adipose Subcutaneous:
-- filter rows
-- count strong genes
-- print top partner
-
-for Liver:
-- filter rows
-- count strong genes
-- print top partner
-
-for Muscle Skeletal:
-- filter rows
-- count strong genes
-- print top partner
+find_de_genes(expression_matrix, alpha)
+1. prepare the expression data
+2. run one t-test per gene
+3. calculate group means and fold change
+4. assemble and filter the final results
 ```
 
 Ask:
 
-- Which lines are truly repeated?
-- Which value changes each time?
-- What is the smallest useful function here?
+- Which lines belong to the same job?
+- Which chunk would be easiest to explain on its own?
+- Where should the main function read like an outline instead of raw detail?
+- Where does repetition happen?
 
 ## Demo Moves
 
-1. Circle one repeated calculation first, not the whole script.
-2. Name the function after the job it does, such as `summarize_tissue()`.
-3. Give it only the inputs it actually needs.
-4. Replace one repeated block with the function call before doing the rest.
+1. Keep `find_de_genes()` as the high-level story of the analysis.
+2. Extract helpers that match real workflow stages.
+3. Pass only the data each helper needs.
+4. Stop once the main function is easy to scan from top to bottom.
 
 ## Example Refactor Shape
 
 ```text
-summarize_tissue(data, tissue_name)
+prepare_expression_data(expression_matrix)
+compute_gene_pvalues(expression_long)
+summarize_group_means(expression_long)
+build_gene_results(pvalue_summary, mean_summary)
+find_de_genes(expression_matrix, alpha)
 ```
 
 Possible responsibilities:
 
-- filter the data to one tissue
-- count strong genes
-- identify the top partner
-- return the summary values
-
-You can then point learners to `activities/activity-1/example.R` or
-`activities/activity-1/example.py` to show one reasonable endpoint after
-the live refactor.
+- `prepare_expression_data()`: log transform, reshape, and infer group labels
+- `compute_gene_pvalues()`: run the per-gene statistical test and adjust p-values
+- `summarize_group_means()`: calculate group means and fold change
+- `build_gene_results()`: merge the pieces and sort the output
 
 ## Suggested Talking Points
 
-- A good first function usually does one job.
-- Reuse starts with repeated code you can already explain.
-- It is fine to stop after one helpful function if the next abstraction would get muddy.
+- A useful function boundary often matches one stage of the workflow.
+- The main function should read like a short analysis outline.
+- Breaking code into chunks helps before parameterization even starts.
+- Not every block needs its own function; stop when readability improves.

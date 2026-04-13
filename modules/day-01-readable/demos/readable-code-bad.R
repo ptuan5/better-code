@@ -23,5 +23,6 @@ take_res <- function(df, x_var) {
   return(res)
 }
 
+## Mock output
 mock_output <- take_res(df, x_var)
 print(mock_output)

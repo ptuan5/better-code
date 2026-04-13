@@ -3,3 +3,6 @@ Syllabus for the Reproducible Programming in R_Python course.docx
 example_code/
 results/
 .DS_Store
+*.Rhistory
+*.RData
+__pycache__/

@@ -1,71 +1,79 @@
-# Demo script for Day 2: repeated workflow before function extraction.
+# Demo script for Day 2: extracting helper functions from a readable
+# differential-expression workflow.
 
-lif_correlations <- data.frame(
-  tissue = c(
-    "Adipose Subcutaneous", "Adipose Subcutaneous", "Adipose Subcutaneous", "Adipose Subcutaneous",
-    "Liver", "Liver", "Liver", "Liver",
-    "Muscle Skeletal", "Muscle Skeletal", "Muscle Skeletal", "Muscle Skeletal"
-  ),
-  gene = c(
-    "LIF", "IL6", "SOCS3", "CPT1A",
-    "LIF", "FGF21", "PCK1", "CEBPA",
-    "LIF", "STAT3", "TRIM63", "MYH7"
-  ),
-  correlation = c(
-    1.00, 0.62, 0.52, -0.14,
-    1.00, 0.58, 0.44, -0.20,
-    1.00, 0.71, 0.53, -0.33
-  ),
-  mean_tpm = c(
-    12.4, 8.1, 7.8, 20.2,
-    14.1, 10.9, 16.5, 18.0,
-    5.4, 6.9, 4.8, 22.4
+data_path <- "modules/day-01-readable/activities/activity-2/simulated_expression_matrix.csv"
+df <- read.csv(data_path, row.names = 1)
+
+prepare_expression_data <- function(expression_matrix) {
+  log_expression_matrix <- log2(expression_matrix + 1)
+  log_expression_matrix$gene <- rownames(log_expression_matrix)
+
+  expression_long <- reshape2::melt(
+    log_expression_matrix,
+    id.vars = "gene",
+    variable.name = "sample",
+    value.name = "log_expression"
   )
-)
 
-adipose_rows <- lif_correlations[lif_correlations$tissue == "Adipose Subcutaneous", ]
-adipose_hits <- adipose_rows[adipose_rows$gene != "LIF" & adipose_rows$correlation >= 0.4, ]
-adipose_top_gene <- adipose_hits$gene[which.max(adipose_hits$correlation)]
-adipose_summary <- paste(
-  "Adipose Subcutaneous strong genes =",
-  nrow(adipose_hits),
-  "| top partner =",
-  adipose_top_gene,
-  "| average correlation =",
-  round(mean(adipose_hits$correlation), 2),
-  "| average expression =",
-  round(mean(adipose_hits$mean_tpm), 1)
-)
+  expression_long$group <- vapply(
+    strsplit(as.character(expression_long$sample), "_"),
+    `[`,
+    character(1),
+    1
+  )
 
-liver_rows <- lif_correlations[lif_correlations$tissue == "Liver", ]
-liver_hits <- liver_rows[liver_rows$gene != "LIF" & liver_rows$correlation >= 0.4, ]
-liver_top_gene <- liver_hits$gene[which.max(liver_hits$correlation)]
-liver_summary <- paste(
-  "Liver strong genes =",
-  nrow(liver_hits),
-  "| top partner =",
-  liver_top_gene,
-  "| average correlation =",
-  round(mean(liver_hits$correlation), 2),
-  "| average expression =",
-  round(mean(liver_hits$mean_tpm), 1)
-)
+  expression_long
+}
 
-muscle_rows <- lif_correlations[lif_correlations$tissue == "Muscle Skeletal", ]
-muscle_hits <- muscle_rows[muscle_rows$gene != "LIF" & muscle_rows$correlation >= 0.4, ]
-muscle_top_gene <- muscle_hits$gene[which.max(muscle_hits$correlation)]
-muscle_summary <- paste(
-  "Muscle Skeletal strong genes =",
-  nrow(muscle_hits),
-  "| top partner =",
-  muscle_top_gene,
-  "| average correlation =",
-  round(mean(muscle_hits$correlation), 2),
-  "| average expression =",
-  round(mean(muscle_hits$mean_tpm), 1)
-)
+compute_gene_pvalues <- function(expression_long) {
+  gene_pvalues <- lapply(
+    split(expression_long, expression_long$gene),
+    function(gene_data) {
+      t.test(log_expression ~ group, data = gene_data)$p.value
+    }
+  )
 
-cat("Tissue summaries\n")
-cat(adipose_summary, "\n")
-cat(liver_summary, "\n")
-cat(muscle_summary, "\n")
+  gene_pvalues <- unlist(gene_pvalues)
+
+  data.frame(
+    gene = names(gene_pvalues),
+    pval = gene_pvalues,
+    padj = p.adjust(gene_pvalues, method = "BH")
+  )
+}
+
+summarize_group_means <- function(expression_long) {
+  group_means <- dplyr::summarise(
+    dplyr::group_by(expression_long, gene, group),
+    mean_log_expression = mean(log_expression),
+    .groups = "drop"
+  )
+
+  mean_summary <- reshape2::dcast(
+    group_means,
+    gene ~ group,
+    value.var = "mean_log_expression"
+  )
+
+  mean_summary$fc <- mean_summary$Treatment - mean_summary$Control
+  mean_summary
+}
+
+build_gene_results <- function(pvalue_summary, mean_summary) {
+  gene_results <- merge(pvalue_summary, mean_summary, by = "gene")
+  dplyr::arrange(gene_results, pval)
+}
+
+find_de_genes <- function(expression_matrix, alpha = 0.05) {
+  expression_long <- prepare_expression_data(expression_matrix)
+  pvalue_summary <- compute_gene_pvalues(expression_long)
+  mean_summary <- summarize_group_means(expression_long)
+  gene_results <- build_gene_results(pvalue_summary, mean_summary)
+
+  gene_results[gene_results$padj < alpha, ]
+}
+
+res <- find_de_genes(df, alpha = 0.05)
+cat("Number of significant genes:", nrow(res), "\n")
+cat("First few significant genes:\n")
+print(head(res))
