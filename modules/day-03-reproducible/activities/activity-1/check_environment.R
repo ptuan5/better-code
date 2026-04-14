@@ -1,4 +1,13 @@
-required_packages <- c("dplyr", "tidyr", "tibble", "ggplot2", "optparse")
+required_packages <- c(
+  "dplyr",
+  "lubridate",
+  "tidyr",
+  "tibble",
+  "ggplot2",
+  "data.table",
+  "viridis",
+  "optparse"
+)
 
 missing_packages <- required_packages[
   !vapply(required_packages, requireNamespace, logical(1), quietly = TRUE)
@@ -31,5 +40,6 @@ output_lines <- c(
 writeLines(output_lines, output_path)
 
 cat("R environment check passed.\n")
+cat("This R setup covers Activity 2 starter.R plus later Day 3 materials.\n")
 cat("Wrote:", output_path, "\n")
 cat(paste(output_lines, collapse = "\n"), "\n")

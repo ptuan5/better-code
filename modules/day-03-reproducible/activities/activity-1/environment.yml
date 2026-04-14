@@ -7,7 +7,10 @@ dependencies:
   - matplotlib
   - r-base=4.5
   - r-dplyr
+  - r-lubridate
   - r-tidyr
   - r-tibble
   - r-ggplot2
+  - r-data.table
+  - r-viridis
   - r-optparse

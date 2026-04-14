@@ -2,123 +2,168 @@
 
 ## Demo Goal
 
-Guide learners through three small environment setups and show what each tool
-records in files versus what each person creates locally on their own machine.
+Start with two tiny project folders that each contain only one simple script.
+Then show how `renv`, `uv`, and conda make the environment explicit.
 
 By the end of the demo, learners should be able to answer:
 
-- what file records the environment requirements?
+- what file should I share with someone else?
 - what file records exact resolved versions?
-- what folder or environment stays local to one machine?
-- what command recreates the environment?
+- what folder or environment gets recreated locally?
+- what command rebuilds the setup?
+
+## Presenter Setup
+
+Use these files during the demo:
+
+- `project-r-renv/mock_scripts.R`
+- `project-python-uv/mock_scripts.py`
+- `project-r-renv/renv.lock`
+- `project-python-uv/pyproject.toml`
+- `project-python-uv/.python-version`
+- `project-python-uv/uv.lock`
+- `../activities/activity-1/environment.yml`
+
+Teaching note:
+
+- Start by pretending each project folder only contains the simple script.
+- If you want to type commands live, do that in a temporary scratch folder that
+  contains only the script.
+- The shareable environment files are already in the repo as a reference
+  version, so open them after showing the commands instead of generating them
+  in place here.
+- The scripts are intentionally boring so the attention stays on setup, not
+  logic.
 
 ## Scenario
 
-You have a working project directory with several scripts.
-You want to keep track of the package versions that you use.
+You receive a folder with one script that uses a package:
 
-Today we will look at three ways of making setup more explicit:
+- the R script loads `dplyr` and prints its version
+- the Python script imports `pandas` and prints its version
 
-- For an R project (`project-r-renv`), we will use `renv` to manage its
-  packages.
-- For a Python project (`project-python-uv`), we will use `uv` to manage its
-  packages.
-- We will use conda to manage an environment that can hold both.
+The code is not the problem. The problem is this:
 
-The question in all three cases is the same:
+`How does the next person know what to install and how to recreate it?`
 
-`What should I commit, and what should another person recreate locally?`
+## 1. Start With A Bare Folder
 
-## 1. Create A Simple `renv` Environment
+Frame the starting point like this:
 
-Open `project-r-renv/` and point out:
+- there is a script
+- there is no clear environment file yet
+- another person might not know which runtime or package versions to use
 
-- `summarize_model_counts.R`
+That is the gap we are fixing with `renv`, `uv`, and conda.
+
+## 2. Add `renv` From Scratch
+
+Start from `project-r-renv/mock_scripts.R`.
+If you are typing live, copy that script into a temporary scratch folder first.
+
+Suggested live flow:
+
+```bash
+Rscript -e "install.packages('renv', repos = 'https://cloud.r-project.org')"
+Rscript -e "renv::init(bare = TRUE)"
+Rscript -e "renv::install('dplyr')"
+Rscript -e "renv::snapshot(prompt = FALSE)"
+Rscript mock_scripts.R
+```
+
+Then open the reference files in `project-r-renv/`:
+
+- `mock_scripts.R`
 - `renv.lock`
 - `.gitignore`
 
-Suggested flow to talk through:
-
-```r
-renv::init()
-renv::install("dplyr")
-renv::snapshot()
-renv::restore()
-```
-
 Key points to explain:
 
-- `renv::init()` sets up project-level package management for this R project.
-- `renv::install()` adds packages to the project library instead of relying on
-  whatever happens to be installed globally.
-- `renv::snapshot()` updates `renv.lock`; this is not automatic.
-- `renv::restore()` recreates the project library on another machine from the
-  lock file.
-- `renv.lock` records the R version, repository, and exact package versions to
-  restore.
-- The local package library in `renv/library/` stays machine-local and should
-  not be committed.
-- In a fully initialized `renv` project, you will usually also see
-  `renv/activate.R`, which helps bootstrap the project library when the project
-  opens.
-- `renv` works at the project level, so scripts can still live in nested
-  folders and use the same environment.
+- `renv::init()` turns the folder into a project managed by `renv`.
+- `renv::install()` adds the package to the project library.
+- `renv::snapshot()` writes `renv.lock`.
+- `renv.lock` is the main shareable environment file for this example.
+- `renv.lock` also records exact package versions.
+- the local project library under `renv/library/` is recreated on each machine
+  and should not be committed
+- in a fuller `renv` project you will also see files such as `renv/activate.R`
+  that help bootstrap the project library
 
-Concrete restore command for this demo:
+What to commit:
+
+- `mock_scripts.R`
+- `renv.lock`
+- `.gitignore`
+
+What another person recreates locally:
+
+- the project library under `renv/`
+
+What they run on their own machine:
 
 ```bash
 Rscript -e "install.packages('renv', repos = 'https://cloud.r-project.org')"
 Rscript -e "renv::restore(prompt = FALSE)"
-Rscript summarize_model_counts.R
+Rscript mock_scripts.R
 ```
 
-## 2. Create A Simple `uv` Environment
+## 3. Add `uv` From Scratch
 
-Open `project-python-uv/` and point out:
+Start from `project-python-uv/mock_scripts.py`.
+If you are typing live, copy that script into a temporary scratch folder first.
 
-- `summarize_model_counts.py`
-- `pyproject.toml`
-- `uv.lock`
-- `.python-version`
-- `.gitignore`
-
-Suggested flow to talk through:
+Suggested live flow:
 
 ```bash
+uv init --bare
+uv python pin 3.13
 uv add pandas==2.3.2
-uv lock
 uv sync
-uv run python summarize_model_counts.py
+uv run python mock_scripts.py
 ```
+
+Then open the reference files in `project-python-uv/`:
+
+- `mock_scripts.py`
+- `pyproject.toml`
+- `.python-version`
+- `uv.lock`
+- `.gitignore`
 
 Key points to explain:
 
-- `pyproject.toml` records the project's direct dependencies and Python
-  requirement.
-- `uv.lock` records the exact resolved versions, including transitive
-  dependencies.
-- `uv sync` uses those files to create a local `.venv/` for this project.
-- `.venv/` is recreated on each machine and should not be committed.
-- `.python-version` makes the intended interpreter easy to spot.
-- Compared with `renv`, `uv` splits "what the project asks for" from "what got
-  resolved exactly."
+- `uv init --bare` creates the project metadata file
+- `uv python pin 3.13` records the intended interpreter in `.python-version`
+- `uv add` records the direct dependency in `pyproject.toml` and updates
+  `uv.lock`
+- `uv.lock` records the exact resolved versions
+- `uv sync` creates the local `.venv/`
+- `.venv/` is recreated on each machine and should not be committed
 
-Concrete setup command for this demo:
+What to commit:
+
+- `mock_scripts.py`
+- `pyproject.toml`
+- `.python-version`
+- `uv.lock`
+- `.gitignore`
+
+What another person recreates locally:
+
+- `.venv/`
+
+What they run on their own machine:
 
 ```bash
 uv sync
-uv run python summarize_model_counts.py
+uv run python mock_scripts.py
 ```
 
-## 3. Create A Simple Conda Environment
+## 4. Compare With Conda
 
-Open `../activities/activity-1/environment.yml` and point out:
+Open `../activities/activity-1/environment.yml`.
 
-- `name`: the environment name learners will activate
-- `channels`: where conda should search for packages
-- `dependencies`: the requested packages and versions
-
-Concrete setup flow:
+Suggested live flow:
 
 ```bash
 conda env create -f environment.yml
@@ -127,42 +172,34 @@ conda activate day03-conda-demo
 
 Key points to explain:
 
-- `environment.yml` is the shareable file to commit.
-- The conda environment itself is local to each machine and is recreated from
-  the file.
-- In this example, one conda environment can include both Python and R
-  packages.
-- Unlike `uv.lock` or `renv.lock`, this file does not fully lock every
-  resolved build in the demo.
-- In VS Code, learners should select the interpreter from the created conda
-  environment.
-- In RStudio, learners need to start or configure the session to use the R
-  executable from that same conda environment if they want the conda-managed R
-  packages.
+- conda starts from a standalone environment specification file
+- `environment.yml` is the shareable file to commit
+- the created conda environment is local to each machine
+- in this example, conda can hold both Python and R packages in one
+  environment
+- unlike `renv.lock` or `uv.lock`, `environment.yml` is not acting as a full
+  lock file in this demo
 
-## 4. Quick Comparison
+## 5. Quick Comparison
 
-Use this table to keep the three examples aligned:
+| Tool | Start with | Shareable requirement file(s) | Exact resolved versions | Local recreated setup | Recreate command |
+| --- | --- | --- | --- | --- | --- |
+| `renv` | `mock_scripts.R` | `renv.lock` | `renv.lock` | `renv/library/` | `renv::restore()` |
+| `uv` | `mock_scripts.py` | `pyproject.toml`, `.python-version`, `uv.lock` | `uv.lock` | `.venv/` | `uv sync` |
+| `conda` | `environment.yml` | `environment.yml` | not locked in this demo | named conda environment | `conda env create -f environment.yml` |
 
-| Tool | Shareable requirement file | Exact resolved versions | Local folder or environment | Recreate command |
-| --- | --- | --- | --- | --- |
-| `renv` | `project-r-renv/renv.lock` | `project-r-renv/renv.lock` | `renv/library/` | `renv::restore()` |
-| `uv` | `project-python-uv/pyproject.toml` | `project-python-uv/uv.lock` | `.venv/` | `uv sync` |
-| `conda` | `../activities/activity-1/environment.yml` | not locked in this demo | named conda environment on each machine | `conda env create -f environment.yml` |
+Main contrast:
 
-Important comparison:
+- `renv.lock` is both the shareable file and the exact version record
+- `uv` splits direct requirements from exact resolved versions
+- conda uses one shareable file here, but it is not a full lock file in this
+  lesson
 
-- `renv.lock` is both the shareable environment record and the lock file.
-- `pyproject.toml` declares direct dependencies, while `uv.lock` records the
-  fully resolved environment.
-- `environment.yml` is a shareable specification, but it is not a full lock
-  file in this demo.
+## 6. Wrap-Up Question
 
-## 5. Wrap-Up Question
+End by asking learners:
 
-End by asking learners to answer these four questions for each tool:
-
-- what file should you commit?
-- what file, if any, records exact resolved versions?
-- what folder or environment stays local?
-- what command recreates the setup on another machine?
+- what would you commit?
+- what would another person recreate locally?
+- where would you look for exact versions?
+- which tool keeps the environment information closest to the project folder?

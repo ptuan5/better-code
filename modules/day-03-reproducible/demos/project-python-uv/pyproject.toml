@@ -1,5 +1,5 @@
 [project]
-name = "model-count-summary-uv"
+name = "simple-environment-demo-uv"
 version = "0.1.0"
 requires-python = ">=3.13"
 dependencies = [

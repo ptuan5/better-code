@@ -8,7 +8,9 @@ Create a conda environment from an `environment.yml` file and explain what the m
 
 Picture receiving two small project folders from collaborators. One uses `renv` for R. One uses `uv` for Python. Before you even worry about the scripts, you need to understand how the environment is supposed to be recreated.
 
-Your task is to create a conda environment from a starter file, verify that it works, and compare that file with the `renv` and `uv` project files from the demo.
+Your task is to create a conda environment from a starter file, verify that it
+works, and compare that file with the `renv` and `uv` project files from the
+demo.
 
 This activity is about setup rather than script structure. The goal is to make environment assumptions visible before we move on to executable scripts later in the day.
 
@@ -27,7 +29,10 @@ Inspect the starter files and create the environment they describe.
 3. Notice that this environment is meant to support Demo 2 and Activity 2 later in Day 3.
 4. Create the environment with `conda env create -f environment.yml`.
 5. Activate the environment.
-6. Run `python check_environment.py` and `Rscript check_environment.R` to verify that the later Day 3 materials have the packages they need.
+6. Run `python check_environment.py` and `Rscript check_environment.R` to
+   verify that the environment includes the packages needed by
+   `../activity-2/starter.py`, `../activity-2/starter.R`, and the later Day 3
+   materials.
 7. If time allows, compare `environment.yml` with `../../demos/project-r-renv/renv.lock`, `../../demos/project-python-uv/pyproject.toml`, and `../../demos/project-python-uv/.python-version`.
 
 ### What to Look For
@@ -35,6 +40,7 @@ Inspect the starter files and create the environment they describe.
 - the environment name
 - where conda should search for packages
 - which Python and R packages will be installed
+- which later starter scripts those packages support
 - which files describe an environment versus which folders get created locally
 
 ## Success Check
@@ -46,6 +52,7 @@ By the end, another learner should be able to answer these questions quickly:
 - what do the `dependencies` specify?
 - how do you create and activate the environment?
 - which later Day 3 materials does this environment support?
+- what additional R packages were needed for `starter.R`?
 - what does `renv.lock` communicate?
 - what do `pyproject.toml` and `.python-version` communicate?
 

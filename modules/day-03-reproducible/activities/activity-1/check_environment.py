@@ -17,6 +17,7 @@ def main():
     output_path.write_text("\n".join(output) + "\n", encoding="utf-8")
 
     print("Environment check passed.")
+    print("This Python setup covers Activity 2 starter.py.")
     print(f"Python version: {sys.version.split()[0]}")
     print(f"pandas version: {pd.__version__}")
     print(f"matplotlib version: {matplotlib.__version__}")
