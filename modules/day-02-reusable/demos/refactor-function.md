@@ -27,7 +27,7 @@ name the main stages:
 
 ```text
 find_de_genes(expression_matrix, alpha)
-1. prepare the expression data
+1. preprocess the expression data
 2. run one t-test per gene
 3. adjust p-values
 4. compute the group means and fold-change
