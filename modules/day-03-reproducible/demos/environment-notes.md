@@ -12,270 +12,157 @@ By the end of the demo, learners should be able to answer:
 - what folder or environment stays local to one machine?
 - what command recreates the environment?
 
-## Time Plan
+## Scenario
 
-- `0-2 min`: frame the problem
-- `2-8 min`: create a simple `renv` environment
-- `8-14 min`: create a simple `uv` environment
-- `14-18 min`: create a simple conda environment
-- `18-20 min`: compare the three approaches
-
-## Files To Open During The Demo
-
-- `environment-note-R.md`
-- `environment-note-python.md`
-- `project-r-renv/`
-- `project-python-uv/`
-- `../activities/activity-1/environment.yml`
-
-Use these files during the walkthrough in this order:
-
-1. `environment-note-R.md` with `project-r-renv/`
-2. `environment-note-python.md` with `project-python-uv/`
-3. `../activities/activity-1/environment.yml`
-
-If you do not want to type every command live, use the commands below as
-narration while opening these example materials from the repo.
-
-## 1. Frame The Problem `0-2 min`
-
-Use framing like this:
-
-Someone can have the right script and still fail immediately because they do not
-have the right runtime or packages. Reproducibility starts before the script
-runs.
+You have a working project directory with several scripts.
+You want to keep track of the package versions that you use.
 
 Today we will look at three ways of making setup more explicit:
 
-- `renv` for an R project
-- `uv` for a Python project
-- `conda` from an `environment.yml` file
+- For an R project (`project-r-renv`), we will use `renv` to manage its
+  packages.
+- For a Python project (`project-python-uv`), we will use `uv` to manage its
+  packages.
+- We will use conda to manage an environment that can hold both.
 
 The question in all three cases is the same:
 
 `What should I commit, and what should another person recreate locally?`
 
-## 2. Create A Simple `renv` Environment `2-8 min`
+## 1. Create A Simple `renv` Environment
 
-### Open These Materials
+Open `project-r-renv/` and point out:
 
-- `environment-note-R.md`
-- `project-r-renv/README.md`
-- `project-r-renv/renv.lock`
-- `project-r-renv/.gitignore`
-
-### Commands To Show
-
-```bash
-mkdir demo-renv
-cd demo-renv
-Rscript -e "install.packages('renv', repos = 'https://cloud.r-project.org')"
-Rscript -e "renv::init(bare = TRUE)"
-Rscript -e "renv::install('dplyr')"
-Rscript -e "renv::snapshot(prompt = FALSE)"
-```
-
-### What To Say
-
-`renv` is centered on an R project directory. It gives this project its own
-package library instead of relying on whatever happens to be installed
-globally.
-
-After showing the commands, open `environment-note-R.md` and
-`project-r-renv/README.md` and use them to anchor the explanation. Then open
-`project-r-renv/renv.lock` so learners can see the lock file you are talking
-about, and briefly show `project-r-renv/.gitignore` to reinforce that the local
-library should not be treated as the main shareable artifact.
-
-### Files To Explain
-
+- `summarize_model_counts.R`
 - `renv.lock`
-  This is the lock file.
-  It records the exact package versions that were resolved for this project.
-  This is the most important shareable environment file in a simple `renv`
-  workflow.
-- `renv/`
-  This directory holds `renv` machinery for the project.
-  In a real project, parts of this directory help activate the environment.
-- `renv/library/`
-  This is the project-specific package library created on one machine.
-  It is local and should not be treated as the main shareable artifact.
-- `.Rprofile`
-  This helps the project activate `renv` automatically when someone opens the
-  project.
+- `.gitignore`
 
-In the repo example, the most visible shareable pieces are the script,
-`renv.lock`, and the README that tells someone how to restore and run.
+Suggested flow to talk through:
 
-### Key Teaching Point
+```r
+renv::init()
+renv::install("dplyr")
+renv::snapshot()
+renv::restore()
+```
 
-For this simple `renv` example, the lock file is doing most of the important
-sharing work. Another person recreates the environment with:
+Key points to explain:
+
+- `renv::init()` sets up project-level package management for this R project.
+- `renv::install()` adds packages to the project library instead of relying on
+  whatever happens to be installed globally.
+- `renv::snapshot()` updates `renv.lock`; this is not automatic.
+- `renv::restore()` recreates the project library on another machine from the
+  lock file.
+- `renv.lock` records the R version, repository, and exact package versions to
+  restore.
+- The local package library in `renv/library/` stays machine-local and should
+  not be committed.
+- In a fully initialized `renv` project, you will usually also see
+  `renv/activate.R`, which helps bootstrap the project library when the project
+  opens.
+- `renv` works at the project level, so scripts can still live in nested
+  folders and use the same environment.
+
+Concrete restore command for this demo:
 
 ```bash
+Rscript -e "install.packages('renv', repos = 'https://cloud.r-project.org')"
 Rscript -e "renv::restore(prompt = FALSE)"
+Rscript summarize_model_counts.R
 ```
 
-## 3. Create A Simple `uv` Environment `8-14 min`
+## 2. Create A Simple `uv` Environment
 
-### Open These Materials
+Open `project-python-uv/` and point out:
 
-- `environment-note-python.md`
-- `project-python-uv/README.md`
-- `project-python-uv/pyproject.toml`
-- `project-python-uv/.python-version`
-- `project-python-uv/.gitignore`
-
-### Commands To Show
-
-```bash
-mkdir demo-uv
-cd demo-uv
-uv init --bare
-uv add pandas==2.3.2
-uv sync
-```
-
-### What To Say
-
-`uv` is also project-centered, but in Python it separates the requirements file
-from the lock file more visibly than `renv` does.
-
-After showing the commands, open `environment-note-python.md` and
-`project-python-uv/README.md` to anchor the explanation. Then open
-`project-python-uv/pyproject.toml` and `.python-version` so learners can see
-where the intended runtime and direct dependencies live. Briefly show
-`project-python-uv/.gitignore` to point out that `.venv/` is local.
-
-### Files To Explain
-
+- `summarize_model_counts.py`
 - `pyproject.toml`
-  This is the requirements or specification file for the project.
-  It records the direct dependencies you want this project to have.
-  It also records general project metadata.
 - `uv.lock`
-  This is the lock file.
-  It records the exact resolved versions of the project dependencies.
 - `.python-version`
-  This communicates which Python runtime the project expects.
-- `.venv/`
-  This is the local environment created for one machine.
-  It is useful locally but should not be the main thing you share.
+- `.gitignore`
 
-### Key Teaching Point
-
-In this workflow:
-
-- `pyproject.toml` says what the project wants
-- `uv.lock` says what exact versions were resolved
-- `.venv/` is what each person recreates locally
-
-Another person recreates the environment with:
+Suggested flow to talk through:
 
 ```bash
+uv add pandas==2.3.2
+uv lock
 uv sync
-```
-
-And runs the script with:
-
-```bash
 uv run python summarize_model_counts.py
 ```
 
-If you want to connect back to the repo materials explicitly, say:
+Key points to explain:
 
-`The README tells me what to do, the pyproject tells me what the project wants, and the local environment is something I recreate rather than commit.`
+- `pyproject.toml` records the project's direct dependencies and Python
+  requirement.
+- `uv.lock` records the exact resolved versions, including transitive
+  dependencies.
+- `uv sync` uses those files to create a local `.venv/` for this project.
+- `.venv/` is recreated on each machine and should not be committed.
+- `.python-version` makes the intended interpreter easy to spot.
+- Compared with `renv`, `uv` splits "what the project asks for" from "what got
+  resolved exactly."
 
-## 4. Create A Simple Conda Environment `14-18 min`
-
-### Open These Materials
-
-- `../activities/activity-1/environment.yml`
-- `../activities/activity-1/prompt.md`
-
-### Commands To Show
+Concrete setup command for this demo:
 
 ```bash
-mkdir demo-conda
-cd demo-conda
+uv sync
+uv run python summarize_model_counts.py
 ```
 
-Create `environment.yml`:
+## 3. Create A Simple Conda Environment
 
-```yaml
-name: demo-conda
-channels:
-  - conda-forge
-dependencies:
-  - python=3.13
-  - pandas=2.3.2
-```
+Open `../activities/activity-1/environment.yml` and point out:
 
-Then run:
+- `name`: the environment name learners will activate
+- `channels`: where conda should search for packages
+- `dependencies`: the requested packages and versions
+
+Concrete setup flow:
 
 ```bash
 conda env create -f environment.yml
-conda activate demo-conda
-python -c "import pandas as pd; print(pd.__version__)"
+conda activate day03-conda-demo
 ```
 
-You can compare this directly with `../activities/activity-1/environment.yml`.
+Key points to explain:
 
-Open that file while you explain the commands so learners can read the same
-fields they will work with in Activity 1. If useful, also open
-`../activities/activity-1/prompt.md` and point out that the activity is asking
-them to interpret exactly these fields.
+- `environment.yml` is the shareable file to commit.
+- The conda environment itself is local to each machine and is recreated from
+  the file.
+- In this example, one conda environment can include both Python and R
+  packages.
+- Unlike `uv.lock` or `renv.lock`, this file does not fully lock every
+  resolved build in the demo.
+- In VS Code, learners should select the interpreter from the created conda
+  environment.
+- In RStudio, learners need to start or configure the session to use the R
+  executable from that same conda environment if they want the conda-managed R
+  packages.
 
-### Files To Explain
+## 4. Quick Comparison
 
-- `environment.yml`
-  This is the shareable environment specification file.
-  It records the environment name, the channels conda should search, and the
-  dependencies to install.
-- `name`
-  This becomes the environment name users activate later.
-- `channels`
-  These tell conda where to search for packages.
-- `dependencies`
-  These list the runtime and packages the environment should contain.
+Use this table to keep the three examples aligned:
 
-### Key Teaching Point
+| Tool | Shareable requirement file | Exact resolved versions | Local folder or environment | Recreate command |
+| --- | --- | --- | --- | --- |
+| `renv` | `project-r-renv/renv.lock` | `project-r-renv/renv.lock` | `renv/library/` | `renv::restore()` |
+| `uv` | `project-python-uv/pyproject.toml` | `project-python-uv/uv.lock` | `.venv/` | `uv sync` |
+| `conda` | `../activities/activity-1/environment.yml` | not locked in this demo | named conda environment on each machine | `conda env create -f environment.yml` |
 
-For this simple conda example, `environment.yml` is the main shareable file.
-The created environment itself lives outside the project directory and is local
-to each machine.
+Important comparison:
 
-Unlike the `uv` and `renv` examples above, this small demo does not add a
-separate lock file. That is useful to mention explicitly so learners see that
-different tools expose different file patterns.
+- `renv.lock` is both the shareable environment record and the lock file.
+- `pyproject.toml` declares direct dependencies, while `uv.lock` records the
+  fully resolved environment.
+- `environment.yml` is a shareable specification, but it is not a full lock
+  file in this demo.
 
-## 5. Compare The Three Approaches `18-20 min`
+## 5. Wrap-Up Question
 
-Use a wrap-up like this:
+End by asking learners to answer these four questions for each tool:
 
-| Tool | Main requirements file | Lock file | Local recreated environment |
-| --- | --- | --- | --- |
-| `renv` | project setup plus package install history | `renv.lock` | project library under `renv/` |
-| `uv` | `pyproject.toml` | `uv.lock` | `.venv/` |
-| `conda` | `environment.yml` | not shown in this simple demo | named conda environment |
-
-Then close with:
-
-- all three tools reduce setup guesswork
-- the shareable files are usually small
-- the installed environment itself is usually local
-- reproducibility improves when someone can see both the setup files and the
-  command to recreate the environment
-
-At this point, learners should be able to point to the actual materials you
-opened and answer:
-
-- where do I look for the requirements?
-- where do I look for exact resolved versions, if there is a lock file?
-- what do I recreate locally instead of committing?
-
-## Suggested Closing Question
-
-Ask:
-
-`If you had to rerun this project six months from now on another machine, which file would you look for first?`
+- what file should you commit?
+- what file, if any, records exact resolved versions?
+- what folder or environment stays local?
+- what command recreates the setup on another machine?

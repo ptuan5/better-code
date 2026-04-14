@@ -9,7 +9,7 @@ This folder shows one small way to package an R script so another person can res
 ## Files
 
 - `summarize_model_counts.R`: analysis script
-- `renv.lock`: project package requirements
+- `renv.lock`: R version, repositories, and exact package versions for the project
 - `.gitignore`: files and folders to keep out of version control
 
 ## Set Up
@@ -20,6 +20,8 @@ From this folder, run:
 Rscript -e "install.packages('renv', repos = 'https://cloud.r-project.org')"
 Rscript -e "renv::restore(prompt = FALSE)"
 ```
+
+This recreates the machine-local project library from `renv.lock`.
 
 ## Run
 

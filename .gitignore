@@ -6,3 +6,7 @@ results/
 *.Rhistory
 *.RData
 __pycache__/
+demo-renv/
+demo-uv/
+demo-conda/
+.Rproj.user
