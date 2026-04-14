@@ -9,7 +9,7 @@ lif_corr <- list()
 
 # Find genes correlated with gene of interest in adipose
 rownames(adipose_expression) <- adipose_expression$Gene
-cor_matrix <- cor(t(adipose_expression[,2:10])) %>%
+cor_matrix <- cor(t(adipose_expression[,2:11])) %>%
   as.data.frame()
 cor_gene <- cor_matrix$LIF
 
@@ -20,7 +20,7 @@ lif_corr$Adipose <- data.frame(
 
 # Find genes correlated with gene of interest in liver
 rownames(liver_expression) <- liver_expression$Gene
-cor_matrix <- cor(t(liver_expression[,2:10])) %>%
+cor_matrix <- cor(t(liver_expression[,2:11])) %>%
   as.data.frame()
 cor_gene <- cor_matrix$LIF
 
@@ -31,7 +31,7 @@ lif_corr$Liver <- data.frame(
 
 # Find genes correlated with gene of interest in muscle
 rownames(muscle_expression) <- muscle_expression$Gene
-cor_matrix <- cor(t(muscle_expression[,2:10])) %>%
+cor_matrix <- cor(t(muscle_expression[,2:11])) %>%
   as.data.frame()
 cor_gene <- cor_matrix$LIF
 
