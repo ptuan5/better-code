@@ -46,7 +46,7 @@ combined_correlations <- merge(lif_corr$Adipose, lif_corr$Liver, by = "Gene") %>
   filter(Gene != "LIF")
 
 # Find genes that are highly correlated with LIF in all 3 tissues
-shared_highly_correlated_genes <- merged_df %>%
+shared_highly_correlated_genes <- combined_correlations %>%
   filter(Adipose > 0.5 & Liver > 0.5 & Muscle > 0.5)
 print(shared_highly_correlated_genes)
 
@@ -61,7 +61,7 @@ per_tissue_plots <- list()
 for (tissue in c("Adipose", "Liver", "Muscle")) {
   tissue_expression <- expression_by_tissue[[tissue]]
   tissue_expression_long <- tissue_expression %>%
-    filter(Gene %in% c(highly_correlated_genes$Gene, "LIF")) %>%
+    filter(Gene %in% c(shared_highly_correlated_genes$Gene, "LIF")) %>%
     pivot_longer(cols = -Gene, names_to = "Sample", values_to = "Expression")
   
   per_tissue_plots[[tissue]] <- ggplot(tissue_expression_long, aes(x = Sample, y = Expression, col = Gene, group = Gene)) +
