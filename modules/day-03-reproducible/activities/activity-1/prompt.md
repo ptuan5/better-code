@@ -15,7 +15,7 @@ This activity is about setup rather than script structure. The goal is to make e
 ## Files
 
 - starter environment: `environment.yml`
-- verification script: `check_environment.py`
+- verification scripts: `check_environment.py` and `check_environment.R`
 - comparison projects: `../../demos/project-r-renv/` and `../../demos/project-python-uv/`
 
 ### Task
@@ -24,16 +24,17 @@ Inspect the starter files and create the environment they describe.
 
 1. Read `environment.yml` once without editing.
 2. Identify what `name`, `channels`, and `dependencies` mean.
-3. Create the environment with `conda env create -f environment.yml`.
-4. Activate the environment.
-5. Run `python check_environment.py` to verify that the required package is available.
-6. If time allows, compare `environment.yml` with `../../demos/project-r-renv/renv.lock`, `../../demos/project-python-uv/pyproject.toml`, and `../../demos/project-python-uv/.python-version`.
+3. Notice that this environment is meant to support Demo 2 and Activity 2 later in Day 3.
+4. Create the environment with `conda env create -f environment.yml`.
+5. Activate the environment.
+6. Run `python check_environment.py` and `Rscript check_environment.R` to verify that the later Day 3 materials have the packages they need.
+7. If time allows, compare `environment.yml` with `../../demos/project-r-renv/renv.lock`, `../../demos/project-python-uv/pyproject.toml`, and `../../demos/project-python-uv/.python-version`.
 
 ### What to Look For
 
 - the environment name
 - where conda should search for packages
-- which runtime and packages will be installed
+- which Python and R packages will be installed
 - which files describe an environment versus which folders get created locally
 
 ## Success Check
@@ -44,6 +45,7 @@ By the end, another learner should be able to answer these questions quickly:
 - what do the `channels` tell conda?
 - what do the `dependencies` specify?
 - how do you create and activate the environment?
+- which later Day 3 materials does this environment support?
 - what does `renv.lock` communicate?
 - what do `pyproject.toml` and `.python-version` communicate?
 

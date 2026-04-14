@@ -21,6 +21,7 @@ By the end of this module, participants should be able to:
 - `activities/activity-1/prompt.md`
 - `activities/activity-1/environment.yml`
 - `activities/activity-1/check_environment.py`
+- `activities/activity-1/check_environment.R`
 - `demos/script-entrypoint.md`
 - `demos/script-entrypoint.R` or `demos/script-entrypoint.py`
 - `activities/activity-2/prompt.md`
@@ -64,9 +65,10 @@ Time: 15 minutes
 
 1. Open `activities/activity-1/prompt.md`.
 2. Inspect `activities/activity-1/environment.yml`.
-3. Create the environment with `conda`.
-4. Activate the environment and run the verification script.
-5. If time allows, compare the conda file with the `renv` and `uv` project files from the demo.
+3. Notice that this environment is designed to support the second half of Day 3 as well.
+4. Create the environment with `conda`.
+5. Activate the environment and run the verification scripts.
+6. If time allows, compare the conda file with the `renv` and `uv` project files from the demo.
 
 ### 5. Discussion
 

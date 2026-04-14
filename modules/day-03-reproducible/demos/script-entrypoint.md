@@ -12,8 +12,6 @@ clear entry point and command-line flags.
 
 ## Scenario
 
-Frame the demo like this:
-
 We just spent time making the environment explicit. That solved one problem:
 another person can now recreate the setup more reliably.
 
@@ -24,10 +22,6 @@ into an executable script.
 We do not want analysis code that only works when someone opens it in an editor
 and runs cells by hand. We want a script another person can run with a command
 such as `Rscript ... --flags` or `python ... --flags`.
-
-This first demo is about script structure, not package installation. The goal is
-to make it obvious where execution starts and what the script expects to read and
-write.
 
 ## Demo Moves
 

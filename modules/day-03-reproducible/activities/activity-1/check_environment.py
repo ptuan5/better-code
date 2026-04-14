@@ -1,6 +1,7 @@
 from pathlib import Path
 import sys
 
+import matplotlib
 import pandas as pd
 
 
@@ -11,12 +12,14 @@ def main():
     output = [
         f"python={sys.version.split()[0]}",
         f"pandas={pd.__version__}",
+        f"matplotlib={matplotlib.__version__}",
     ]
     output_path.write_text("\n".join(output) + "\n", encoding="utf-8")
 
     print("Environment check passed.")
     print(f"Python version: {sys.version.split()[0]}")
     print(f"pandas version: {pd.__version__}")
+    print(f"matplotlib version: {matplotlib.__version__}")
     print(f"Wrote: {output_path}")
 
 
