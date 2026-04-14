@@ -1,4 +1,4 @@
-"Gene","Sample_01","Sample_02","Sample_03","Sample_04","Sample_05","Sample_06","Sample_07","Sample_08","Sample_09","Sample_10"
+"Gene","Control_01","Control_02","Control_03","Control_04","Control_05","Treatment_01","Treatment_02","Treatment_03","Treatment_04","Treatment_05"
 "LIF",9.53,7.93,6.26,10.33,10.16,11.35,12,11.93,10.46,8.7
 "Gene_001",8.89,9.54,9.54,9.51,9.41,9.42,9.09,9.42,9.6,10.02
 "Gene_002",10.38,10.67,9.26,9.93,11.77,9.53,10.49,9.34,10.75,10.34

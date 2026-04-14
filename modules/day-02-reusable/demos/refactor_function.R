@@ -3,9 +3,6 @@
 library(dplyr)
 library(reshape2)
 
-
-df <- read.csv("simulated_expression_matrix.csv", row.names = 1)
-
 prepare_expression_data <- function(expression_matrix) {
   # Prepare the expression matrix for per-gene testing by log-transforming the 
   # values, reshaping to long format, and pulling the group label from the sample name.
@@ -69,7 +66,8 @@ find_de_genes <- function(expression_matrix, alpha = 0.05) {
   return(significant_genes)
 }
 
-res <- find_de_genes(df, alpha = 0.05)
-cat("Number of significant genes:", nrow(res), "\n")
-cat("First few significant genes:\n")
-print(head(res))
+# df <- read.csv("simulated_expression_matrix.csv", row.names = 1)
+# res <- find_de_genes(df, alpha = 0.05)
+# cat("Number of significant genes:", nrow(res), "\n")
+# cat("First few significant genes:\n")
+# print(head(res))

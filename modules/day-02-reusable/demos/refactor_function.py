@@ -5,9 +5,6 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-df = pd.read_csv("simulated_expression_matrix.csv", index_col=0)
-
-
 def prepare_expression_data(expression_matrix):
     # Prepare the expression matrix for per-gene testing by log-transforming the
     # values, reshaping to long format, and pulling the group label from the sample name.
@@ -84,8 +81,8 @@ def find_de_genes(expression_matrix, alpha=0.05):
 
     return significant_genes
 
-
-res = find_de_genes(df, alpha=0.05)
-print(f"Number of significant genes: {len(res)}")
-print("First few significant genes:")
-print(res.head())
+# df = pd.read_csv("simulated_expression_matrix.csv", index_col=0)
+# res = find_de_genes(df, alpha=0.05)
+# print(f"Number of significant genes: {len(res)}")
+# print("First few significant genes:")
+# print(res.head())

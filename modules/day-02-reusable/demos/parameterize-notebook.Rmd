@@ -1,0 +1,87 @@
+---
+title: "Differential Gene Expression Analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = NA)
+```
+
+# Differential Gene Expression Analysis
+
+Author: Tuan Nguyen
+
+This notebook identifies significantly differentially expressed genes between
+the Treatment and Control groups.
+
+## Import The Reusable Function
+
+Keep the notebook focused on parameters, outputs, and interpretation. The core
+analysis should stay in the imported function.
+
+```{r}
+library(dplyr)
+library(ggplot2)
+source("refactor_function.R")
+```
+
+## Set Notebook Parameters
+
+Keep the values that vary near the top of the notebook so the next person can
+rerun it quickly.
+
+```{r}
+expression_file <- "simulated_expression_matrix.csv"
+alpha <- 0.05
+```
+
+**Alternative Option**: Keep Configurations Separately
+
+If you rerun the notebook often, you can move the changing values into a small
+YAML file instead of editing the notebook itself each time.
+
+```{r}
+config_path <- "config.yaml"
+config <- yaml::read_yaml(config_path)
+
+expression_file <- if (!is.null(config$expression_file)) config$expression_file else "simulated_expression_matrix.csv"
+alpha <- if (!is.null(config$alpha)) config$alpha else 0.05
+```
+
+**Recommendation**: Print The Chosen Configurations
+
+```{r}
+cat("Using expression file:", expression_file, "\n")
+cat("Using alpha:", alpha, "\n")
+```
+
+## Run The Analysis And View Results
+
+The notebook wrapper should call the reusable function and keep the workflow
+readable. Describe what each code chunk does.
+
+### Perform Statistical Testing To Identify Significant Genes
+
+```{r}
+df <- read.csv(expression_file, row.names = 1)
+significant_de_genes <- find_de_genes(df, alpha = alpha)
+```
+
+```{r}
+cat("Number of significant genes:", nrow(significant_de_genes), "\n")
+cat("Top significant genes:\n")
+print(head(significant_de_genes))
+```
+
+## Quick Visualization
+
+```{r}
+significant_de_genes$log10_padj <- -log10(as.numeric(significant_de_genes$padj))
+
+ggplot(significant_de_genes, aes(x = fc, y = log10_padj)) +
+  geom_point() +
+  geom_text(aes(label = gene), vjust = -0.5, size = 3) +
+  labs(x = "Fold Change",
+       y = "-log10 (adjusted p-value)") +
+  theme_bw()
+```

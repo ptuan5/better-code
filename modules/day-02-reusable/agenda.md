@@ -16,7 +16,7 @@ By the end of this module, participants should be able to:
 - `demos/refactor-function.md`
 - `demos/refactor-function.R` or `demos/refactor-function.py`
 - `demos/parameterize-workflow.md`
-- `demos/parameterize-workflow.R` or `demos/parameterize-workflow.py`
+- `demos/parameterize-workflow.Rmd` or `demos/parameterize-workflow.ipynb`
 - `activities/activity-1/prompt.md`
 - `activities/activity-1/starter.R` or `activities/activity-1/starter.py`
 - `activities/activity-1/example.R` or `activities/activity-1/example.py`
@@ -71,7 +71,7 @@ Time: 15 minutes
 Time: 15 minutes
 
 - explain why hard-coded values reduce reuse
-- open `demos/parameterize-workflow.R` or `demos/parameterize-workflow.py`
+- open `demos/parameterize-workflow.Rmd` or `demos/parameterize-workflow.ipynb`
 - use `demos/parameterize-workflow.md` to show when a hard-coded value should become a parameter
 - connect this to the original notebook, where tissue name, target gene, and output labels are the pieces that vary
 - show how parameterization can keep code flexible without overcomplicating it

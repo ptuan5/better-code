@@ -2,15 +2,13 @@
 
 ## Goal
 
-Make your refactor easier to reuse when the metric or label changes.
+Make your refactor easier to reuse by turning the right workflow values into parameters.
 
 ## Scenario
 
-After your first cleanup, a teammate asks, "Could we use this same summary for a different tissue and maybe a different threshold too?" Your code is already less repetitive, but some values are still hard-coded in places that will make the next change awkward.
+After your first cleanup, a teammate asks, "Could we run this on a different dataset or change the significance threshold without editing the function body?" Your code is already less repetitive, but some values are still hard-coded in places that will make the next run awkward.
 
-This activity asks you to decide what should become flexible now and what should stay fixed so the script is reusable without becoming overengineered.
-
-In the original LIF notebook, the repeated workflow changes by tissue and by the object being summarized. In this teaching version, your job is to decide which values should be flexible and which ones should stay fixed.
+This activity asks you to decide what should become flexible now and what should stay fixed so the workflow is reusable without becoming overengineered.
 
 This is also the bridge into Day 3: code with clearer parameters is usually much easier to rerun, document, and adapt across machines or projects.
 
@@ -18,23 +16,30 @@ This is also the bridge into Day 3: code with clearer parameters is usually much
 
 - your cleaned version from `../activity-1/`
 - example approach: `../activity-1/example.R` or `../activity-1/example.py`
+- template notebook: `template.Rmd` or `template.ipynb`
 
 ## Task
 
 Take your refactor from Activity 1 and decide what should become a parameter.
 
 1. Identify the values that vary between repeated blocks.
-2. Turn those values into function arguments or top-level parameters.
-3. Decide what should stay fixed and what should stay flexible.
-4. Compare your version with the matching example file if time allows.
+2. Open `template.Rmd` or `template.ipynb` and use it as a starting point.
+3. Turn those values into function arguments or top-level parameters.
+4. Decide what should stay fixed and what should stay flexible.
+5. Compare your version with the matching example file if time allows.
 
 ## Good Candidates for Parameters
 
-- `tissue_name`
-- `min_correlation`
-- column names such as `correlation` or `mean_tpm`
-- printed text such as `"top partner"` or `"average correlation"`
-- the order in which summaries are displayed, if that matters to your design
+- `data_path`
+- `alpha`
+- `target_gene`, if your workflow supports changing it
+
+## Values You Might Keep Fixed
+
+- how the imported analysis function works internally
+- how the data is reshaped
+- how the statistical test is run
+- how adjusted p-values are calculated
 
 ## Success Check
 
@@ -42,8 +47,8 @@ By the end, another learner should be able to answer these questions quickly:
 
 - where does the repeated logic live?
 - what inputs does each function need?
-- what changes if you summarize a different tissue or threshold?
-- what stays fixed across the whole analysis?
+- what changes if you rerun the analysis with a different file or threshold?
+- what stays fixed inside the analysis function?
 - which parameter choices support real reuse rather than hypothetical future complexity?
 
 ## Discussion Prompt

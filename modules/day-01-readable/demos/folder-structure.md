@@ -38,6 +38,7 @@ The point of the demo is not to overwhelm learners. It is to show how a small pr
 
 ```text
 bird-study/
+|-- README.md
 |-- archive/
 │   `-- test_plot.py
 |-- data/
@@ -63,6 +64,7 @@ bird-study/
 
 ```text
 bird-study/
+|-- README.md
 |-- 01-raw-data/
 │   |-- raw_april.csv
 │   `-- raw_may.csv

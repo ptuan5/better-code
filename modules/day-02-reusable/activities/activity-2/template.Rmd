@@ -1,0 +1,62 @@
+---
+title: "Reusable Analysis Notebook Template"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = NA)
+```
+
+## Goal
+
+Use this notebook template to wrap your refactored analysis in a small,
+parameterized workflow.
+
+## Choose The Values That Vary
+
+Fill in the values you want to make easy to change between runs.
+
+```{r}
+data_path <- "TODO"
+alpha <- 0.05
+```
+
+## Import Your Refactored Function
+
+Replace the path below with the file that contains your cleaned function from
+Activity 1.
+
+```{r}
+source("TODO")
+```
+
+## Wrap The Reusable Step
+
+Keep this wrapper smaller than the analysis function it calls.
+
+```{r}
+run_de_analysis <- function(data_path, alpha = 0.05) {
+  expression_matrix <- read.csv(data_path, row.names = 1)
+
+  # TODO:
+  # Call your imported function here.
+  # Return the result.
+}
+```
+
+## Run The Workflow
+
+```{r}
+res <- run_de_analysis(data_path, alpha = alpha)
+
+cat("Alpha:", alpha, "\n")
+cat("Number of significant genes:", nrow(res), "\n")
+print(head(res))
+```
+
+## Reflection
+
+Add 1-2 short notes:
+
+- Which parameter improved reuse the most?
+- Which value did you decide to keep fixed?

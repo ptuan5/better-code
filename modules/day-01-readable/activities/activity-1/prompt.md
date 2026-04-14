@@ -59,4 +59,3 @@ Be ready to explain:
 - one grouping choice that made the project easier to scan
 - one parent folder name that added useful information
 - one place where another team might still make a different but reasonable choice
-
