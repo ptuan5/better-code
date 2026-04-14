@@ -1,18 +1,35 @@
-# Model Count Summary
+# R Project with `renv`
 
-## Requirements
+## Demo Goal
 
-- R
-- `dplyr`
+Show how a small R project records package requirements with `renv` and gives a collaborator a restore command instead of a vague reminder to "install dplyr."
 
-## Run
+## Project Folder
 
-Run `Rscript example.R` from `activities/activity-1/`.
+- `project-r-renv/README.md`
+- `project-r-renv/renv.lock`
+- `project-r-renv/summarize_model_counts.R`
 
-## Input
+## What to Notice
 
-The script uses the built-in `gene_set_uploads` table defined in the file.
+- the analysis script lives beside the environment file
+- `renv.lock` records the package requirement for the project
+- the README gives the restore command and the run command
+- the local package library is not something you would commit to the repo
 
-## Output
+## Setup Flow
 
-The script writes `results/model_counts.csv`.
+From `demos/project-r-renv/`, a collaborator should be able to:
+
+```bash
+Rscript -e "install.packages('renv', repos = 'https://cloud.r-project.org')"
+Rscript -e "renv::restore(prompt = FALSE)"
+Rscript summarize_model_counts.R
+```
+
+## Suggested Talking Points
+
+- `renv` makes the project library explicit instead of relying on whatever is already installed.
+- `renv.lock` is the important file to share; the library itself is machine-local.
+- Compared with conda, `renv` lives much closer to the R project itself.
+- The goal is not a long setup guide. It is a short project folder that gives the next person a reliable starting point.

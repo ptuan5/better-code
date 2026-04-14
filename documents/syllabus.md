@@ -86,15 +86,15 @@ Theme: Someone else, or future you, can rerun everything.
 
 Topics:
 
+- virtual environments and environment documentation
 - hidden assumptions in scripts
 - inputs, outputs, and run order
 - turning interactive code into scripts
-- environment documentation
 
 Practice:
 
+- create a small conda environment and compare it with `renv` and `uv`
 - write a runnable script with a clear entry point
-- reconstruct and document the environment needed to run it
 
 ### Day 4: Reliable
 

@@ -2,7 +2,8 @@
 
 ## Demo Goal
 
-Show the difference between a script that only works for the author and a script another person can run on purpose.
+Show how to turn a reusable analysis workflow into an executable script with a
+clear entry point and command-line flags.
 
 ## Files
 
@@ -13,51 +14,71 @@ Show the difference between a script that only works for the author and a script
 
 Frame the demo like this:
 
-A researcher wrote a quick script during exploratory work and kept adding to it over time. Now it contains a personal working directory, implicit inputs, and code that runs automatically at the bottom.
+We just spent time making the environment explicit. That solved one problem:
+another person can now recreate the setup more reliably.
 
-The demo asks learners to look at that script from the outside and identify what would stop a collaborator from running it reliably.
+But even inside the correct environment, a messy script can still be hard to
+run. We keep the same Day 2 Activity 1 correlation workflow, but now turn it
+into an executable script.
 
-## Before
+We do not want analysis code that only works when someone opens it in an editor
+and runs cells by hand. We want a script another person can run with a command
+such as `Rscript ... --flags` or `python ... --flags`.
 
-Use the matching R or Python demo file, which starts from a script like this:
-
-```r
-setwd("/Users/name/Desktop/project")
-library(dplyr)
-data <- read.csv("models.csv")
-output <- data |> subset(year >= 2021 & year <= 2023)
-write.csv(output, "model_counts.csv", row.names = FALSE)
-print("done")
-```
-
-Ask:
-
-- What assumptions does this script make?
-- What would break on another machine?
-- Where is the intended entry point?
+This first demo is about script structure, not package installation. The goal is
+to make it obvious where execution starts and what the script expects to read and
+write.
 
 ## Demo Moves
 
-1. Remove user-specific paths.
-2. Give the output file a clear location such as `results/model_counts.csv`.
-3. Add a small `run_analysis()` or `main()` entry point.
-4. Add one short note showing how to run the script.
+1. Wrap the Day 2 workflow in `run_analysis()` and `main()`.
+2. Parse command-line flags instead of hard-coding key settings in the body.
+3. Save outputs intentionally, including a shared-gene table and a PDF of plots.
+4. Add one short example command showing how to run the script.
 
 ## After
 
 The improved version should make these items easy to identify:
 
-- inputs
-- year range
-- output file path
+- input directory
+- target gene
+- correlation threshold
+- correlation method
+- output directory
 - command to run
 
-You can then point learners to `activities/activity-1/example.R` or
-`activities/activity-1/example.py` to show one reasonable endpoint after the
-live cleanup.
+One reasonable endpoint is:
+
+```text
+main()
+- parse --flags
+- run the shared correlation analysis
+- save shared_highly_correlated_genes.csv
+- save shared_gene_expression.pdf
+- print a short completion message
+```
+
+Example commands:
+
+```bash
+Rscript modules/day-03-reproducible/demos/script-entrypoint.R \
+  --target-gene LIF \
+  --correlation-threshold 0.5 \
+  --output-dir modules/day-03-reproducible/demos/results
+```
+
+```bash
+python modules/day-03-reproducible/demos/script-entrypoint.py \
+  --target-gene LIF \
+  --correlation-threshold 0.5 \
+  --output-dir modules/day-03-reproducible/demos/results
+```
 
 ## Suggested Talking Points
 
-- Reproducible scripts make assumptions visible.
-- A script can be short and still need a clear entry point.
-- "It works on my machine" usually means the setup is hidden in the code.
+- A reusable workflow is not automatically a runnable script.
+- A script entry point makes the intended starting place obvious.
+- The script should not accidentally run when imported or sourced for some other purpose.
+- Command-line flags make important settings visible without editing code.
+- Reproducible scripts make inputs and outputs explicit.
+- A clean entry point still does not solve missing runtime or package setup.

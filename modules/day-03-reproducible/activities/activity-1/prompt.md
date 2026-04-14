@@ -1,53 +1,56 @@
-# Activity 1: Write an Executable Script
+# Activity 1: Create a Conda Environment
 
 ## Goal
 
-Make a small analysis runnable by someone else without hidden setup steps.
+Create a conda environment from an `environment.yml` file and explain what the main environment files are doing.
 
 ## Scenario
 
-Picture receiving a script from a collaborator who says, "It worked on my laptop yesterday." When you open the file, you notice hidden assumptions about file paths, packages, and what should run first.
+Picture receiving two small project folders from collaborators. One uses `renv` for R. One uses `uv` for Python. Before you even worry about the scripts, you need to understand how the environment is supposed to be recreated.
 
-Your task is to turn that personal script into something a teammate could run from a clean folder without needing the original author beside them.
+Your task is to create a conda environment from a starter file, verify that it works, and compare that file with the `renv` and `uv` project files from the demo.
 
-This activity is inspired by `example_code/GSbyModel_012126 - Tessa.R`, which includes a working-directory change, machine-specific paths, and a script that runs itself at the bottom. The teaching starter is smaller, but your job is the same: remove guesswork.
-
-This activity builds on Day 2. Reusable pieces are easier to turn into a repeatable workflow because the script can make inputs, outputs, and run order explicit.
+This activity is about setup rather than script structure. The goal is to make environment assumptions visible before we move on to executable scripts later in the day.
 
 ## Files
 
-- starter code: `starter.R` or `starter.py`
-- example approach: `example.R` or `example.py`
+- starter environment: `environment.yml`
+- verification script: `check_environment.py`
+- comparison projects: `../../demos/project-r-renv/` and `../../demos/project-python-uv/`
 
 ### Task
 
-Inspect the starter script and make the workflow steps explicit.
+Inspect the starter files and create the environment they describe.
 
-1. Read the script once without editing.
-2. List the hidden assumptions about packages, paths, inputs, and outputs.
-3. Rewrite the script so the analysis steps are easy to follow.
-4. Make it clear what file gets written and where it goes.
-5. Add one short note showing how a collaborator should run it.
+1. Read `environment.yml` once without editing.
+2. Identify what `name`, `channels`, and `dependencies` mean.
+3. Create the environment with `conda env create -f environment.yml`.
+4. Activate the environment.
+5. Run `python check_environment.py` to verify that the required package is available.
+6. If time allows, compare `environment.yml` with `../../demos/project-r-renv/renv.lock`, `../../demos/project-python-uv/pyproject.toml`, and `../../demos/project-python-uv/.python-version`.
 
 ### What to Look For
 
-- hidden package requirements
-- hard-coded output locations
-- missing explanation of inputs and outputs
-- no obvious run order or entry point
-- anything that would make sense only if the original author were standing beside you
+- the environment name
+- where conda should search for packages
+- which runtime and packages will be installed
+- which files describe an environment versus which folders get created locally
 
-### What to Preserve
+## Success Check
 
-- the same yearly model counts
-- the same filtered year range
-- the same output table values
-- one output file that records the result
+By the end, another learner should be able to answer these questions quickly:
+
+- what does the `name` field do?
+- what do the `channels` tell conda?
+- what do the `dependencies` specify?
+- how do you create and activate the environment?
+- what does `renv.lock` communicate?
+- what do `pyproject.toml` and `.python-version` communicate?
 
 ## Discussion Prompt
 
-- which hidden assumption would have blocked a collaborator first?
-- what change made the script feel most runnable from a clean folder?
-- what run instruction was worth making explicit?
-- what still feels fragile even after the cleanup?
-- what information belongs in the script itself versus in a short note?
+- what did `environment.yml` make explicit?
+- what did `renv.lock` communicate differently?
+- what did `pyproject.toml` communicate differently?
+- what part of environment setup still feels easiest to forget?
+- what would still confuse a new lab member trying to recreate the setup?

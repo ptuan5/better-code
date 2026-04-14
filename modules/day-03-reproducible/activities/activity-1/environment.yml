@@ -1,0 +1,6 @@
+name: day03-conda-demo
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - pandas=2.3.2

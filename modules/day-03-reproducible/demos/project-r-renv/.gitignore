@@ -1,0 +1,4 @@
+renv/library/
+renv/staging/
+.Rproj.user/
+results/
