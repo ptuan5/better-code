@@ -2,59 +2,41 @@
 
 ## Goal
 
-Make your refactor easier to reuse by turning the right workflow values into parameters.
+Turn your workflow into a reusable notebook template.
 
 ## Scenario
 
-After your first cleanup, a teammate asks, "Could we run this on a different dataset or change the significance threshold without editing the function body?" Your code is already less repetitive, but some values are still hard-coded in places that will make the next run awkward.
+After activity 1 (find expression of genes correlated with *LIF*), you presented your analysis on LIF. The audience loves it, and they have a lot of suggestions.
+- "The cutoff for the correlation coefficient is arbitrary. Have you tried other thresholds?" 
+- "Recent studies found Gene_002 and Gene_003 to be interesting. Can you find correlated genes?"
+- "Is the data normal? Have you tried non-parametric correlation methods?"
 
-This activity asks you to decide what should become flexible now and what should stay fixed so the workflow is reusable without becoming overengineered.
+Your task is to rerun your pipeline with different parameters and save the
+results (gene lists and expression plots) in notebooks.
 
-This is also the bridge into Day 3: code with clearer parameters is usually much easier to rerun, document, and adapt across machines or projects.
+Keep the dataset and overall workflow the same. The goal here is to explore the
+results by changing a few meaningful parameters.
+
+Suggested parameters to change:
+- correlation threshold: `0.3` or `0.6`
+- correlation type: `spearman`
+- target gene: `Gene_002` or `Gene_003`
 
 ## Files
 
-- your cleaned version from `../activity-1/`
-- example approach: `../activity-1/example.R` or `../activity-1/example.py`
+- your cleaned version from `../activity-1/`, or example approach: `../activity-1/example.R` or `../activity-1/example.py`
 - template notebook: `template.Rmd` or `template.ipynb`
+- helper file: `utils.R` or `utils.py`
 
-## Task
+## Suggested Instructions
 
-Take your refactor from Activity 1 and decide what should become a parameter.
-
-1. Identify the values that vary between repeated blocks.
-2. Open `template.Rmd` or `template.ipynb` and use it as a starting point.
-3. Turn those values into function arguments or top-level parameters.
-4. Decide what should stay fixed and what should stay flexible.
-5. Compare your version with the matching example file if time allows.
-
-## Good Candidates for Parameters
-
-- `data_path`
-- `alpha`
-- `target_gene`, if your workflow supports changing it
-
-## Values You Might Keep Fixed
-
-- how the imported analysis function works internally
-- how the data is reshaped
-- how the statistical test is run
-- how adjusted p-values are calculated
-
-## Success Check
-
-By the end, another learner should be able to answer these questions quickly:
-
-- where does the repeated logic live?
-- what inputs does each function need?
-- what changes if you rerun the analysis with a different file or threshold?
-- what stays fixed inside the analysis function?
-- which parameter choices support real reuse rather than hypothetical future complexity?
+1. Open `template.Rmd` or `template.ipynb`. (they are semi-filled)
+2. Reuse the helper functions from Activity 1 (by put them in a separate `utils.R` or `utils.py` files then call them in the notebook).
+3. Set notebook-level parameters near the top of the notebook.
+4. Rerun the same workflow with different parameter values each time.
+5. Save the outputs you want to compare across runs.
 
 ## Discussion Prompt
 
-- which parameter improved reuse the most?
-- which value did you decide to keep fixed, and why?
-- what was harder: deciding what to parameterize or what not to parameterize?
-- did any parameter make the code more flexible but less readable?
-- where did you stop abstracting on purpose?
+- what to parameterize or what not to parameterize?
+- how do you store the results

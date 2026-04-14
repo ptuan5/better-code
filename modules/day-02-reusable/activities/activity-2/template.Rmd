@@ -1,62 +1,62 @@
 ---
-title: "Reusable Analysis Notebook Template"
+title: "Gene Correlation Analysis"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(comment = NA)
+library(dplyr)
+library(tidyr)
+library(tibble)
+library(ggplot2)
 ```
 
-## Goal
+# Gene Correlation Analysis
 
-Use this notebook template to wrap your refactored analysis in a small,
-parameterized workflow.
+This notebook identifies and plots the expression of genes highly correlated
+with a target gene across all tissues.
 
-## Choose The Values That Vary
-
-Fill in the values you want to make easy to change between runs.
+### Import the reusable functions
 
 ```{r}
-data_path <- "TODO"
-alpha <- 0.05
+# TODO: Import the helper functions from activity 1 and others (if necessary)
+# You can use either source(), or copy-paste the function in a separate code chunk.
 ```
 
-## Import Your Refactored Function
+### Set parameters for the analysis
 
-Replace the path below with the file that contains your cleaned function from
-Activity 1.
+The number of parameters depends on how many arguments you put in your helper
+functions.
+
+You can choose to type them in differently each time, or have a separate yaml
+file.
 
 ```{r}
-source("TODO")
+data_dir <- "../activity-1/mock_data_3_tissues"
+tissue_files <- c(
+  Adipose = "Adipose.csv",
+  Liver = "Liver.csv",
+  Muscle = "Muscle.csv"
+)
+
+# TODO:
+# Add the necessary parameters for the analysis.
+# Make sure the parameters are known when the report is compiled.
 ```
 
-## Wrap The Reusable Step
+### Run the actual analysis
 
-Keep this wrapper smaller than the analysis function it calls.
+The repeated code logic for every iteration. You should be able to copy-paste
+it from the solution to Activity 1.
+
+#### Identify the correlated genes
 
 ```{r}
-run_de_analysis <- function(data_path, alpha = 0.05) {
-  expression_matrix <- read.csv(data_path, row.names = 1)
-
-  # TODO:
-  # Call your imported function here.
-  # Return the result.
-}
+# TODO: Implement the analysis that should be repeated across all iterations.
 ```
 
-## Run The Workflow
+#### Plot their expression in three tissues
 
 ```{r}
-res <- run_de_analysis(data_path, alpha = alpha)
-
-cat("Alpha:", alpha, "\n")
-cat("Number of significant genes:", nrow(res), "\n")
-print(head(res))
+# TODO: Visualize the expression for selected genes for each tissue.
 ```
-
-## Reflection
-
-Add 1-2 short notes:
-
-- Which parameter improved reuse the most?
-- Which value did you decide to keep fixed?
