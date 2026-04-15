@@ -98,18 +98,20 @@ Practice:
 
 ### Day 4: Reliable
 
-Theme: Your code is wrong, so design for that.
+Theme: Reliable code deserves trust, not just execution.
 
 Topics:
 
-- code review mindset
-- spotting fragile logic and edge cases
-- manual checks versus automated tests
+- why unreliable science is costly even when code does not crash
+- a reliability triage: fix errors, debug wrong results, then probe edge cases
+- common fragile assumptions in scientific code
+- code review for data science versus software engineering
 - simple tests in `pytest` or `testthat`
 
 Practice:
 
-- inspect buggy code and identify failure modes
+- review and debug suspicious analysis code
+- identify common edge cases before they become bugs
 - write a few focused tests around important behavior
 
 ### Day 5: Shareable
