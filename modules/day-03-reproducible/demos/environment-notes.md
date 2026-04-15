@@ -37,7 +37,7 @@ Teaching note:
 
 ## Scenario
 
-You receive a folder with one script that uses a package:
+You have a folder with one script that uses a package:
 
 - the R script loads `dplyr` and prints its version
 - the Python script imports `pandas` and prints its version
@@ -68,7 +68,7 @@ Rscript -e "install.packages('renv', repos = 'https://cloud.r-project.org')"
 Rscript -e "renv::init(bare = TRUE)"
 Rscript -e "renv::install('dplyr')"
 Rscript -e "renv::snapshot(prompt = FALSE)"
-Rscript mock_scripts.R
+Rscript -e "renv::run('mock_scripts.R')"
 ```
 
 Then open the reference files in `project-r-renv/`:
@@ -104,7 +104,7 @@ What they run on their own machine:
 ```bash
 Rscript -e "install.packages('renv', repos = 'https://cloud.r-project.org')"
 Rscript -e "renv::restore(prompt = FALSE)"
-Rscript mock_scripts.R
+Rscript -e "renv::run('mock_scripts.R')"
 ```
 
 ## 3. Add `uv` From Scratch
@@ -119,7 +119,7 @@ uv init --bare
 uv python pin 3.13
 uv add pandas==2.3.2
 uv sync
-uv run python mock_scripts.py
+uv run mock_scripts.py
 ```
 
 Then open the reference files in `project-python-uv/`:
@@ -159,26 +159,50 @@ uv sync
 uv run python mock_scripts.py
 ```
 
-## 4. Compare With Conda
+## 4. Add Conda From Scratch
 
-Open `../activities/activity-1/environment.yml`.
+Start from a temporary scratch folder with no `environment.yml` yet.
 
 Suggested live flow:
 
 ```bash
-conda env create -f environment.yml
-conda activate day03-conda-demo
+conda create -n betterCode -c conda-forge \
+  python=3.13 pandas=2.3.2 matplotlib \
+  r-base=4.5 r-dplyr r-lubridate r-tidyr r-tibble \
+  r-ggplot2 r-data.table r-viridis r-optparse
+conda activate betterCode
+conda env export --from-history -f environment.yml
 ```
+
+Then open the generated `environment.yml` and compare it with the reference
+file in `../activities/activity-1/environment.yml`.
 
 Key points to explain:
 
-- conda starts from a standalone environment specification file
-- `environment.yml` is the shareable file to commit
+- `conda create` builds the local named environment from an explicit package
+  list
+- `-c conda-forge` makes the package source explicit
+- `conda env export --from-history` writes the shareable `environment.yml`
+- `environment.yml` records the packages you intentionally asked for, not a
+  full lock file
 - the created conda environment is local to each machine
 - in this example, conda can hold both Python and R packages in one
   environment
-- unlike `renv.lock` or `uv.lock`, `environment.yml` is not acting as a full
-  lock file in this demo
+
+What to commit:
+
+- `environment.yml`
+
+What another person recreates locally:
+
+- the named conda environment
+
+What they run on their own machine:
+
+```bash
+conda env create -f environment.yml
+conda activate betterCode
+```
 
 ## 5. Quick Comparison
 
@@ -186,14 +210,14 @@ Key points to explain:
 | --- | --- | --- | --- | --- | --- |
 | `renv` | `mock_scripts.R` | `renv.lock` | `renv.lock` | `renv/library/` | `renv::restore()` |
 | `uv` | `mock_scripts.py` | `pyproject.toml`, `.python-version`, `uv.lock` | `uv.lock` | `.venv/` | `uv sync` |
-| `conda` | `environment.yml` | `environment.yml` | not locked in this demo | named conda environment | `conda env create -f environment.yml` |
+| `conda` | explicit package list | `environment.yml` | not locked in this demo | named conda environment | `conda env create -f environment.yml` |
 
 Main contrast:
 
 - `renv.lock` is both the shareable file and the exact version record
 - `uv` splits direct requirements from exact resolved versions
-- conda uses one shareable file here, but it is not a full lock file in this
-  lesson
+- conda can produce one shareable file from the packages you asked for, but it
+  is not a full lock file in this lesson
 
 ## 6. Wrap-Up Question
 
