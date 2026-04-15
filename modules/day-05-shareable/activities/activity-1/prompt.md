@@ -10,26 +10,26 @@ Imagine you found this repo through a GitHub link from another researcher. The p
 
 Your job is to make the project usable enough that a newcomer could open it, understand its purpose, and rerun it without needing a guided tour from the original author.
 
-Today uses a deliberately small teaching repo. Treat the matching language files in this activity folder as something you found on GitHub: it almost works, but a newcomer would still have too many questions.
+Today uses a deliberately small teaching repo. Treat either the `r/` folder or the `python/` folder as something you found on GitHub: it almost works, but a newcomer would still have too many questions.
 
 This activity is the synthesis day for the workshop. Strong sharing depends on everything from earlier in the week: readable structure, reusable pieces, reproducible instructions, and reliable behavior.
 
 ## Files
 
 - starter project:
-  `starter.R`, `README-R.md`, `notes-R.txt`, and `out-R.csv`
+  `r/starter.R`, `r/README.md`, `r/notes.txt`, and `r/out.csv`
   or
-  `starter.py`, `README-python.md`, `notes-python.txt`, and `out-python.csv`
+  `python/starter.py`, `python/README.md`, `python/notes.txt`, and `python/out.csv`
 - example approach:
-  `example.R` plus `README-example-R.md`
+  `r/example.R` plus `r/README-example.md`
   or
-  `example.py` plus `README-example-python.md`
+  `python/example.py` plus `python/README-example.md`
 
 ### Task
 
-Treat the starter project like something you are about to hand off to another researcher.
+Choose one language folder and treat that starter project like something you are about to hand off to another researcher.
 
-1. Read the matching language files as if you have never seen them before.
+1. Choose either `r/` or `python/` and read that folder as if you have never seen it before.
 2. Inspect the script, the weak language-matched README file, and any notes file before changing anything.
 3. Improve names, script headers, and output descriptions.
 4. Rewrite the README so the purpose, entry point, and output file are obvious.

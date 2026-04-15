@@ -1,7 +1,7 @@
 # Example analysis script for a tiny experiment.
 # Inputs: numeric measurement values defined in this script.
 # Outputs:
-#   1. A summary table written to results/measurement_summary-R.csv
+#   1. A summary table written to results/measurement_summary.csv
 #   2. The mean measurement printed to the console
 
 calculate_mean_measurement <- function(values) {
@@ -25,7 +25,7 @@ write_summary_table <- function(summary_table, output_file) {
   write.csv(summary_table, output_file, row.names = FALSE)
 }
 
-run_analysis <- function(output_file = "results/measurement_summary-R.csv") {
+run_analysis <- function(output_file = "results/measurement_summary.csv") {
   measurements <- c(4.2, 4.8, 5.1, 5.0)
   mean_measurement <- calculate_mean_measurement(measurements)
   summary_table <- build_summary_table(measurements)

@@ -2,21 +2,23 @@
 
 ## Demo Goal
 
-Model the kind of peer review feedback that helps a partner make a repo more usable.
+Model the kind of newcomer-facing feedback or self-review that reveals whether a repo is actually usable.
 
 ## Files
 
-Use the revised materials from `../activities/activity-1/`, such as:
+Use the revised materials from either `../activities/activity-1/r/` or `../activities/activity-1/python/`, such as:
 
-- `README-example-R.md` or `README-example-python.md`
+- `README-example.md`
 - `example.R` or `example.py`
-- the matching output file in `results/`
+- the output file path named in the README
 
 ## Scenario
 
 Use this framing:
 
-Two learners exchange repos at the end of the workshop. Each person now plays the role of a stranger who does not know the project history, the hidden assumptions, or the author's intentions beyond what is written in the files.
+A learner returns to a revised repo after a short break and tries to read it like a stranger who does not know the project history, the hidden assumptions, or the author's intentions beyond what is written in the files.
+
+Because the cohort may be small, this can be run as a self-check or whole-room walkthrough rather than a formal partner exchange.
 
 The demo shows how to leave feedback that reflects a real newcomer experience rather than vague approval or nitpicks.
 
@@ -48,6 +50,7 @@ I can see the output file name, but I still do not know which command to run fir
 
 ## Suggested Talking Points
 
-- Peer review is most helpful when it names both a strength and a blocker.
+- The newcomer check still works even without a formal partner review.
+- Review is most helpful when it names both a strength and a blocker.
 - "This is confusing" is weaker than naming the exact missing step.
-- Review comments should help a partner improve the handoff, not just judge it.
+- Review comments should help the next handoff, not just judge the work.

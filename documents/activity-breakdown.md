@@ -60,7 +60,7 @@
 | 14:40-14:55 | 15 min | Demo: Turn review questions into tests |
 | 14:55-15:15 | 20 min | Activity 2: Write focused tests with pytest/testthat |
 | 15:15-15:25 | 10 min | Discussion |
-| 15:25-15:30 | 5 min | Reliability checklist, discussion, and wrap-up |
+| 15:25-15:30 | 5 min | Day wrap up / Buffer time |
 
 ## Day 5: Shareable
 
@@ -68,9 +68,9 @@
 | --- | --- | --- |
 | 13:00-13:15 | 15 min | Why shareable & what it entails |
 | 13:15-13:30 | 15 min | Demo: GitHub & basic repo structure |
-| 13:30-13:55 | 25 min | Activity 1: Fix this repo & publish to Github |
-| 13:55-14:15 | 20 min | Pull request concept & assignment |
+| 13:30-13:55 | 25 min | Activity 1: Fix this repo & publish to GitHub |
+| 13:55-14:15 | 20 min | Pull request concept & handoff checklist |
 | 14:15-14:30 | 15 min | Break |
-| 14:30-14:50 | 20 min | Activity 2: Code peer review |
-| 14:50-15:20 | 30 min | Showcase + Reflection |
+| 14:30-14:40 | 10 min | Demo: Review a repo as a newcomer |
+| 14:40-15:20 | 40 min | Activity 2: Workshop review quiz + reflection |
 | 15:20-15:30 | 10 min | Workshop wrap up / Buffer time |
