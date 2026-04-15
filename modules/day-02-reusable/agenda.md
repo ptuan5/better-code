@@ -14,9 +14,9 @@ By the end of this module, participants should be able to:
 ## Materials
 
 - `demos/refactor-function.md`
-- `demos/refactor-function.R` or `demos/refactor-function.py`
-- `demos/parameterize-workflow.md`
-- `demos/parameterize-workflow.Rmd` or `demos/parameterize-workflow.ipynb`
+- `demos/refactor_function.R` or `demos/refactor_function.py`
+- `demos/parameterize-notebook.md`
+- `demos/parameterize-notebook.Rmd` or `demos/parameterize-notebook.ipynb`
 - `activities/activity-1/prompt.md`
 - `activities/activity-1/starter.R` or `activities/activity-1/starter.py`
 - `activities/activity-1/example.R` or `activities/activity-1/example.py`
@@ -40,7 +40,7 @@ Time: 15 minutes
 
 - walk through the readable differential-expression workflow from Day 1
 - use `demos/refactor-function.md` to model how one long function can be split into manageable chunks
-- open `demos/refactor-function.R` or `demos/refactor-function.py`
+- open `demos/refactor_function.R` or `demos/refactor_function.py`
 - identify the main analysis stages inside `find_de_genes()`
 - show how to extract small helper functions with clear inputs and outputs
 
@@ -71,8 +71,8 @@ Time: 15 minutes
 Time: 15 minutes
 
 - explain why hard-coded values reduce reuse
-- open `demos/parameterize-workflow.Rmd` or `demos/parameterize-workflow.ipynb`
-- use `demos/parameterize-workflow.md` to show when a hard-coded value should become a parameter
+- open `demos/parameterize-notebook.Rmd` or `demos/parameterize-notebook.ipynb`
+- use `demos/parameterize-notebook.md` to show when a hard-coded value should become a parameter
 - connect this to the original notebook, where tissue name, target gene, and output labels are the pieces that vary
 - show how parameterization can keep code flexible without overcomplicating it
 

@@ -21,8 +21,8 @@ Useful Clean Code themes for this day:
 - `modules/day-01-readable/demos/folder-structure.md`
 - `modules/day-01-readable/activities/activity-1/prompt.md`
 - `modules/day-01-readable/activities/activity-2/prompt.md`
-- `modules/day-01-readable/activities/activity-2/r/starter.R` or `modules/day-01-readable/activities/activity-2/python/starter.py`
-- `modules/day-01-readable/activities/activity-2/r/example.R` or `modules/day-01-readable/activities/activity-2/python/example.py`
+- `modules/day-01-readable/activities/activity-2/starter.R` or `modules/day-01-readable/activities/activity-2/starter.py`
+- `modules/day-01-readable/activities/activity-2/example_solution.R` or `modules/day-01-readable/activities/activity-2/example_solution.py`
 
 ## Key Talking Points
 
@@ -54,7 +54,7 @@ Readable projects usually make three things easy to locate:
 
 ### Readable Code Demo
 
-- Open `modules/day-01-readable/activities/activity-2/r/starter.R` or `modules/day-01-readable/activities/activity-2/python/starter.py` and read it once without editing.
+- Open `modules/day-01-readable/activities/activity-2/starter.R` or `modules/day-01-readable/activities/activity-2/starter.py` and read it once without editing.
 - Ask learners to identify vague names, mixed responsibilities, comments that duplicate the code, and places where spacing hides separate ideas.
 - Model small changes first: better names, clearer output labels, blank lines between concepts, and separating logic from printing.
 - If a comment seems necessary, ask whether a better function name, variable name, or output label could replace it.

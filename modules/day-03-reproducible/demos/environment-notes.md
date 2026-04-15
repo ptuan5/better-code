@@ -22,7 +22,7 @@ Use these files during the demo:
 - `project-python-uv/pyproject.toml`
 - `project-python-uv/.python-version`
 - `project-python-uv/uv.lock`
-- `../activities/activity-1/environment.yml`
+- `../activities/activity-1/starter_environment.yml`
 
 Teaching note:
 
@@ -173,7 +173,7 @@ conda activate betterCode
 conda env export > environment.yml
 ```
 
-Then inspect the generated `environment.yml`, identify where my enviroment lies (`conda info --envs`). Delete environment with `conda env remove - n betterCode`
+Then inspect the generated `environment.yml`, identify where the environment lives (`conda info --envs`). Delete the environment with `conda env remove -n betterCode`
 
 Caveats: Confirm no leakage (`which python` and `which R`). Alternative path to install `conda config --add envs_dirs [conda_envs_dir_path]`.
 

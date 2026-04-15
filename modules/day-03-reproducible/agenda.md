@@ -8,25 +8,23 @@ By the end of this module, participants should be able to:
 
 1. Explain why workflows fail across machines and over time.
 2. Compare a few common ways projects record their environments.
-3. Create a conda environment from an `environment.yml` file and explain what its main fields mean.
+3. Create a conda environment from `starter_environment.yml` and explain what its main fields mean.
 4. Turn ad hoc scripts into more deliberate, repeatable workflows with a clear entry point.
 
 ## Materials
 
-- `demos/virtual-environments.md`
 - `demos/environment-notes.md`
-- `demos/environment-note-R.md` or `demos/environment-note-python.md`
 - `demos/project-r-renv/`
 - `demos/project-python-uv/`
 - `activities/activity-1/prompt.md`
-- `activities/activity-1/environment.yml`
+- `activities/activity-1/starter_environment.yml`
 - `activities/activity-1/check_environment.py`
 - `activities/activity-1/check_environment.R`
 - `demos/script-entrypoint.md`
 - `demos/script-entrypoint.R` or `demos/script-entrypoint.py`
 - `activities/activity-2/prompt.md`
 - `activities/activity-2/starter.R` or `activities/activity-2/starter.py`
-- `activities/activity-2/example.R` or `activities/activity-2/example.py`
+- `activities/activity-2/example_solution.R` or `activities/activity-2/example_solution.py`
 
 This day focuses on common reproducibility problems such as `setwd()`, user-specific paths, missing packages, and automatic execution at the bottom of a script.
 
@@ -46,7 +44,7 @@ Time: 10 minutes
 
 - introduce the idea that reproducibility starts before the script runs
 - define an environment as the runtime plus the packages it depends on
-- use `demos/virtual-environments.md` to compare project-local and shared environment tools at a high level
+- use `demos/environment-notes.md` to compare project-local and shared environment tools at a high level
 - preview the three concrete examples learners will see next: `renv`, `uv`, and `conda`
 
 ### 3. Demo: Project Environments with `renv`, `uv`, and `conda`
@@ -55,8 +53,8 @@ Time: 20 minutes
 
 - explain why a script can still fail even if the code itself looks clean
 - open `demos/project-r-renv/` and `demos/project-python-uv/`
-- use `demos/environment-notes.md` plus the matching language note to compare how `renv` and `uv` record project setup
-- open `activities/activity-1/environment.yml` and show the equivalent conda setup command
+- use `demos/environment-notes.md` to compare how `renv`, `uv`, and conda record project setup
+- open `activities/activity-1/starter_environment.yml` and show the equivalent conda setup command
 - clarify what each tool stores in files versus what gets created locally on each machine
 
 ### 4. Activity 1: Create a Conda Environment
@@ -64,7 +62,7 @@ Time: 20 minutes
 Time: 15 minutes
 
 1. Open `activities/activity-1/prompt.md`.
-2. Inspect `activities/activity-1/environment.yml`.
+2. Inspect `activities/activity-1/starter_environment.yml`.
 3. Notice that this environment is designed to support the second half of Day 3 as well.
 4. Create the environment with `conda`.
 5. Activate the environment and run the verification scripts.
@@ -74,7 +72,7 @@ Time: 15 minutes
 
 Time: 15 minutes
 
-- what information did `environment.yml` make explicit?
+- what information did `starter_environment.yml` make explicit?
 - what did `renv.lock` communicate that the conda file did not?
 - what did `pyproject.toml` communicate that looked different from both?
 - what still depends on the machine, even when the environment files are present?
@@ -102,7 +100,7 @@ Time: 25 minutes
 3. List assumptions about paths, inputs, outputs, and execution order.
 4. Rewrite the file so inputs, outputs, and run steps are explicit.
 5. Add brief instructions for how to run it.
-6. Compare your version with `activities/activity-2/example.R` or `activities/activity-2/example.py` if time allows.
+6. Compare your version with `activities/activity-2/example_solution.R` or `activities/activity-2/example_solution.py` if time allows.
 
 ### 8. Discussion
 

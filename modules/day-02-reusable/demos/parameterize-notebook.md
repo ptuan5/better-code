@@ -26,7 +26,7 @@ small config file if we expect to rerun the same notebook often.
 
 ## Demo Moves
 
-1. Reuse the function from `refactor-function.R` or `refactor-function.py`.
+1. Reuse the function from `refactor_function.R` or `refactor_function.py`.
 2. Move the values that vary to the top of the notebook.
 3. Optionally load those values from `config.yaml`.
 4. Let the notebook read like a short, rerunnable analysis.

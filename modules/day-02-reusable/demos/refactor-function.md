@@ -7,8 +7,8 @@ logic flow is clear.
 
 ## Files
 
-- `refactor-function.R`
-- `refactor-function.py`
+- `refactor_function.R`
+- `refactor_function.py`
 
 ## Scenario
 
@@ -62,7 +62,7 @@ Ask:
 - filter the final results
 ```
 
-Check `refactor-function.R` or `refactor-function.py` for the detailed implementation.
+Check `refactor_function.R` or `refactor_function.py` for the detailed implementation.
 
 ## Suggested Talking Points
 

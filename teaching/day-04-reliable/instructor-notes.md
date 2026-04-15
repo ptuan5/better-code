@@ -13,8 +13,8 @@ Course role: move from "it runs" to "we trust it."
 - `modules/day-04-reliable/agenda.md`
 - `modules/day-04-reliable/activities/activity-1/prompt.md`
 - `modules/day-04-reliable/activities/activity-2/prompt.md`
-- `modules/day-04-reliable/activities/activity-1/r/starter.R` or `modules/day-04-reliable/activities/activity-1/python/starter.py`
-- `modules/day-04-reliable/activities/activity-1/r/example.R` or `modules/day-04-reliable/activities/activity-1/python/example.py`
+- `modules/day-04-reliable/activities/activity-1/starter.R` or `modules/day-04-reliable/activities/activity-1/starter.py`
+- `modules/day-04-reliable/activities/activity-1/example.R` or `modules/day-04-reliable/activities/activity-1/example.py`
 
 ## Key Talking Points
 

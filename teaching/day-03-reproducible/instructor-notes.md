@@ -11,10 +11,16 @@ Course role: turn readable, reusable code into a workflow another person can rer
 ## Materials to Open
 
 - `modules/day-03-reproducible/agenda.md`
+- `modules/day-03-reproducible/demos/environment-notes.md`
+- `modules/day-03-reproducible/demos/script-entrypoint.md`
 - `modules/day-03-reproducible/activities/activity-1/prompt.md`
+- `modules/day-03-reproducible/activities/activity-1/starter_environment.yml`
+- `modules/day-03-reproducible/activities/activity-1/check_environment.R`
+- `modules/day-03-reproducible/activities/activity-1/check_environment.py`
 - `modules/day-03-reproducible/activities/activity-2/prompt.md`
-- `modules/day-03-reproducible/activities/activity-1/r/starter.R` or `modules/day-03-reproducible/activities/activity-1/python/starter.py`
-- `modules/day-03-reproducible/activities/activity-1/r/example.R` or `modules/day-03-reproducible/activities/activity-1/python/example.py`
+- `modules/day-03-reproducible/demos/script-entrypoint.R` or `modules/day-03-reproducible/demos/script-entrypoint.py`
+- `modules/day-03-reproducible/activities/activity-2/starter.R` or `modules/day-03-reproducible/activities/activity-2/starter.py`
+- `modules/day-03-reproducible/activities/activity-2/example_solution.R` or `modules/day-03-reproducible/activities/activity-2/example_solution.py`
 
 ## Key Talking Points
 
