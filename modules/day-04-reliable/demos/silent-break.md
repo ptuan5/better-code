@@ -7,87 +7,47 @@ assumption.
 
 ## Files
 
-- `silent-break.R`
-- `silent-break.py`
+- `silent-break.Rmd`
+- `silent-break.ipynb`
 
 ## Scenario
 
-Use this framing:
+We will look at two code examples that run without crashing. That is exactly why they are useful to showcase reliability. The reliability question is not "does the code execute?" The reliability question is "does it match the scientific intent?"
 
-Both examples run without crashing. That is exactly why they are useful for Day
-4. The reliability question is not "does the code execute?" The reliability
-question is "does it match the scientific intent once the data shape or data
-distribution becomes slightly uncomfortable?"
+## Demo 1a: Silent Break - Boxplot 
 
-## Demo 1a: Silent Break - Moving Average
+You have a boxplot overlayed with individual data points. 
 
-Frame it like this:
-
-You have a small time-series matrix where each row is a time point and each
-column is a sample. The code says it is computing a moving average across rows,
-but the implementation accidentally smooths across columns instead.
-
-That bug is easy to miss because the output still has the right shape and still
-contains plausible numbers.
-
-### What To Inspect
-
-| Check | Why it matters |
-|---|---|
-| which dimension represents time | the whole function depends on this assumption |
-| whether neighboring rows or neighboring columns are averaged | this is the actual silent bug |
-| whether a toy matrix makes the mistake obvious | simple numbers reveal orientation errors faster than realistic ones |
-| what should happen when `window` is invalid | reliability also includes failing clearly |
-
-## Demo 1b: Silent Break - Boxplot Plus Jitter
-
-Frame it like this:
-
-You overlay a boxplot with jittered points to show both a summary and the raw
-observations. With a tidy dataset, the plot looks fine. Once an outlier appears,
-the same point can be drawn twice: once by the boxplot outlier layer and once by
-the jitter layer.
+Ask:
+- What potential problems may occur?
+- How do you check that?
 
 That is a reliability problem in visualization rather than a crash.
 
-### What To Inspect
+## Demo 1b: Silent Break - Moving Average
 
-| Check | Why it matters |
-|---|---|
-| whether the no-outlier version looks acceptable | the code feels trustworthy at first glance |
-| what changes when one group contains an outlier | this is when the plotting bug becomes visible |
-| whether the extreme point is shown once or twice | duplicated marks can exaggerate the story |
-| whether the plot is truthful or just attractive | DS review includes the visual contract too |
+You have noisy time-series data for many individuals. Each row is a sample, and
+each column is the minute from which the measurement was recorded. 
 
-## Common Edge-Case Patterns To Name Out Loud
+The data is quite noisy, I smooth the data using a moving average. Then I plot the
+trend over time aggregated for each group.
 
-- orientation or axis assumptions:
-  are we averaging over the intended dimension?
-- plotting duplication:
-  is one observation being drawn by multiple layers?
-- distribution shifts:
-  does the code still behave when an outlier appears?
-- empty or singleton inputs:
-  what happens with zero rows or one row?
-- invalid settings:
-  should a bad window size fail clearly?
+Ask:
+- What potential problems may occur?
+- How do I check that?
 
 ## Demo Moves
 
-1. Open Demo 1a and read the function name before reading the implementation.
-2. Ask which dimension is supposed to represent time.
-3. Run the toy matrix and inspect the intermediate output, not just the final
-   claim that it is "smoothed."
-4. Switch to Demo 1b and show the version without outliers first.
-5. Add the outlier and ask whether the plot is showing new information or
-   accidentally double-plotting the same point.
-6. Close by asking what review comment or small test would have caught each issue
-   sooner.
+1. Open Demo 1a and ask participants to identify what's wrong.
+2. Show patterns with 'duplicated' outliers, then correct the code.
+3. Switch to Demo 1b and explain the smoothing process.
+4. Test different parameters to see unexpected trend.
+5. Explain smoothing along the wrong axis. 
+6. Encourage thinking of extra pitfalls: time gap not continuous, missing data.
 
 ## Suggested Talking Points
 
 - Silent wrong behavior is often more dangerous than a loud crash.
 - The output shape looking right does not mean the logic is right.
-- Visualization code can be unreliable even when the figure looks polished.
-- A tiny toy example is often the fastest way to expose an axis mistake.
-- Reliability work includes checking scientific intent, not only syntax.
+- Visualization code & summary statistics can be unreliable even when the figure looks polished.
+- Check intermediate results.

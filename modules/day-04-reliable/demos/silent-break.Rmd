@@ -1,0 +1,130 @@
+---
+title: "Day 4 - Demo 1: Silent Break"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = NA)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(zoo)
+```
+
+## Day 4 - Demo 1
+
+Two silent-break examples with plausible but wrong behavior.
+
+This version uses native R code.
+
+#### 1a. Boxplot
+
+You have numeric measurements from three different conditions, both sexes.
+
+You want to visualize them in a boxplot. What's wrong with this code?
+
+```{r}
+plot_boxplot <- function(data, x, y, fill) {
+  ggplot(data, aes(x = .data[[x]], y = .data[[y]], fill = .data[[fill]])) +
+    geom_boxplot(position = position_dodge(width = 0.75)) +
+    geom_point(aes(group = .data[[fill]]),
+               position = position_jitterdodge(jitter.width = 0.15, dodge.width = 0.75)) +
+    labs(x = x, y = y, fill = fill, color = fill) +
+    theme_minimal()
+}
+```
+
+Here is a helper function to generate mock data.
+
+```{r}
+generate_mock_data <- function(num_samples = 500, seed = NULL) {
+  if (!is.null(seed)) {
+    set.seed(seed)
+  }
+
+  tibble(
+    Sample_ID = sprintf("Sample_%d", seq_len(num_samples)),
+    Condition = sample(c("A", "B", "C"), size = num_samples, replace = TRUE),
+    Sex = sample(c("Male", "Female"), size = num_samples, replace = TRUE),
+    Measurement = rnorm(num_samples, mean = 0, sd = 1)
+  )
+}
+```
+
+```{r}
+demo1a_mock_data <- generate_mock_data(num_samples = 500, seed = 1)
+plot_boxplot(demo1a_mock_data, x = "Condition", y = "Measurement", fill = "Sex")
+```
+
+#### 1b. Moving average
+
+You have noisy time-series data for many individuals. Each row is a sample, and each column is the minute from which the measurement was recorded. 
+
+Because the data is quite noisy, I smooth the data using a moving average. Then I plot the trend over time aggregated for each group.
+
+What can potentially be wrong with the code?
+
+```{r}
+plot_smoothed_measurements <- function(data, window = 5, figsize = c(10, 6)) {
+  # Identify time-series columns (numeric names like "1","2",...)
+  measurement_cols <- colnames(data)[grepl("^\\d+$", colnames(data))]
+
+  # Smooth across time for each sample
+  smoothed_data <- data %>%
+    mutate(across(all_of(measurement_cols), 
+           ~ rollapply(.x, width = window, FUN = mean, align = "center", partial = TRUE))) %>%
+    as.data.frame()
+
+  # Convert to long format
+  long_df <- smoothed_data %>%
+    pivot_longer(cols = all_of(measurement_cols), 
+                 names_to = "Time",
+                 values_to = "Value") %>%
+    mutate(Time = as.numeric(Time))
+
+  long_summary <- long_df %>%
+    dplyr::group_by(Condition, Sex, Time) %>%
+    dplyr::summarise(Value = mean(Value, na.rm = TRUE), .groups = "drop")
+  
+  p <- ggplot(long_summary, aes(x = Time, y = Value, color = Condition, linetype = Sex)) +
+    geom_line() +
+    labs(title = "Smoothed Measurements", x = "Time", y = "Value") +
+    theme_bw()
+
+  return(p)
+}
+```
+
+Here is a helper function to generate mock data and test the function.
+
+```{r}
+generate_mock_time_series <- function(num_samples = 80, num_timepoints = 90, seed = NULL) {
+  if (!is.null(seed)) set.seed(seed)
+
+  # Time series data with explicit column names
+  time_cols <- as.character(0:(num_timepoints - 1))
+  time_series_data <- as.data.frame(matrix(
+    runif(num_samples * num_timepoints),
+    nrow = num_samples,
+    ncol = num_timepoints
+  ))
+  colnames(time_series_data) <- time_cols
+
+  # Metadata
+  metadata <- data.frame(
+    Sample_ID = paste0("Sample_", seq_len(num_samples)),
+    Condition = sample(c("A", "B"), num_samples, replace = TRUE),
+    Sex = sample(c("Male", "Female"), num_samples, replace = TRUE)
+  )
+
+  # Combine
+  data <- cbind(metadata, time_series_data)
+
+  return(data)
+}
+```
+
+```{r}
+demo1b_mock_data <- generate_mock_time_series()
+plot_smoothed_measurements(demo1b_mock_data, window = 5)
+```
