@@ -31,10 +31,11 @@ Choose the most important behavior in the cleaned function and write small tests
 
 ## Good Test Ideas
 
-- two intervals with clear overlap
-- two intervals that touch at exactly one frame
-- two intervals with no overlap
-- an invalid interval where the end comes before the start
+- two boxes with clear overlap
+- two boxes that touch at exactly one edge
+- two boxes with no overlap
+- an invalid box where `x2 <= x1` or `y2 <= y1`
+- a score that lands exactly on a label threshold
 - a case where the function name suggests one behavior but the code implements another
 - a future case that would matter if the function were reused in a larger workflow
 
