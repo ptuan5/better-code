@@ -14,10 +14,10 @@ By the end of this module, participants should be able to:
 
 ## Materials
 
-- `demos/edge-cases.md`
-- `demos/edge-cases.R` or `demos/edge-cases.py`
-- `demos/test-cases.md`
-- `demos/test-cases.R` or `demos/test-cases.py`
+- `demos/silent-break.md`
+- `demos/silent-break.R` or `demos/silent-break.py`
+- `demos/unit-test.md`
+- `demos/unit-test.R` or `demos/unit-test.py`
 - `activities/activity-1/prompt.md`
 - `activities/activity-1/starter.R` or `activities/activity-1/starter.py`
 - `activities/activity-1/example.R` or `activities/activity-1/example.py`
@@ -56,13 +56,13 @@ Time: 15 minutes
 
 Time: 15 minutes
 
-- open `demos/edge-cases.R` or `demos/edge-cases.py`
-- use `demos/edge-cases.md` to walk through normal, boundary, and invalid cases before editing code
-- show how a plausible function can still hide the wrong contract
-- connect the live example to optional scientific examples:
-  - smoothing along columns when the intent was to smooth along rows
-  - boxplot plus jitter duplicating outliers
-  - IoU logic that quietly assumes exactly two annotators
+- open `demos/silent-break.R` or `demos/silent-break.py`
+- use `demos/silent-break.md` to walk through the two silent-break examples before editing code
+- show how plausible output can still hide the wrong contract
+- Demo 1a:
+  the moving-average helper says it smooths across rows, but it actually smooths across columns
+- Demo 1b:
+  the boxplot plus jitter overlay looks fine until an outlier is drawn twice
 - model the habit of asking what behavior the code promises before deciding whether it is correct
 
 ### 4. Activity 1: Review And Debug Suspicious Code
@@ -106,10 +106,10 @@ Time: 15 minutes
 Time: 15 minutes
 
 - explain the role of small, focused tests
-- open `demos/test-cases.R` or `demos/test-cases.py`
-- use `demos/test-cases.md` to turn one review question into a normal case, an edge case, and a failure case
+- open `demos/unit-test.R` or `demos/unit-test.py`
+- use `demos/unit-test.md` to turn the moving-average review question into an expected-output test, a structure test, and a failure test
 - show how `pytest` and `testthat` play the same conceptual role even if the syntax differs
-- connect tests back to the kinds of hidden logic errors in the overlap and IoU examples
+- connect the tests back to Demo 1a so learners can see how a silent axis bug becomes visible once the contract is written down
 
 ### 8. Activity 2: Write Focused Tests With `pytest` or `testthat`
 
