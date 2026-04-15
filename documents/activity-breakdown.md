@@ -41,7 +41,7 @@
 | 13:45-14:00 | 15 min | Activity 1: Create a conda environment |
 | 14:00-14:15 | 15 min | Discussion |
 | 14:15-14:30 | 15 min | Break |
-| 14:30-14:50 | 15 min | Demo: Turn interactive code into executable scripts |
+| 14:30-14:50 | 20 min | Demo: Turn interactive code into executable scripts |
 | 14:50-15:10 | 20 min | Activity 2: Write an executable .R or .py script |
 | 15:10-15:25 | 15 min | Discussion |
 | 15:25-15:30 | 5 min | Day wrap up / Buffer time |
@@ -54,12 +54,13 @@
 | 13:15-13:30 | 15 min | Reliability triage: errors, debugging, and edge cases |
 | 13:30-13:45 | 15 min | Demo: Plausible code, hidden assumptions |
 | 13:45-14:05 | 20 min | Activity 1: Review and debug suspicious code |
-| 14:05-14:15 | 10 min | Discussion: what should reviewers question first? |
+| 14:05-14:15 | 10 min | Discussion |
 | 14:15-14:30 | 15 min | Break |
-| 14:30-14:45 | 15 min | Mini-lesson: code review for data science |
-| 14:45-15:00 | 15 min | Demo: Turn review questions into tests |
-| 15:00-15:20 | 20 min | Activity 2: Write focused tests with pytest/testthat |
-| 15:20-15:30 | 10 min | Reliability checklist, discussion, and wrap-up |
+| 14:30-14:40 | 10 min | Code testing and review for data science |
+| 14:40-14:55 | 15 min | Demo: Turn review questions into tests |
+| 14:55-15:15 | 20 min | Activity 2: Write focused tests with pytest/testthat |
+| 15:15-15:25 | 10 min | Discussion |
+| 15:25-15:30 | 5 min | Reliability checklist, discussion, and wrap-up |
 
 ## Day 5: Shareable
 
