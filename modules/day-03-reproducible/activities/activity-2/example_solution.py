@@ -1,12 +1,32 @@
-"""Executable version of starter.py with CLI flags for all create_plots inputs."""
+#!/usr/bin/env python3
+"""
+Command-line tool to generate stacked bar plots of gene set uploads over time.
 
+This script:
+- Reads a CSV file containing gene set metadata
+- Filters data by a specified year range
+- Computes yearly and cumulative counts by experimental model
+- Generates stacked bar plots
+- Saves the plots to a multi-page PDF
+
+Usage:
+    python script.py --path <dir> --file <file.csv> --output <out.pdf>
+
+Notes:
+  - Expected columns in the input CSV: 'search_text', 'created', 'model'
+  - The 'created' column should be in MM/DD/YYYY format
+  - The script filters data between a start and end year
+  - Output is a multi-page PDF containing:
+      1) Cumulative counts by model
+      2) Yearly counts by model
+"""
 import argparse
 import os
 from pathlib import Path
+
 import matplotlib.pyplot as plt
 import pandas as pd
 from matplotlib.backends.backend_pdf import PdfPages
-
 
 def create_plots(path, file, start_year, end_year):
     original_cwd = Path.cwd()
@@ -79,45 +99,31 @@ def create_plots(path, file, start_year, end_year):
     finally:
         os.chdir(original_cwd)
 
+def main():
+    parser = argparse.ArgumentParser(description="Run the starter plotting workflow from the command line.")
+    parser.add_argument("--path", required=True, help="Directory containing the input CSV file.")
+    parser.add_argument("--file", required=True, help="Input CSV filename.")
+    parser.add_argument("--output", required=True, help="Path to the output PDF file.")
+    parser.add_argument("--start_year", type=int, default=2015, help="Start year for the plot range.")
+    parser.add_argument("--end_year", type=int, default=2025, help="End year for the plot range.")
 
-def save_plots_to_pdf(plot_list, output_path):
+    args = parser.parse_args()
+
+    # Validate inputs
+    if args.end_year < args.start_year:
+        raise ValueError("--end_year must be greater than or equal to --start_year.")
+
+    output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
+    # Main analysis
+    plot_list = create_plots(args.path, args.file, args.start_year, args.end_year)
+
+    # Save plots to PDF
     with PdfPages(output_path) as pdf:
         for figure in plot_list:
             pdf.savefig(figure)
             plt.close(figure)
-
-
-def main():
-    parser = argparse.ArgumentParser(
-        description="Run the starter plotting workflow with CLI arguments."
-    )
-    parser.add_argument("--path", required=True, help="Directory containing the input CSV file.")
-    parser.add_argument("--file", required=True, help="Input CSV filename.")
-    parser.add_argument("--start-year", type=int, required=True, help="Start year for the plot range.")
-    parser.add_argument("--end-year", type=int, required=True, help="End year for the plot range.")
-    parser.add_argument("--output", required=True, help="Path to the output PDF file.")
-    args = parser.parse_args()
-
-    input_dir = Path(args.path).resolve()
-    input_file = args.file
-    input_path = input_dir / input_file
-
-    if not input_path.exists():
-        raise FileNotFoundError(f"Input file not found: {input_path}")
-
-    output_path = Path(args.output).resolve()
-    plot_list = create_plots(str(input_dir), input_file, args.start_year, args.end_year)
-    save_plots_to_pdf(plot_list, output_path)
-
-    print(f"Input directory: {input_dir}")
-    print(f"Input file: {input_file}")
-    print(f"Start year: {args.start_year}")
-    print(f"End year: {args.end_year}")
-    print(f"Saved plots to: {output_path}")
-    print("Done")
-
 
 if __name__ == "__main__":
     main()
