@@ -1,45 +1,12 @@
-required_packages <- c(
-  "dplyr",
-  "lubridate",
-  "tidyr",
-  "tibble",
-  "ggplot2",
-  "data.table",
-  "viridis",
-  "optparse"
-)
+cat("R version:", R.version.string, "\n")
 
-missing_packages <- required_packages[
-  !vapply(required_packages, requireNamespace, logical(1), quietly = TRUE)
-]
+required_packages <- c("dplyr", "lubridate", "tidyr", "ggplot2", "data.table", "viridis")
 
-if (length(missing_packages) > 0) {
-  stop(
-    sprintf(
-      "Missing R packages: %s",
-      paste(missing_packages, collapse = ", ")
+for (package in required_packages) {
+  suppressWarnings(
+    suppressMessages(
+      library(package, character.only = TRUE)
     )
   )
+  cat(package, as.character(packageVersion(package)), "\n")
 }
-
-output_dir <- "results"
-if (!dir.exists(output_dir)) {
-  dir.create(output_dir, recursive = TRUE)
-}
-
-output_path <- file.path(output_dir, "environment_check_R.txt")
-output_lines <- c(
-  paste("R=", getRversion(), sep = ""),
-  vapply(
-    required_packages,
-    function(pkg) paste(pkg, "=", as.character(packageVersion(pkg)), sep = ""),
-    character(1)
-  )
-)
-
-writeLines(output_lines, output_path)
-
-cat("R environment check passed.\n")
-cat("This R setup covers Activity 2 starter.R plus later Day 3 materials.\n")
-cat("Wrote:", output_path, "\n")
-cat(paste(output_lines, collapse = "\n"), "\n")

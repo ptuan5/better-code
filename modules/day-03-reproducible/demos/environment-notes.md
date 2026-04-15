@@ -167,15 +167,16 @@ Suggested live flow:
 
 ```bash
 conda create -n betterCode -c conda-forge \
-  python=3.13 pandas=2.3.2 matplotlib \
-  r-base=4.5 r-dplyr r-lubridate r-tidyr r-tibble \
-  r-ggplot2 r-data.table r-viridis r-optparse
+  python=3.13 pandas=2.3.2 \
+  r-base=4.5 r-dplyr 
 conda activate betterCode
-conda env export --from-history -f environment.yml
+conda env export > environment.yml
 ```
 
-Then open the generated `environment.yml` and compare it with the reference
-file in `../activities/activity-1/environment.yml`.
+Then inspect the generated `environment.yml`, identify where my enviroment lies (`conda info --envs`). Delete environment with `conda env remove - n betterCode`
+
+Caveats: Confirm no leakage (`which python` and `which R`). Alternative path to install `conda config --add envs_dirs [conda_envs_dir_path]`.
+
 
 Key points to explain:
 

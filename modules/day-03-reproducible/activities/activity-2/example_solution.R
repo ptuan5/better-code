@@ -7,6 +7,7 @@ suppressPackageStartupMessages({
   library(lubridate)
   library(tidyr)
   library(data.table)
+  library(optparse)
   library(viridis)
 })
 
@@ -91,54 +92,48 @@ create_plots <- function(path, file, start_year, end_year) {
   list(cum_count_model, count_model)
 }
 
-parse_command_args <- function() {
-  args <- commandArgs(trailingOnly = TRUE)
-  options <- list(
-    path = NULL,
-    file = NULL,
-    start_year = NULL,
-    end_year = NULL,
-    output = NULL
+build_option_parser <- function() {
+  option_list <- list(
+    make_option("--path", type = "character", help = "Directory containing the input CSV file."),
+    make_option("--file", type = "character", help = "Input CSV filename."),
+    make_option("--start-year", dest = "start_year", type = "integer", help = "Start year for the plot range."),
+    make_option("--end-year", dest = "end_year", type = "integer", help = "End year for the plot range."),
+    make_option("--output", type = "character", help = "Path to the output PDF file.")
   )
 
-  index <- 1
-  while (index <= length(args)) {
-    current_arg <- args[[index]]
+  OptionParser(
+    usage = "Rscript %prog --path PATH --file FILE --start-year YEAR --end-year YEAR --output FILE",
+    description = "Run the starter plotting workflow with command-line arguments.",
+    option_list = option_list
+  )
+}
 
-    if (!grepl("^--", current_arg)) {
-      stop("Arguments must start with --")
-    }
+parse_command_args <- function() {
+  parser <- build_option_parser()
+  options <- parse_args(parser)
 
-    if (grepl("=", current_arg, fixed = TRUE)) {
-      pieces <- strsplit(sub("^--", "", current_arg), "=", fixed = TRUE)[[1]]
-      option_name <- gsub("-", "_", pieces[[1]])
-      option_value <- pieces[[2]]
-      index <- index + 1
-    } else {
-      option_name <- gsub("-", "_", sub("^--", "", current_arg))
-      if (index == length(args)) {
-        stop("Missing value for --", sub("_", "-", option_name))
-      }
-      option_value <- args[[index + 1]]
-      index <- index + 2
-    }
+  required_fields <- c("path", "file", "start_year", "end_year", "output")
+  missing_fields <- required_fields[
+    vapply(
+      required_fields,
+      function(field_name) {
+        value <- options[[field_name]]
+        is.null(value) || (length(value) == 1 && is.na(value))
+      },
+      logical(1)
+    )
+  ]
 
-    if (!option_name %in% names(options)) {
-      stop("Unknown option: --", gsub("_", "-", option_name))
-    }
-
-    options[[option_name]] <- option_value
+  if (length(missing_fields) > 0) {
+    print_help(parser)
+    stop(
+      "Please provide --path, --file, --start-year, --end-year, and --output.",
+      call. = FALSE
+    )
   }
 
-  if (any(vapply(options, is.null, logical(1)))) {
-    stop("Please provide --path, --file, --start-year, --end-year, and --output.")
-  }
-
-  options$start_year <- as.integer(options$start_year)
-  options$end_year <- as.integer(options$end_year)
-
-  if (is.na(options$start_year) || is.na(options$end_year)) {
-    stop("--start-year and --end-year must be integers.")
+  if (options$end_year < options$start_year) {
+    stop("--end-year must be greater than or equal to --start-year.", call. = FALSE)
   }
 
   options

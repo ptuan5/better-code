@@ -2,63 +2,45 @@
 
 ## Goal
 
-Create a conda environment from an `environment.yml` file and explain what the main environment files are doing.
+Create a conda environment from a starter environment file, install the missing packages, and explain what the main environment files are doing.
 
 ## Scenario
 
-Picture receiving two small project folders from collaborators. One uses `renv` for R. One uses `uv` for Python. Before you even worry about the scripts, you need to understand how the environment is supposed to be recreated.
+You have several projects in different languages, and many of them share common packages. You want one environment that contains the packages you use most often.
 
-Your task is to create a conda environment from a starter file, verify that it
-works, and compare that file with the `renv` and `uv` project files from the
-demo.
+Your task is to create a conda environment from the starter file, identify which packages are missing, install them, and explain which environment file should be shared.
 
-This activity is about setup rather than script structure. The goal is to make environment assumptions visible before we move on to executable scripts later in the day.
+Note: this environment is meant to support Demo 2 and Activity 2 later in Day 3.
 
 ## Files
 
-- starter environment: `environment.yml`
-- verification scripts: `check_environment.py` and `check_environment.R`
-- comparison projects: `../../demos/project-r-renv/` and `../../demos/project-python-uv/`
+- starter environment: `starter_environment.yml`
+- testing scripts: `check_environment.py` and `check_environment.R`
 
-### Task
+### Suggested Instructions
 
 Inspect the starter files and create the environment they describe.
 
-1. Read `environment.yml` once without editing.
-2. Identify what `name`, `channels`, and `dependencies` mean.
-3. Notice that this environment is meant to support Demo 2 and Activity 2 later in Day 3.
-4. Create the environment with `conda env create -f environment.yml`.
-5. Activate the environment.
+1. Install [conda-forge](https://conda-forge.org/download/), if you don't have it already.
+2. Read `starter_environment.yml`.
+4. Create the conda environment and activate the environment.
 6. Run `python check_environment.py` and `Rscript check_environment.R` to
-   verify that the environment includes the packages needed by
-   `../activity-2/starter.py`, `../activity-2/starter.R`, and the later Day 3
-   materials.
-7. If time allows, compare `environment.yml` with `../../demos/project-r-renv/renv.lock`, `../../demos/project-python-uv/pyproject.toml`, and `../../demos/project-python-uv/.python-version`.
+   see which packages are still missing.
+7. Add the missing packages, rerun the checks, and confirm that both scripts pass.
+8. Export the new requirement file.
 
 ### What to Look For
 
 - the environment name
 - where conda should search for packages
 - which Python and R packages will be installed
+- which packages are missing from the starter file
 - which later starter scripts those packages support
 - which files describe an environment versus which folders get created locally
 
-## Success Check
-
-By the end, another learner should be able to answer these questions quickly:
-
-- what does the `name` field do?
-- what do the `channels` tell conda?
-- what do the `dependencies` specify?
-- how do you create and activate the environment?
-- which later Day 3 materials does this environment support?
-- what additional R packages were needed for `starter.R`?
-- what does `renv.lock` communicate?
-- what do `pyproject.toml` and `.python-version` communicate?
-
 ## Discussion Prompt
 
-- what did `environment.yml` make explicit?
+- what did `starter_environment.yml` make explicit?
 - what did `renv.lock` communicate differently?
 - what did `pyproject.toml` communicate differently?
 - what part of environment setup still feels easiest to forget?

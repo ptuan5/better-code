@@ -1,16 +1,14 @@
-name: day03-conda-demo
+name: betterCode
 channels:
   - conda-forge
 dependencies:
   - python=3.13
   - pandas=2.3.2
-  - matplotlib
   - r-base=4.5
   - r-dplyr
   - r-lubridate
   - r-tidyr
   - r-tibble
-  - r-ggplot2
   - r-data.table
   - r-viridis
   - r-optparse
