@@ -17,7 +17,8 @@ This is also the setup for Day 5: code becomes much easier to share when its exp
 ## Files
 
 - your cleaned version from `../activity-1/`
-- example approach: `../activity-1/example.R` or `../activity-1/example.py`
+- example solution functions: `example_solution.R` or `example_solution.py` (or you can choose your own)
+- example solution tests: `test_example_solution.R` or `test_example_solution.py`
 
 ## Task
 
@@ -27,7 +28,7 @@ Choose the most important behavior in the cleaned function and write small tests
 2. Test a normal case.
 3. Test an edge case or boundary case.
 4. Test one failure case, invalid input, or future-expansion case.
-5. Compare your checks with the matching example file if time allows.
+5. Compare your checks with the matching example solution if time allows.
 
 ## Good Test Ideas
 

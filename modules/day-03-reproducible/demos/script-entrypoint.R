@@ -11,7 +11,7 @@
 #
 # Usage:
 #   Rscript script.R --data_dir <path> --target_gene <gene> --output_dir <path>
-# ------------------------------------------------------------------------------suppressMessages(
+# ------------------------------------------------------------------------------
 
 suppressWarnings(
   suppressMessages({

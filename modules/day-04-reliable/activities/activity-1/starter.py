@@ -1,3 +1,8 @@
+# %%
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# %%
 def compute_iou(box_a, box_b):
     x_left = max(box_a[0], box_b[0])
     y_top = max(box_a[1], box_b[1])
@@ -12,29 +17,42 @@ def compute_iou(box_a, box_b):
     area_b = (box_b[2] - box_b[0]) * (box_b[3] - box_b[1])
     union_area = area_a + area_b - inter_area
 
-    return inter_area / union_area
+    iou = inter_area / union_area
+    return iou
 
+# %%
+def add_iou_all_frames(box_pairs):
+    box_pairs = box_pairs.copy()
 
-def agreement_label(score):
-    if score > 0.7:
-        return "strong"
-    if score > 0.3:
-        return "mixed"
-    return "weak"
+    for idx, row in box_pairs.iterrows():
+        box_a = [row["box_a_x1"], row["box_a_y1"], row["box_a_x2"], row["box_a_y2"]]
+        box_b = [row["box_b_x1"], row["box_b_y1"], row["box_b_x2"], row["box_b_y2"]]
 
+        box_pairs.loc[idx, "iou"] = compute_iou(box_a, box_b)
 
-def agreement_summary(name, box_a, box_b):
-    score = compute_iou(box_a, box_b)
-    return f"{name}: IoU = {score:.3f} ({agreement_label(score)})"
+    return box_pairs
 
+# %%
+def build_agreement_curve(box_pairs):
+    thresholds = [value / 100 for value in range(0, 101, 5)]
+    agreement_curve = pd.DataFrame(
+        {
+            "iou_threshold": thresholds,
+            "percent_agreement": [
+                (box_pairs["iou"].dropna() >= threshold).mean() * 100 for threshold in thresholds
+            ],
+        }
+    )
+    return agreement_curve
 
-reference_box = [0.10, 0.10, 0.50, 0.50]
-slightly_shifted_box = [0.20, 0.20, 0.60, 0.60]
-touching_box = [0.50, 0.10, 0.80, 0.40]
-separate_box = [0.70, 0.70, 0.90, 0.90]
-invalid_box = [0.75, 0.20, 0.60, 0.40]
+# %%
+box_pairs = pd.read_csv("mock_box_pairs.csv")
+box_pairs_w_iou = add_iou_all_frames(box_pairs)
+curve_info = build_agreement_curve(box_pairs_w_iou)
 
-print(agreement_summary("normal overlap", reference_box, slightly_shifted_box))
-print(agreement_summary("touching edge", reference_box, touching_box))
-print(agreement_summary("no overlap", reference_box, separate_box))
-print(agreement_summary("invalid box", reference_box, invalid_box))
+plt.figure(figsize=(8, 5))
+plt.plot(curve_info["iou_threshold"], curve_info["percent_agreement"])
+plt.scatter(curve_info["iou_threshold"], curve_info["percent_agreement"])
+plt.xlabel("IoU Threshold")
+plt.ylabel("% Agreement")
+plt.show()

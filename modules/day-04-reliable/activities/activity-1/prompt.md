@@ -17,7 +17,7 @@ This activity builds on Day 3. A script that runs consistently is helpful, but r
 ## Files
 
 - starter code: `starter.R` or `starter.py`
-- example approach: `example.R` or `example.py`
+- example solution: `example_solution.Rmd` or `example_solution.ipynb`
 
 ### Task
 
@@ -27,7 +27,7 @@ Review the starter script like a skeptical collaborator.
 2. Write down two or three review comments about behaviors that seem suspicious or fragile.
 3. Decide which issue is a direct bug, which issue needs debugging, and which issue is an edge-case risk.
 4. Fix the most important logic problems.
-5. Run a few manual checks before comparing with the example approach.
+5. Run a few manual checks before comparing with the example solution.
 
 ### Places to Inspect
 

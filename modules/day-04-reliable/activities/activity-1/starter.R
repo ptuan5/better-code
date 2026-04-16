@@ -1,3 +1,5 @@
+library(ggplot2)
+### The functions ----
 compute_iou <- function(box_a, box_b) {
   x_left <- max(box_a[1], box_b[1])
   y_top <- max(box_a[2], box_b[2])
@@ -12,33 +14,40 @@ compute_iou <- function(box_a, box_b) {
   area_b <- (box_b[3] - box_b[1]) * (box_b[4] - box_b[2])
   union_area <- area_a + area_b - inter_area
 
-  inter_area / union_area
+  iou = inter_area / union_area
+  
+  return(iou)
 }
 
-agreement_label <- function(score) {
-  if (score > 0.7) {
-    return("strong")
+add_iou_all_frames <- function(box_pairs) {
+  for (row in 1:nrow(box_pairs)) {
+    box_a <- c(box_pairs[row, "box_a_x1"], box_pairs[row, "box_a_y1"], box_pairs[row, "box_a_x2"], box_pairs[row, "box_a_y2"])
+    box_b <- c(box_pairs[row, "box_b_x1"], box_pairs[row, "box_b_y1"], box_pairs[row, "box_b_x2"], box_pairs[row, "box_b_y2"])
+
+    box_pairs[row, "iou"] <- compute_iou(box_a, box_b)
   }
-
-  if (score > 0.3) {
-    return("mixed")
-  }
-
-  "weak"
+  return(box_pairs)
 }
 
-agreement_summary <- function(name, box_a, box_b) {
-  score <- compute_iou(box_a, box_b)
-  sprintf("%s: IoU = %.3f (%s)", name, score, agreement_label(score))
+build_agreement_curve <- function(box_pairs) {
+  thresholds <- seq(0, 1, by = 0.05)
+  agreement_curve <- data.frame(
+    iou_threshold = thresholds,
+    percent_agreement = sapply(thresholds, function(threshold) {
+      mean(box_pairs$iou >= threshold, na.rm = TRUE) * 100
+    })
+  )
+  return(agreement_curve)
 }
 
-reference_box <- c(0.10, 0.10, 0.50, 0.50)
-slightly_shifted_box <- c(0.20, 0.20, 0.60, 0.60)
-touching_box <- c(0.50, 0.10, 0.80, 0.40)
-separate_box <- c(0.70, 0.70, 0.90, 0.90)
-invalid_box <- c(0.75, 0.20, 0.60, 0.40)
+### Test the functions ----
+box_pairs <- read.csv("mock_box_pairs.csv")
+box_pairs_w_iou <- add_iou_all_frames(box_pairs)
+curve_info <- build_agreement_curve(box_pairs_w_iou)
 
-cat(agreement_summary("normal overlap", reference_box, slightly_shifted_box), "\n")
-cat(agreement_summary("touching edge", reference_box, touching_box), "\n")
-cat(agreement_summary("no overlap", reference_box, separate_box), "\n")
-cat(agreement_summary("invalid box", reference_box, invalid_box), "\n")
+ggplot(curve_info, aes(x = iou_threshold, y = percent_agreement)) +
+  geom_line() +
+  geom_point() +
+  labs(x = "IoU Threshold", y = "% Agreement") +
+  theme_bw()
+

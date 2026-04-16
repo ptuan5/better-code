@@ -20,7 +20,7 @@ By the end of this module, participants should be able to:
 - `demos/unit-test.R` or `demos/unit-test.py`
 - `activities/activity-1/prompt.md`
 - `activities/activity-1/starter.R` or `activities/activity-1/starter.py`
-- `activities/activity-1/example.R` or `activities/activity-1/example.py`
+- `activities/activity-1/example_solution.Rmd` or `activities/activity-1/example_solution.ipynb`
 - `activities/activity-2/prompt.md`
 
 This day centers on a simple but important idea: code can run, look plausible, and still be untrustworthy. The teaching arc starts with why that matters in science, then gives participants a practical workflow for reviewing suspicious code, debugging silent wrong behavior, and writing a few tests that preserve the intended behavior.
@@ -74,7 +74,7 @@ Time: 20 minutes
 3. Mark possible bugs, hidden assumptions, and edge cases as if leaving review comments.
 4. Decide which issue is a direct bug and which issue needs debugging or clarification.
 5. Fix the most important logic problems.
-6. Do a few manual checks before comparing with the example approach.
+6. Do a few manual checks before comparing with the example solution.
 
 ### 5. Discussion: What Should Reviewers Question First?
 
@@ -118,7 +118,7 @@ Time: 20 minutes
 1. Open `activities/activity-2/prompt.md`.
 2. Choose one behavior you most want future you or a collaborator to trust.
 3. Write a small test for the normal case, one for a boundary or edge case, and one for invalid input or future expansion.
-4. Compare your checks with `activities/activity-1/example.R` or `activities/activity-1/example.py` if time allows.
+4. Compare your checks with `activities/activity-1/example_solution.Rmd` or `activities/activity-1/example_solution.ipynb` if time allows.
 
 ### 9. Reliability Checklist, Discussion, And Wrap-Up
 
