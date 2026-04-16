@@ -65,11 +65,11 @@
 
 | Time | Duration | Activity |
 | --- | --- | --- |
-| 13:00-13:15 | 15 min | Why shareable & what it entails |
-| 13:15-13:35 | 20 min | Demo: GitHub & basic repo structure |
-| 13:35-13:55 | 20 min | Activity 1: Fix this repo & publish to GitHub |
-| 13:55-14:15 | 20 min | Pull request concept & handoff checklist |
+| 13:00-13:20 | 20 min | Why shareable, why people share code, and Git vs GitHub vs Zenodo |
+| 13:20-13:50 | 30 min | Demo: Repo structure, README, `.gitignore`, and commit/push/pull in RStudio and VS Code |
+| 13:50-14:10 | 20 min | Activity 1: Make one small improvement, then complete one push and one pull |
+| 14:10-14:15 | 5 min | Confirm successful push/pull and troubleshoot |
 | 14:15-14:30 | 15 min | Break |
-| 14:30-14:40 | 10 min | Demo: Review a repo as a newcomer |
-| 14:40-15:20 | 40 min | Activity 2: Workshop review quiz + reflection |
-| 15:20-15:30 | 10 min | Workshop wrap up / Buffer time |
+| 14:30-14:45 | 15 min | Demo: Repo handoff checklist and optional good/bad public repo scan |
+| 14:45-15:15 | 30 min | Activity 2: Workshop review quiz + reflection |
+| 15:15-15:30 | 15 min | Workshop wrap up / Buffer time |

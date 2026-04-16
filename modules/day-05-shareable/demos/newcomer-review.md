@@ -4,6 +4,8 @@
 
 Model the kind of newcomer-facing feedback or self-review that reveals whether a repo is actually usable.
 
+Use this as a short handoff checklist after the push/pull activity, not as a second large technical demo.
+
 ## Files
 
 Use the revised materials from either `../activities/activity-1/r/` or `../activities/activity-1/python/`, such as:
@@ -21,6 +23,8 @@ A learner returns to a revised repo after a short break and tries to read it lik
 Because the cohort may be small, this can be run as a self-check or whole-room walkthrough rather than a formal partner exchange.
 
 The demo shows how to leave feedback that reflects a real newcomer experience rather than vague approval or nitpicks.
+
+It also gives you a simple way to talk about stronger and weaker public GitHub repos if time allows, without turning that optional section into a long case study.
 
 ## Review Pattern
 
@@ -40,6 +44,7 @@ I can see the output file name, but I still do not know which command to run fir
 2. Find one thing that is already working for a new user.
 3. Find one real blocker that would stop the handoff.
 4. Turn that blocker into a specific suggestion.
+5. If time allows, repeat the same scan on a public repo and ask what becomes clear in the first 30 seconds.
 
 ## Good Feedback Traits
 

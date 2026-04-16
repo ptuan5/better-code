@@ -6,6 +6,8 @@ Revisit the full workshop and connect the five course themes before the final wr
 
 This is the synthesis checkpoint for the workshop: can you explain how code becomes understandable, reusable, rerunnable, trustworthy, and shareable?
 
+This version is intentionally shorter so the whole review fits in 30 minutes.
+
 ## Files
 
 - your notes from Days 1-5
@@ -33,47 +35,33 @@ This is the synthesis checkpoint for the workshop: can you explain how code beco
    B. Code can run and still return a plausible wrong answer
    C. Errors are the only real reliability problem
    D. A script that runs does not need testing
-5. What information belongs near the top of a README for a small analysis repo?
+5. What is the best description of Git, GitHub, and Zenodo?
+   A. Git is for plotting, GitHub is for notebooks, Zenodo is for raw data
+   B. Git is local version control, GitHub is hosting and collaboration, Zenodo is archival release and citation
+   C. Git and GitHub are the same thing, and Zenodo replaces both
+   D. GitHub is local version control, Git is a website, and Zenodo is a branch name
+6. What information belongs near the top of a README for a small analysis repo?
    A. A long biography of the author
    B. The project purpose, main file, and how to run it
    C. Every experiment the author has ever tried
    D. Only the output file name
-6. How can tests or manual checks make code easier to share?
+7. What does `pull` do?
+   A. Deletes old commits
+   B. Brings remote changes down to your machine
+   C. Publishes a DOI
+   D. Ignores tracked files
+8. How can tests or manual checks make code easier to share?
    A. They make the code look more advanced
    B. They replace documentation completely
    C. They make expected behavior visible to the next person
    D. They guarantee the code will never break again
-7. Which file should usually help a newcomer orient themselves first in a small repo?
-   A. The longest script
-   B. The README or another clearly named entry-point file
-   C. The hidden cache folder
-   D. The oldest commit
-8. Which naming choice is most helpful for handoff?
-   A. `final_new_v2_reallyfinal.csv`
-   B. `data.csv`
-   C. `out.csv`
-   D. `summary-by-group.csv`
-9. Which situation most strongly suggests you should add a test or explicit manual check?
-   A. The code uses a loop
-   B. The result looks neat
-   C. The function has edge cases or silent-failure risk
-   D. The file is short
-10. Which change best improves reproducibility for a collaborator?
-   A. Telling them to ask you if something breaks
-   B. Writing down environment and run steps
-   C. Renaming folders every week
-   D. Keeping setup details in memory
 
 ## Part B: Short Answer
 
-1. Name one edge case or failure case you would want to check before trusting a scientific helper function.
-2. How do clear inputs, outputs, and file names reduce friction for a collaborator?
-3. What is one difference between code that works for you and code that is ready for handoff?
-4. Which earlier day felt most connected to shareability by the end of the week, and why?
-5. Across the whole week, which practice would improve your own projects the fastest?
-6. Write one sentence you would want near the top of a README so a newcomer knows what the repo does.
-7. Pick one earlier activity from the workshop and name one change that would make it easier for another person to reuse.
-8. What is one test, manual check, or review question you would want in place before handing off a small analysis script?
+1. What is one difference between code that works for you and code that is ready for handoff?
+2. Write one sentence you would want near the top of a README so a newcomer knows what the repo does.
+3. Pick one earlier activity from the workshop and name one change that would make it easier for another person to reuse.
+4. What is one test, manual check, or review question you would want in place before handing off a small analysis script?
 
 ## Reflection Prompt
 

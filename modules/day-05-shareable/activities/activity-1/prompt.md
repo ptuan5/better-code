@@ -1,14 +1,14 @@
-# Activity 1: Fix This Repo & Prepare It for GitHub
+# Activity 1: Make One Push and One Pull
 
 ## Goal
 
-Make a tiny analysis project understandable and reusable for a new collaborator.
+Successfully complete one small GitHub workflow on a tiny analysis project.
 
 ## Scenario
 
 Imagine you found this repo through a GitHub link from another researcher. The project is small and probably useful, but the README is weak, the output naming is unclear, and you are not sure what command to run first.
 
-Your job is to make the project usable enough that a newcomer could open it, understand its purpose, and rerun it without needing a guided tour from the original author.
+Your job is not to perfect the whole repo today. Your job is to make one newcomer-friendly improvement, record it with Git, push it to GitHub, and pull one change back down successfully.
 
 Today uses a deliberately small teaching repo. Treat either the `r/` folder or the `python/` folder as something you found on GitHub: it almost works, but a newcomer would still have too many questions.
 
@@ -29,11 +29,15 @@ This activity is the synthesis day for the workshop. Strong sharing depends on e
 
 Choose one language folder and treat that starter project like something you are about to hand off to another researcher.
 
-1. Choose either `r/` or `python/` and read that folder as if you have never seen it before.
-2. Inspect the script, the weak language-matched README file, and any notes file before changing anything.
-3. Improve names, script headers, and output descriptions.
-4. Rewrite the README so the purpose, entry point, and output file are obvious.
-5. If you want, also suggest one folder or filename change that would make the project easier to navigate.
+1. Choose either `r/` or `python/`.
+2. Read that folder as if you have never seen it before.
+3. Make one small improvement that helps a newcomer.
+4. Commit that change with a clear message.
+5. Push the commit to GitHub.
+6. Pull one remote change back to your machine.
+7. If you finish early, make one more README or naming improvement.
+
+You can do the Git steps in either RStudio or VS Code. The important outcome is one successful push and one successful pull.
 
 ### Questions to Answer
 
@@ -41,13 +45,13 @@ Choose one language folder and treat that starter project like something you are
 - what input data or values does it use?
 - what output file does it produce?
 - what command or step should a new user run first?
+- what changed in your commit?
+- what is the difference between `commit`, `push`, and `pull`?
 - what would still be unclear if this lived on GitHub with no author nearby?
-- which file should a newcomer open first?
 
 ## Discussion Prompt
 
-- what change made the repo easiest for a newcomer to understand?
-- which file should a new user open first, and why?
-- what information absolutely needed to be in the README?
-- what naming change most improved the handoff?
+- what small change gave the biggest improvement for a newcomer?
+- what did your commit message communicate well, or poorly?
+- what part of push or pull was most confusing the first time?
 - what would still make you hesitate before sharing this on GitHub?
