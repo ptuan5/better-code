@@ -6,55 +6,52 @@ Show how to turn a silent-break suspicion into a few small, focused unit tests.
 
 ## Files
 
-- `unit-test.R`
-- `unit-test.py`
+- `unit-test.R` (relying on `silent_break.R`)
+- `unit-test.py` (relying on `silent_break.py`) 
 
 ## Scenario
 
 Frame the demo like this:
 
-Demo 1a already gave you a review comment:
-"This function says it smooths across rows, but I think it is smoothing across
-columns instead."
+Demo 1b already gave you a review comment:
+"This helper looks useful, but do we know it works on a normal dataset, and do
+we fail clearly when the time columns are malformed?"
 
-Demo 2 shows how to turn that concern into tests. The point is not to write a
-large suite. The point is to write a small number of checks that make the
-expected behavior visible to future readers.
+Demo 2 shows how to turn that concern into tests. The point is not to write a large suite. The point is to write a small number of checks that make the expected behavior visible to future readers.
 
 ## Test Focus
 
-Use the matching R or Python demo file to write tests for the moving-average
-function from Demo 1a.
+Use the matching R or Python demo file to write tests for the
+`_smooth_time_series()` helper from Demo 1b.
 
 | Test Type | Example | Why it matters |
 |---|---|---|
-| Expected-output test | a toy matrix with an obvious row-wise pattern | catches the wrong axis directly |
-| Structure test | a single-row matrix with `window = 1` | checks a simple input shape without extra moving parts |
-| Failure test | `window` larger than the number of rows | makes error handling explicit |
+| Baseline test | a tiny dataset with evenly spaced time columns | confirms the helper returns the expected smoothed values |
+| Failure test | a dataset with uneven time gaps like `0`, `2`, `3` | makes the time-spacing assumption explicit |
 
 ## From Review Comment To Test
 
 Model the translation explicitly:
 
 - review question:
-  "Are we averaging over time, or across samples?"
+  "What do we expect this helper to return on a normal dataset, and what should happen when time columns are malformed?"
 - expected behavior:
-  "Each column should be smoothed down the rows because rows are time points."
+  "The helper should smooth across time within each sample and reject unevenly spaced timepoints."
 - test:
-  use a toy matrix where row-wise smoothing and column-wise smoothing produce
-  different answers
+  use one tiny dataset with a known expected result, then one tiny dataset that
+  should error
 
 If time allows, name one or two additional questions:
 
-- "What should happen when there is only one row?"
-- "What should happen when the window size is impossible?"
+- "Should the helper sort time columns before smoothing?"
+- "Do we want an assertion, a warning, or a custom error for uneven spacing?"
 - "What behavior do we want to lock in before someone 'refactors' this later?"
 
 ## Demo Moves
 
-1. Write the expected result before writing the first assertion.
-2. Use one tiny matrix that makes the axis choice obvious.
-3. Add one structure check and one error-handling check.
+1. Write the expected baseline result before writing the first assertion.
+2. Use one tiny dataset with evenly spaced columns.
+3. Add one failure check for uneven timepoints.
 4. Run the tests and point out that a failing test is useful information, not a
    setback.
 5. Highlight that `pytest` and `testthat` use different syntax but the same
@@ -62,10 +59,8 @@ If time allows, name one or two additional questions:
 
 ## Example Test Questions
 
-- Does the function smooth down rows, as promised?
-- Does the simplest valid input keep its shape and values?
-- Does an impossible window size fail clearly instead of returning a plausible
-  matrix?
+- Does `_smooth_time_series()` return the expected smoothed values on normal input?
+- Does it fail clearly when timepoints are not evenly spaced?
 
 ## Suggested Talking Points
 

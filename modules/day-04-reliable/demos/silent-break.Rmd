@@ -65,6 +65,16 @@ Because the data is quite noisy, I smooth the data using a moving average. Then 
 What can potentially be wrong with the code?
 
 ```{r}
+#' Plot smoothed time-series data by condition and sex
+#'
+#' @description
+#' Plot smoothed time-series data by condition (color) and sex (style).
+#'
+#' @param data A data.frame containing 'Condition', 'Sex', and numeric time columns (e.g., '1', '2', ...).
+#' @param window Integer. Rolling window for smoothing across time columns. Default is 5.
+#' @param figsize Numeric vector of length 2. Figure size. Default is c(10, 6).
+#'
+#' @return A \code{matplotlib.figure.Figure}-like object representing the plot of time-smoothed measurements.
 plot_smoothed_measurements <- function(data, window = 5, figsize = c(10, 6)) {
   # Identify time-series columns (numeric names like "1","2",...)
   measurement_cols <- colnames(data)[grepl("^\\d+$", colnames(data))]
@@ -127,4 +137,95 @@ generate_mock_time_series <- function(num_samples = 80, num_timepoints = 90, see
 ```{r}
 demo1b_mock_data <- generate_mock_time_series()
 plot_smoothed_measurements(demo1b_mock_data, window = 5)
+```
+
+### Example improved code
+
+For Demo 1a, one reliability issue is the artificial duplication of outliers in
+plotting: one point comes from the boxplot itself, and another comes from the
+overlaid points.
+
+The fix is to hide the outliers in the boxplot layer.
+
+```{r}
+plot_boxplot_improved <- function(data, x, y, fill) {
+  ggplot(data, aes(x = .data[[x]], y = .data[[y]], fill = .data[[fill]])) +
+    geom_boxplot(position = position_dodge(width = 0.75), outlier.shape = NA) +
+    geom_point(aes(group = .data[[fill]]), position = position_jitterdodge(jitter.width = 0.15, dodge.width = 0.75)) +
+    labs(x = x, y = y, fill = fill, color = fill) +
+    theme_minimal()
+}
+```
+
+For Demo 1b, there are several reliability issues with the rolling average.
+
+- The rolling average is going along the wrong axis, so the smoothing happens
+  across samples instead of across time.
+- It assumes the time columns are already in the correct increasing order.
+- It assumes the time points are evenly spaced.
+
+We can identify more problems, but this example only fixes those three main
+issues for simplicity.
+
+This function is also doing multiple things at once, with separate smoothing
+and plotting responsibilities. It is usually clearer to break that into smaller
+functions.
+
+```{r}
+get_time_columns <- function(data) {
+  ### Identify time columns in the DataFrame.
+  
+  # Identify columns that are purely digits
+  time_cols <- names(data)[grepl("^\\d+$", names(data))]
+  # Ensure correct temporal order
+  time_cols <- time_cols[order(as.integer(time_cols))]
+
+  # Confirm evenly spaced timepoints
+  timepoints <- as.integer(time_cols)
+  if (length(timepoints) > 1) {
+    diffs <- diff(timepoints)
+    if (!all(diffs == diffs[1])) {
+      stop("Timepoints are not evenly spaced.", call. = FALSE)
+    }
+  }
+
+  return(time_cols)
+}
+
+smooth_time_series <- function(data, window = 5) {
+  ### Apply rolling mean smoothing to time-series data.
+  measurement_cols <- get_time_columns(data)
+  
+  # Smooth across time for each sample
+  smoothed_matrix <- data %>%
+    dplyr::select(all_of(measurement_cols)) %>%
+    t() %>% as.data.frame() %>%
+    mutate(across(everything(), 
+           ~ rollapply(.x, width = window, FUN = mean, align = "center", partial = TRUE))) %>%
+    t()
+
+  smoothed_data <- data
+  smoothed_data[measurement_cols] <- as.data.frame(smoothed_matrix)
+
+  smoothed_data %>%
+    pivot_longer(
+      cols = all_of(measurement_cols),
+      names_to = "Time",
+      values_to = "Value"
+    ) %>%
+    mutate(Time = as.numeric(Time))
+}
+
+plot_smoothed_measurements_improved <- function(data, window = 5, figsize = c(10, 6)) {
+  smoothed_data_long <- smooth_time_series(data, window = window)
+
+  long_summary <- smoothed_data_long %>%
+    group_by(Condition, Sex, Time) %>%
+    summarize(Value = mean(Value, na.rm = TRUE), .groups = "drop")
+
+  ggplot(long_summary, aes(x = Time, y = Value, color = Condition, linetype = Sex)) +
+    geom_line() +
+    labs(title = "Smoothed Measurements", x = "Time", y = "Value") +
+    theme_bw()
+}
 ```

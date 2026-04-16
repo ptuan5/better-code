@@ -1,81 +1,48 @@
-# Day 4 demo: testthat checks for the moving-average silent break.
+# Day 4 demo: minimal testthat checks for the smoothing helper.
 
 library(testthat)
 
-current_file_path <- function() {
-  command_args <- commandArgs(trailingOnly = FALSE)
-  file_argument <- grep("^--file=", command_args, value = TRUE)
+source("silent_break.R")
 
-  if (length(file_argument) > 0) {
-    return(normalizePath(sub("^--file=", "", file_argument[[1]])))
-  }
-
-  frames <- sys.frames()
-
-  for (index in rev(seq_along(frames))) {
-    if (!is.null(frames[[index]]$ofile)) {
-      return(normalizePath(frames[[index]]$ofile))
-    }
-  }
-
-  NULL
-}
-
-demo_directory <- function() {
-  file_path <- current_file_path()
-
-  if (!is.null(file_path)) {
-    return(dirname(file_path))
-  }
-
-  project_root <- Sys.getenv("PWD", unset = "")
-  fallback_directory <- normalizePath(
-    file.path(project_root, "modules", "day-04-reliable", "demos"),
-    mustWork = FALSE
+test_that("smooth_time_series returns expected values for typical data", {
+  values <- data.frame(
+    Sample_ID = c("Sample_1", "Sample_2"),
+    Condition = c("A", "B"),
+    Sex = c("Male", "Female"),
+    `0` = c(0, 10),
+    `1` = c(0, 10),
+    `2` = c(6, 16),
+    `3` = c(6, 16),
+    check.names = FALSE
   )
 
-  if (file.exists(file.path(fallback_directory, "silent-break.R"))) {
-    return(fallback_directory)
-  }
+  expected <- tibble::tibble(
+    Condition = c("A", "B", "A", "B", "A", "B", "A", "B"),
+    Sex = c("Male", "Female", "Male", "Female", "Male", "Female", "Male", "Female"),
+    Time = c(0, 0, 1, 1, 2, 2, 3, 3),
+    Value = c(0, 10, 2, 12, 4, 14, 6, 16)
+  ) |>
+    dplyr::arrange(Condition, Sex, Time)
 
-  stop("Could not determine the demo directory")
-}
-
-DEMO_DIR <- demo_directory()
-source(file.path(DEMO_DIR, "silent-break.R"), local = TRUE)
-
-reference_moving_average_rows <- function(values, window = 3) {
-  matrix_values <- as.matrix(values)
-
-  vapply(
-    seq_len(ncol(matrix_values)),
-    function(column_index) {
-      centered_moving_average_1d(matrix_values[, column_index], window = window)
-    },
-    numeric(nrow(matrix_values))
-  )
-}
-
-test_that("moving average smooths down rows", {
-  values <- build_time_series_example()
-  expected <- reference_moving_average_rows(values, window = 3)
-  actual <- moving_average_rows(values, window = 3)
+  actual <- smooth_time_series(values, window = 3) |>
+    dplyr::arrange(Condition, Sex, Time)
 
   expect_equal(actual, expected)
 })
 
-test_that("window 1 keeps a single-row matrix unchanged", {
-  values <- matrix(c(5, 50, 500), nrow = 1)
-  actual <- moving_average_rows(values, window = 1)
-
-  expect_equal(actual, values)
-})
-
-test_that("window larger than the number of rows errors clearly", {
-  values <- build_time_series_example()
+test_that("smooth_time_series fails when timepoints are not evenly spaced", {
+  values <- data.frame(
+    Sample_ID = c("Sample_1", "Sample_2"),
+    Condition = c("A", "B"),
+    Sex = c("Male", "Female"),
+    `0` = c(0, 10),
+    `2` = c(6, 16),
+    `3` = c(6, 16),
+    check.names = FALSE
+  )
 
   expect_error(
-    moving_average_rows(values, window = 5),
-    "window cannot be larger than the number of rows"
+    smooth_time_series(values, window = 3),
+    "Timepoints are not evenly spaced."
   )
 })
