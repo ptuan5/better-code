@@ -28,7 +28,7 @@ plot_boxplot <- function(data, x, y, fill) {
   ggplot(data, aes(x = .data[[x]], y = .data[[y]], fill = .data[[fill]])) +
     geom_boxplot(position = position_dodge(width = 0.75)) +
     geom_point(aes(group = .data[[fill]]),
-               position = position_jitterdodge(jitter.width = 0.15, dodge.width = 0.75)) +
+               position = position_jitterdodge(jitter.width = 0.15)) +
     labs(x = x, y = y, fill = fill, color = fill) +
     theme_minimal()
 }
