@@ -1,4 +1,4 @@
-# Repo Handoff Demo
+# Publish GitHub Demo
 
 ## Demo Goal
 
@@ -18,8 +18,8 @@ The point is to separate the concepts clearly. Git comes first. GitHub comes aft
 Start in the terminal with a brand-new folder:
 
 ```bash
-mkdir git-handoff-demo
-cd git-handoff-demo
+mkdir github-practice
+cd github-practice
 git init
 ```
 
@@ -50,13 +50,13 @@ git status
 git add notes.md
 git commit -m "Create notes file"
 
-printf "\n## Handoff Question\nWhat does a newcomer need first?\n" >> notes.md
+printf "\n## Git Question\nWhat should a new collaborator see first?\n" >> notes.md
 git add notes.md
-git commit -m "Add handoff question"
+git commit -m "Add Git question"
 
-printf "\n## Handoff Answer\nA clear start point and clear history.\n" >> notes.md
+printf "\n## Git Answer\nA clear start point and clear history.\n" >> notes.md
 git add notes.md
-git commit -m "Add handoff answer"
+git commit -m "Add Git answer"
 
 git branch -M main
 git log --oneline
@@ -73,7 +73,7 @@ git diff HEAD~1 HEAD
 - `add` chooses what goes into the next snapshot.
 - `commit` saves a meaningful version.
 - `log`, `show`, and `diff` help you move through earlier and later versions of the same project history.
-- `checkout` and `branch` to go back to previous versions.
+- `checkout` or `switch` can help you inspect earlier versions.
 - No branches are needed yet. This is just one line of change over time.
 
 ## Part 2: Remote Repositories and GitHub
@@ -90,9 +90,9 @@ You can demonstrate the idea of a remote without using GitHub first:
 
 ```bash
 cd ..
-git init --bare git-handoff-remote.git
-cd git-handoff-demo
-git remote add origin ../git-handoff-remote.git
+git init --bare github-practice-remote.git
+cd github-practice
+git remote add origin ../github-practice-remote.git
 git remote -v
 git push -u origin main
 ```
@@ -102,13 +102,14 @@ git push -u origin main
 Once learners understand that `origin` is just a remote location, show the GitHub version of the same idea with a hosted URL:
 
 ```bash
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin git@github.com:ptuan5/mock_demo.git
+git remote set-url origin https://github.com/<your-username>/github-practice.git
+git remote -v
 git push -u origin main
+git fetch
+git pull
 ```
+
+Use a pre-created empty GitHub repository for the demo, or substitute any example GitHub URL you want to discuss.
 
 ### Talking Points
 
@@ -204,7 +205,7 @@ Repeat the same three ideas again in RStudio so learners can see the same Git co
 - If the remote is not configured yet, add it once from the RStudio Terminal:
 
 ```bash
-git remote add origin https://github.com/<your-username>/git-handoff-demo.git
+git remote add origin https://github.com/<your-username>/github-practice.git
 git push -u origin main
 ```
 

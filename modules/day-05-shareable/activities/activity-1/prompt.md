@@ -41,6 +41,8 @@ git commit -m "Create practice repo"
 git branch -M main
 ```
 
+I recommend get used to the IDE supports for `push` and `pull`.
+
 ## Task
 
 1. Create a small local folder for practice.
