@@ -9,8 +9,8 @@ By the end of this module, participants should be able to:
 1. Identify the basic parts of a usable research repository.
 2. Explain the difference between Git, GitHub, and Zenodo.
 3. Improve README files for audience, clarity, and actionability.
-4. Complete a simple version-control workflow with commit, push, and pull.
-5. Recognize what makes a repo easier or harder to hand off publicly.
+4. Complete a simple version-control workflow with commit, push, pull, and branching.
+5. Explain how a pull request adds a review step before merging changes.
 6. Connect shareability back to readability, reusability, reproducibility, and reliability.
 
 ## Materials
@@ -21,7 +21,7 @@ By the end of this module, participants should be able to:
 - `activities/activity-1/`
 - `activities/activity-2/prompt.md`
 
-This day uses a deliberately tiny practice repo rather than a direct real-world source file. It is meant to keep the Git and GitHub workflow small enough to practice clearly before participants apply it to their own projects.
+This day uses a mix of a tiny disposable practice repo and the actual workshop repo. The disposable repo keeps Git concepts small and clear, and the workshop repo makes the pull request and review workflow feel real.
 
 ## Agenda
 
@@ -42,7 +42,7 @@ Time: 30 minutes
 
 - use `demos/publish-github-demo.md` to model local Git, remotes, GitHub, and branches in a small disposable folder
 - show the difference between local history, a remote repo, and a GitHub-hosted repo
-- demonstrate the same commit, push, and pull flow in both RStudio and VS Code
+- repeat the same ideas in VS Code and RStudio so learners can map the concepts to their IDE
 - keep the example intentionally tiny so the Git concepts stay visible
 
 ### 3. Activity 1: Create, Push, and Pull a Practice Repo
@@ -71,11 +71,11 @@ Time: 15 minutes
 
 Time: 15 minutes
 
-- use the practice repo created in Activity 1 as the repo for a small branch and pull request
-- use `demos/pull-request-demo.md` to model one small change moving through branch, review, and merge
-- show how to inspect a diff and leave one useful review comment
-- explain how pull requests support collaboration once a repo is on GitHub
-- if time allows, compare a small clean pull request with a messier one at a high level
+- use the actual workshop repo for a live example of direct `pull` and `push`
+- use `demos/pull-request-demo.md` to model a second small change moving through branch, pull request, review, and merge
+- show how to inspect the diff on GitHub and leave one useful review comment
+- demonstrate how AI review and one additional helper can support the review before merge
+- explain why direct push is simpler, but pull requests add a clearer collaboration step
 
 ### 6. Activity 2: Workshop Review Quiz + Reflection
 
@@ -97,7 +97,7 @@ Time: 15 minutes
 
 ## Notes
 
-This module works well as a synthesis day. Invite participants to explain how readability, reusability, reproducibility, and reliability all support code sharing. Because the project is intentionally tiny, keep pushing learners to think in repo-level terms anyway: what would a stranger need to know first?
+This module works well as a synthesis day. Invite participants to explain how readability, reusability, reproducibility, and reliability all support code sharing. Because the Git exercises are intentionally small, keep connecting them back to real repo habits rather than treating them as isolated commands.
 
 The timing is reasonable if Activity 1 stays narrow. The success condition should be one small documented change plus one successful push and one successful pull, not a fully polished public repo.
 
