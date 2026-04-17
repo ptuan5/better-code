@@ -1,3 +1,0 @@
-used for lab share-out
-the csv is the thing people usually want
-if you change numbers just run again

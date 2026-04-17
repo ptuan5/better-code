@@ -2,97 +2,228 @@
 
 ## Demo Goal
 
-Show how a small project becomes easier to hand off when purpose, run steps, outputs, and version history are easy to spot.
+Use a fresh disposable folder for this demo, not one of the course repos.
 
-This is also the place to clarify the basic sharing stack:
+Teach the ideas in this order:
 
-- Git tracks version history locally.
-- GitHub hosts the repo and supports collaboration.
-- Zenodo archives a release and can mint a DOI for citation.
+1. local Git history in one straight line
+2. remote repositories and GitHub
+3. branches
+4. the same three ideas in VS Code and RStudio
 
-## Files
+The point is to separate the concepts clearly. Git comes first. GitHub comes after that. Branches come after both.
 
-Use the matching materials from either `../activities/activity-1/r/` or `../activities/activity-1/python/`:
+## Setup
 
-- weak version: `README.md`, plus `starter.R` or `starter.py`
-- stronger version: `README-example.md`, plus `example.R` or `example.py`
+Start in the terminal with a brand-new folder:
 
-## Scenario
+```bash
+mkdir git-handoff-demo
+cd git-handoff-demo
+git init
+```
 
-Frame the demo like this:
+If Git refuses to commit because the user identity is missing, set it once:
 
-You have opened a small analysis repo from another lab after seeing it linked in a shared document. The work looks relevant to your own project, but you only have a few minutes to decide whether you can actually use it.
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+```
 
-The demo focuses on the first impression of the repo: what you can understand before you even run the code, and what signals tell you whether the handoff will be smooth or frustrating.
+If your Git installation still uses `master` as the default branch name, either keep that name throughout the demo or rename it to `main` after the first commit.
 
-## Minimum Shareable Standard
+## Part 1: Local Git Only
 
-Even a tiny public repo should help a newcomer answer these questions:
+Do this entire part without remotes and without branches.
 
-- What is this project for?
-- Which file should I open first?
-- How do I run it?
-- What output should I expect?
-- What should Git track, and what should `.gitignore` hide?
-- If this becomes part of a paper, do I want an archived release in Zenodo?
+### Goal
 
-## Newcomer Scan
+Show that Git is local version control and that a project can move backward and forward through one straight line of saved history.
 
-Ask learners to open the repo like a stranger and answer:
+### Terminal Demo
 
-- What should I open first?
-- What does this project do?
-- What command should I run?
-- Where will the result appear?
+Create a file, change it a few times, and commit each meaningful step:
 
-## Repo Structure Talking Points
+```bash
+printf "# Demo Notes\n" > notes.md
+git status
+git add notes.md
+git commit -m "Create notes file"
 
-- top-level `README.md` for orientation
-- main script or notebook with a clear name
-- output folder or results folder with readable file names
-- notes that support the work without replacing the README
-- `.gitignore` for files that should not be versioned, such as caches, temporary files, and machine-specific clutter
+printf "\n## Handoff Question\nWhat does a newcomer need first?\n" >> notes.md
+git add notes.md
+git commit -m "Add handoff question"
 
-## Versioning Talking Points
+printf "\n## Handoff Answer\nA clear start point and clear history.\n" >> notes.md
+git add notes.md
+git commit -m "Add handoff answer"
 
-- `commit` means "save a meaningful version in Git"
-- `push` means "send your local commits to GitHub"
-- `pull` means "bring remote changes from GitHub back to your machine"
+git branch -M main
+git log --oneline
+git show HEAD
+git show HEAD~1
+git diff HEAD~1 HEAD
+```
 
-## RStudio and VS Code Moves
+### Talking Points
 
-Show the same tiny workflow in both tools:
+- Git is working entirely on your own machine in this part.
+- The history is one straight line of commits.
+- `status` shows the current working state.
+- `add` chooses what goes into the next snapshot.
+- `commit` saves a meaningful version.
+- `log`, `show`, and `diff` help you move through earlier and later versions of the same project history.
+- `checkout` and `branch` to go back to previous versions.
+- No branches are needed yet. This is just one line of change over time.
 
-1. edit one small file
-2. view changed files
-3. stage the change
-4. write a commit message
-5. push
-6. pull
+## Part 2: Remote Repositories and GitHub
 
-In RStudio, use the Git pane.
+Only after local Git makes sense should you introduce remotes.
 
-In VS Code, use the Source Control view.
+### Goal
 
-## Weak Version Signals
+Show that a remote is just another copy of a Git repository, and then explain that GitHub is a common hosted remote.
 
-- `README.md` is vague
-- script purpose is not obvious
-- outputs have unclear names
-- notes and run steps are scattered across files
+### Terminal Demo: Remote As A Concept
 
-## Strong Version Signals
+You can demonstrate the idea of a remote without using GitHub first:
 
-- README starts with one-sentence purpose
-- first command to run is visible near the top
-- output file is named and located clearly
-- the main script and supporting notes are easy to distinguish
+```bash
+cd ..
+git init --bare git-handoff-remote.git
+cd git-handoff-demo
+git remote add origin ../git-handoff-remote.git
+git remote -v
+git push -u origin main
+```
 
-## Suggested Talking Points
+### Terminal Demo: Connect That Idea To GitHub
 
-- Sharing problems often appear before anyone runs the code.
-- A newcomer should not have to guess where to start.
-- Repo structure and README wording are part of the scientific handoff.
-- GitHub is for collaboration and visibility during development.
-- Zenodo is for stable archival release and citation.
-- If time allows, compare one stronger and one weaker public repo at a high level and ask what a stranger can tell in 30 seconds.
+Once learners understand that `origin` is just a remote location, show the GitHub version of the same idea with a hosted URL:
+
+```bash
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:ptuan5/mock_demo.git
+git push -u origin main
+```
+
+### Talking Points
+
+- A remote is not magic. It is another Git repository.
+- `origin` is only a conventional name for that remote.
+- GitHub is one place where the remote repository can live.
+- Git still does the version-control work. GitHub adds hosting, visibility, and collaboration.
+- `push` sends local commits to the remote.
+- `fetch` checks the remote without changing local files.
+- `pull` brings remote changes into the current local branch.
+
+## Part 3: Branches
+
+Only after learners understand local history and remotes should you introduce branches.
+
+### Goal
+
+Show that a branch is a second line of development, not just another commit in the same straight line.
+
+### Terminal Demo
+
+Create a branch, make one commit there, then return to `main` and compare the histories:
+
+```bash
+git switch -c add-run-notes
+printf "# Run Notes\nExplain each command before typing it.\n" > run.md
+git add run.md
+git commit -m "Add run notes"
+
+git switch main
+printf "# Audience\nAssume no prior Git experience.\n" > audience.md
+git add audience.md
+git commit -m "Add audience note"
+
+git log --oneline --decorate --graph --all
+git merge add-run-notes
+git branch -d add-run-notes
+git log --oneline --decorate --graph --all
+```
+
+### Talking Points
+
+- A branch is a named line of work.
+- Branches let you try something without mixing it into `main` immediately.
+- The first part of the demo was a straight line of history.
+- This part introduces multiple lines of history and then a merge.
+- On GitHub, branches are commonly used for collaboration and pull requests.
+
+## VS Code Version
+
+Repeat the same three ideas in VS Code after the terminal version so learners can map the concepts to the interface.
+
+### 1. Local Git Only
+
+- Open the demo folder in VS Code.
+- Open the Source Control view.
+- If needed, choose `Initialize Repository`.
+- Edit `notes.md`.
+- Review the diff in the Source Control view.
+- Stage the change, write a commit message, and commit.
+- Use the commit graph or file timeline to show earlier versus later versions.
+
+### 2. Remote Repositories and GitHub
+
+- Explain that VS Code is still using Git underneath the interface.
+- Add or publish a remote repository.
+- Show push, pull, or sync only after the remote exists.
+- Connect the remote URL to the idea of GitHub as a hosted Git repository.
+
+### 3. Branches
+
+- Use the branch name in the status bar or the Git commands in the Command Palette.
+- Create a branch.
+- Commit one small change on that branch.
+- Switch back to `main`.
+- Show that the branch keeps its own history until you merge it.
+
+## RStudio Version
+
+Repeat the same three ideas again in RStudio so learners can see the same Git concepts in a second IDE.
+
+### 1. Local Git Only
+
+- Open the demo folder as an RStudio Project.
+- If Git is not yet enabled for the project, use `Project Options -> Version Control -> Git`.
+- Edit `notes.md` or another small text file.
+- Use the Git pane to inspect changes, stage files, commit, and open History.
+- Emphasize that the underlying Git history is the same history you saw in the terminal.
+
+### 2. Remote Repositories and GitHub
+
+- If the remote is already configured, use the Push and Pull buttons in the Git pane.
+- If the remote is not configured yet, add it once from the RStudio Terminal:
+
+```bash
+git remote add origin https://github.com/<your-username>/git-handoff-demo.git
+git push -u origin main
+```
+
+- After that, use the Git pane to connect the idea of local Git to GitHub as the hosted remote.
+
+### 3. Branches
+
+- Use the branch selector in the Git pane to switch branches.
+- Create or select a branch, make a small commit, and switch back.
+- Use History to show that branches preserve separate lines of work.
+- If needed, use the RStudio Terminal for the merge while keeping the Git pane visible.
+
+## Suggested Closing
+
+End with the simplest distinction possible:
+
+- Git is local version control.
+- A remote is another copy of the Git repository.
+- GitHub is a hosted remote that makes sharing and collaboration easier.
+- A branch is a separate line of work inside the same Git history.
+
+If learners understand those four sentences, the handoff story is already much clearer.

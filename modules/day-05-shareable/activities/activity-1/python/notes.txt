@@ -1,3 +1,0 @@
-used for lab share-out
-the csv is the file to send
-rerun after changing values
