@@ -28,4 +28,3 @@ Look at the slides for day 5.
 - Unit tests depend on your intent, not on how a function is implemented. You do not need to see the actual code to write unit tests.
 - Share code on GitHub early, as long as you are comfortable with the visibility and use of the code, so you can track your work and make sharing easier.
 
-## Reflection Prompt
